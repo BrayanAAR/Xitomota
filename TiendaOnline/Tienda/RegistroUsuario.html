@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registro Usuario</title>
     <link rel="stylesheet" href="../css/RegistroUsuario.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../js/RegistroUsuario.js">
 </head>
 <body>
     <header>
@@ -36,27 +35,30 @@
         <div class="registro">
             <form id="miFormulario">
                 <label for="nombre">Nombre Completo:</label>
-                <input type="text" id="nombre" name="nombre" required><br><br>
+                <input class="forms" type="text" id="nombre" name="nombre" required><br><br>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br><br>
+                <input class="forms" type="email" id="email" name="email" required><br><br>
 
                 <label for="contraseña">Contraseña:</label>
-                <input type="password" id="contraseña" name="contraseña" required><br><br>
+                <input class="forms" type="password" id="contraseña" name="contraseña" required><br><br>
 
                 <label for="confirmarContraseña">Confirmar Contraseña:</label>
-                <input type="password" id="confirmarcontraseña" name="confirmarcontraseña" required><br><br>
+                <input class="forms" type="password" id="confirmarContraseña" name="confirmarcontraseña" required><br><br>
 
                 <label for="telefono">Telefono (opcional): </label>
-                <input type="telefono" id="telefono" name="telefono"><br></br>
-
-                <button type="submit">Registrar</button>
+                <input class="forms" type="tel" id="telefono" name="telefono"><br><br>
+                <div class="registro_1">
+                    <button type="submit">Registrar</button>
+                    <button type="button" id="irIngresarCuenta">Ingresar</button>
+                </div>
+                
             </form> 
         </div>
 
 
     
     </main>
-<script src="script.js"></script>
+<script src="../js/RegistroUsuario.js"></script>
 </body>
 </html>
