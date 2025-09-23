@@ -74,3 +74,53 @@
     body.admin .menu li.home {
       display: block;
     }
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+#tablaUsuarios {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#tablaUsuarios th, #tablaUsuarios td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#tablaUsuarios tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#tablaUsuarios tr:hover {
+  background-color: #f1f1f1;
+}
+
+.btnNuevo {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.btnNuevo:hover {
+  background-color: #333;
+}
+
+.paginacion {
+  margin-top: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.paginacion button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.paginacion button.activo {
+  background-color: #007bff;
+  color: #fff;
+}
