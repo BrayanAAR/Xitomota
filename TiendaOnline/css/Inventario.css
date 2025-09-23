@@ -48,124 +48,75 @@ body {
 /* Footer Sidebar */
 .sidebar-footer {
   padding: 15px;
-  border-top: 1px solid #ddd;
-  text-align: center;
+  color: #666;
   font-size: 14px;
-  color: #555;
+  border-top: 1px solid #ddd;
 }
 
-/* Contenido principal */
+/* Main Content */
 .main {
-  flex-grow: 1;
+  flex: 1;
   padding: 20px;
   background: #fff;
   overflow-y: auto;
 }
 
 .main h1 {
-  margin-top: 0;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
 }
 
-/* 👇 Home solo visible si el body tiene clase "admin" */
-body.user .menu li.home {
-  display: none;
-}
-
-body.admin .menu li.home {
-  display: block;
-}
-    
-.tabla-contenedor {
-  overflow-x: auto;
-}
-
-#tablaUsuarios {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-#tablaUsuarios th, #tablaUsuarios td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#tablaUsuarios tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-#tablaUsuarios tr:hover {
-  background-color: #f1f1f1;
-}
-
+/* Botón Nuevo */
 .btnNuevo {
-  background-color: #000;
-  color: #fff;
+  background: #007bff;
+  color: white;
   border: none;
-  padding: 10px 10px;
-  margin-bottom: 5px;
+  padding: 10px 20px;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 20px;
+  transition: background-color 0.2s;
 }
 
 .btnNuevo:hover {
-  background-color: #333;
+  background: #0056b3;
 }
 
-.paginacion {
-  margin-top: 10px;
-  display: flex;
-  gap: 5px;
-}
-
-.paginacion button {
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.paginacion button.activo {
-  background-color: #007bff;
-  color: #fff;
-}
-
-/* Estilos adicionales para el listado de usuarios */
-.controles {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.busqueda input {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
+/* Tabla */
+.tabla-contenedor {
+  background: #fff;
   border-radius: 4px;
-  width: 300px;
-  font-size: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.tabla-usuarios {
+#tablaProductos {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
 }
 
-.tabla-usuarios th,
-.tabla-usuarios td {
+#tablaProductos th,
+#tablaProductos td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
 
-.tabla-usuarios th {
+#tablaProductos th {
   background-color: #f8f9fa;
   font-weight: bold;
   color: #333;
 }
 
-.tabla-usuarios tr:hover {
+#tablaProductos tr:hover {
   background-color: #f5f5f5;
 }
 
-.btn-editar {
+/* Botones de acción */
+.btn-editar,
+.btn-eliminar {
   padding: 6px 12px;
   border: none;
   border-radius: 4px;
@@ -182,4 +133,40 @@ body.admin .menu li.home {
 
 .btn-editar:hover {
   background-color: #218838;
+}
+
+.btn-eliminar {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-eliminar:hover {
+  background-color: #c82333;
+}
+
+/* Paginación */
+.paginacion {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.paginacion button {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  margin: 0 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.paginacion button:hover {
+  background: #e9ecef;
+}
+
+.paginacion button.activo {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
 }

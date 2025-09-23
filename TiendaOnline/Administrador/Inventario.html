@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Listado de Usuarios</title>
-  <link rel="stylesheet" href="../css/ListadoUsuarios.css"> <!-- reutilizamos estilos -->
+  <title>Inventario de Productos</title>
+  <link rel="stylesheet" href="../css/Inventario.css">
 </head>
 <body class="admin">
   <aside class="sidebar">
@@ -20,19 +20,19 @@
   </aside>
 
 <main class="main">
-  <h1>Usuarios</h1>
-  <button onclick="location.href='../Administrador/NuevoUsuario.html'" class="btnNuevo">NUEVO USUARIO</button>
+  <h1>Inventario de Productos</h1>
+  <button onclick="location.href='NuevoProducto.html'" class="btnNuevo">NUEVO PRODUCTO</button>
   
 
   <div class="tabla-contenedor">
-    <table id="tablaUsuarios">
+    <table id="tablaProductos">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>Código</th>
           <th>Nombre</th>
-          <th>Email</th>
-          <th>Región</th>
-          <th>Rol</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Categoría</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -53,6 +53,6 @@
   </div>
 </main>
 
-<script src="../js/ListadoUsuarios.js"></script>
+<script src="../js/Inventario.js"></script>
 </body>
 </html>
