@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Carrito</title>
+  <link rel="stylesheet" href="../css/Producto.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container_1">
+      <img class="logo" src="../img/Logo.jpg" alt="Logo de la tienda">
+    </div>
+    <div class="container_2">
+      <a href="../Tienda/Home.html">Home</a>
+      <p>|</p>
+      <a href="../Tienda/Productos.html">Productos</a>
+      <p>|</p>
+      <a href="../Tienda/Nosotros.html">Nosotros</a>
+      <p>|</p>
+      <a href="../Tienda/Blogs.html">Blogs</a>
+      <p>|</p>
+      <a href="../Tienda/Contacto.html">Contacto</a>
+    </div>
+        <div class="container_3 carrito-icono" onclick="window.location.href='../Tienda/Carrito.html'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
+            </svg>
+            <p>Carrito</p>
+            <span id="cart-count">0</span>
+        </div>
+  </header>
+
+  <main class="container mt-4">
+    <h2>Detalle del Carrito</h2>
+    <div id="carrito-detalle"></div>
+    <h3 id="total-carrito"></h3>
+  </main>
+
+<script>
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  // 🔹 Actualizar contador en el header
+  function actualizarCarrito() {
+    const total = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+    const countEl = document.getElementById("cart-count");
+    if (countEl) countEl.textContent = total;
+  }
+
+  function mostrarCarrito() {
+    const contenedor = document.getElementById("carrito-detalle");
+    const totalCarrito = document.getElementById("total-carrito");
+    contenedor.innerHTML = "";
+
+    if (carrito.length === 0) {
+      contenedor.innerHTML = "<p>El carrito está vacío</p>";
+      totalCarrito.textContent = "";
+      actualizarCarrito(); // 👈 refrescar contador aunque esté vacío
+      return;
+    }
+
+    let total = 0;
+    carrito.forEach((item, index) => {
+      total += item.precio * item.cantidad;
+      contenedor.innerHTML += `
+        <div class="card mb-3 p-3 d-flex flex-row justify-content-between align-items-center">
+          <div>
+            <h5>${item.nombre}</h5>
+            <p>Precio: $${item.precio.toLocaleString()}</p>
+            <p>Cantidad: ${item.cantidad}</p>
+            <p>Subtotal: $${(item.precio * item.cantidad).toLocaleString()}</p>
+          </div>
+          <button class="btn btn-danger" onclick="eliminarDelCarrito(${index})">Eliminar</button>
+        </div>
+      `;
+    });
+
+    totalCarrito.textContent = "Total: $" + total.toLocaleString();
+    actualizarCarrito(); // 👈 refrescar contador después de mostrar
+  }
+
+  function eliminarDelCarrito(index) {
+    carrito.splice(index, 1); // eliminar el producto en esa posición
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    mostrarCarrito(); // refrescar pantalla y contador
+  }
+
+  // 👇 Al cargar la página
+  mostrarCarrito();
+  actualizarCarrito();
+</script>
+
+</body>
+</html>
