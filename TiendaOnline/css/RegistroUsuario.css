@@ -84,23 +84,29 @@ main{
 
 /*registro*/
 .registro{
-    /* background-image: url("https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcW8xN3c2Nmp5MGMyaHJybHZyYWVsOHkwN21vbzdxczQ2YjlhN2NibyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vNGYHxL7Rj9MA/giphy.gif"); */
-    background-color: rgb(255, 255, 255);
-    width: 30%;
-    height: 60vh;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 2ex;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    padding: 2em;
-
-
+  background: linear-gradient(135deg, #f0f4ff, #dce3ff);
+  width: 40%;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 2px solid #4a6cf7;
+  border-radius: 1.5em;
+  box-shadow: 0px 6px 20px rgba(74, 108, 247, 0.3);
+  padding: 2em;
+  margin: 2em auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .forms{   
-    width: 100%;
+  width: 100%;
+  padding: 0.7em;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s;
+  font-size: 1em;
 }
 
 .registro_1{
@@ -111,3 +117,29 @@ main{
     flex-direction: row;
     
 }
+
+.contact-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+}
+
+.btn-registrar, .btn-ingresar {
+  padding: 0.6em 1.2em;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-registrar {
+  background-color: #4a6cf7;
+  color: white;
+}
+.btn-ingresar {
+  background-color: #eee;
+  color: #333;
+}
+
+ 
