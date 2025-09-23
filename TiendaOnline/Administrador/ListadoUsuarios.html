@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listado de Usuarios</title>
+  <link rel="stylesheet" href="../css/ListadoUsuarios.css"> <!-- reutilizamos estilos -->
+</head>
+<body class="admin">
+  <aside class="sidebar">
+    <div>
+      <div class="logo">Xitomota</div>
+      <ul class="menu">
+        <li><a href="HomeAdmin.html">🏠 Home</a></li>
+        <li><a href="#">Listado de Usuarios</a></li>
+        <li><a href="#">Inventario</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-footer">⚙ Settings</div>
+  </aside>
+
+<main class="main">
+  <h1>Usuarios</h1>
+  <button id="nuevoUsuario" class="btnNuevo">NUEVO USUARIO</button>
+
+  <div class="tabla-contenedor">
+    <table id="tablaUsuarios">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Rol</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- filas generadas por JS -->
+      </tbody>
+    </table>
+  </div>
+
+  <div class="paginacion">
+    <button>«</button>
+    <button>‹</button>
+    <button class="activo">1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>›</button>
+    <button>»</button>
+  </div>
+</main>
