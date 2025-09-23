@@ -11,7 +11,7 @@
     <header>
         <div class="container_1">
             <img class="logo" src="../img/Logo.jpg" alt="Logo de la tienda" >
-            <h1>Tienda</h1>
+            <!-- <h1>Tienda</h1> -->
         </div>
         <div class="container_2">
             <a href="../Tienda/Home.html">Home</a>
@@ -32,35 +32,34 @@
         </div>
     </header>
 
+
     <main>
-        <div class="container_Logo">
-            <img class="logo_main" src="../img/Logo.jpg" alt="Logo">
-            <h1 class="nombreEmpresa">Xitomota</h1>
+        <div class="registro">
+            <form id="formContacto">
 
-        </div>
+                <label for="nombre">Nombre Completo:</label>
+                <input class="forms" type="text" id="nombre" name="nombre" maxlength="100" required><br><br>
 
-        <div class="container_iniciar">
-            <div class="container_iniciar_top">
-                <p>Iniciar Sesion</p>
+                <label for="correo">Correo:</label>
+                <input class="forms" type="email" id="correo" name="correo" maxlength="100" required><br><br>
 
-            </div>
-            <form id="IniciarSesion">
-        
-                <label for="email">Email:</label>
-                <input class="forms" type="email" id="email" name="email" required><br><br>
+                <label for="comentario">Comentario:</label>
+                <textarea class="forms" id="comentario" name="comentario" rows="4" maxlength="500" required></textarea><br><br>
 
-                <label for="contraseña">Contraseña:</label>
-                <input class="forms" type="password" id="contraseña" name="contraseña" required><br><br>
-
-                <div class="IniciarSesion_1">
-                    <button type="submit" id="ingresarCuenta">Ingresar</button>
+                <div class="registro_1">
+                    <button type="submit">Enviar</button>
+                    <button type="reset">Limpiar</button>
                 </div>
-                
-            </form> 
+            </form>
         </div>
 
+        <div id="mensajeExito" class="alert alert-success d-none" style="margin-top:1em;">
+            ¡Formulario enviado correctamente!
+        </div>
     </main>
 
+
+    <script src="Contacto.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
