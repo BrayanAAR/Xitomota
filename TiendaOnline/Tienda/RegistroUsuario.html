@@ -34,23 +34,47 @@
     <main>
         <div class="registro">
             <form id="miFormulario">
+                <label for="run">RUN:</label>
+                <input class="forms" type="text" id="run" name="run" required><br><br>
+                
                 <label for="nombre">Nombre Completo:</label>
-                <input class="forms" type="text" id="nombre" name="nombre" required><br><br>
+                <input class="forms" type="text" id="nombre" name="nombre" maxlength="50" required><br><br>
 
                 <label for="email">Email:</label>
-                <input class="forms" type="email" id="email" name="email" required><br><br>
+                <input class="forms" type="email" id="email" name="email" maxlength="100" required><br><br>
 
                 <label for="contraseña">Contraseña:</label>
-                <input class="forms" type="password" id="contraseña" name="contraseña" required><br><br>
+                <input class="forms" type="password" id="contraseña" name="contraseña" maxlength="100" required><br><br>
 
                 <label for="confirmarContraseña">Confirmar Contraseña:</label>
                 <input class="forms" type="password" id="confirmarContraseña" name="confirmarcontraseña" required><br><br>
 
+                <!-- <label for="tipoUsuario">Tipo de Usuario:</label>
+                <select id="tipoUsuario" name="tipoUsuario">
+                    <option value="Administrador">Administrador</option>
+                    <option value="Cliente">Cliente</option>
+                    <option value="Vendedor">Vendedor</option>
+                </select><br><br> -->
+
+                <label for="region">Región:</label>
+                <select id="region" name="region">
+                    <option value="">-- Selecciona Región --</option>
+                </select><br><br>
+
+                <label for="comuna">Comuna:</label>
+                <select id="comuna" name="comuna">
+                    <option value="">-- Selecciona Comuna --</option>
+                </select><br><br>
+
+                <label for="direccion">Dirección:</label>
+                <textarea id="direccion" name="direccion" maxlength="300" required></textarea><br><br>
+
+
                 <label for="telefono">Telefono (opcional): </label>
                 <input class="forms" type="tel" id="telefono" name="telefono"><br><br>
                 <div class="registro_1">
-                    <button type="submit">Registrar</button>
-                    <button type="button" id="irIngresarCuenta">Ingresar</button>
+                    <button type="submit" class="btn-registrar">Registrar</button>
+                    <button type="button" id="irIngresarCuenta" class="btn-ingresar">Ingresar</button>
                 </div>
                 
             </form> 
