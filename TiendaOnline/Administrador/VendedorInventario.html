@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Productos - Panel Vendedor</title>
+    <link rel="stylesheet" href="../css/Inventario.css">
+    <link rel="stylesheet" href="../css/VendedorInventario.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">Xitomota</div>
+        <ul class="menu">
+            <li><a href="HomeVendedor.html">Home</a></li>
+            <li><a href="VendedorInventario.html">Ver Productos</a></li>
+            <li><a href="#" onclick="cerrarSesion(); return false;">Cerrar Sesión</a></li>
+        </ul>
+        <div class="sidebar-footer">⚙ Vendedor Panel</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <h1>Lista de Productos (Solo Lectura)</h1>
+
+        <div class="tabla-contenedor">
+            <table id="tablaProductos">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTablaProductos">
+                    <!-- Los productos se cargarán aquí dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="paginacion" id="paginacion">
+            <!-- Los botones de paginación se generarán aquí -->
+        </div>
+    </div>
+
+    <!-- Modal para ver detalles del producto -->
+    <div id="modalDetalle" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📦 Detalles del Producto</h2>
+                <span class="close" onclick="cerrarModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="detalleProducto">
+                <!-- Los detalles se cargarán aquí -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/VendedorInventario.js"></script>
+</body>
+</html>

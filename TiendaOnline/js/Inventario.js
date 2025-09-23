@@ -51,3 +51,12 @@ function eliminarProducto(index) {
 
 // Cargar al iniciar
 document.addEventListener("DOMContentLoaded", cargarProductos);
+
+function cerrarSesion() {
+  if (confirm("¿Estás seguro de que deseas cerrar sesión?")) {
+    localStorage.removeItem("usuarioLogueado");
+    localStorage.removeItem("rolUsuario");
+    alert("✅ Sesión cerrada exitosamente");
+    window.location.href = "../Tienda/IniciarSesion.html";
+  }
+}

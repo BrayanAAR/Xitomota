@@ -31,25 +31,44 @@ if (IniciarSesion) {
       return;
     }
 
-    // 1️⃣ Validar administrador
+    // 1️⃣ Validar administrador predeterminado
     const adminEmail = "admin@duoc.cl";
     const adminPassword = "admin123";
 
     if (email === adminEmail && contraseña === adminPassword) {
       alert("✅ Bienvenido Administrador");
       localStorage.setItem("usuarioLogueado", email);
+      localStorage.setItem("rolUsuario", "Administrador");
       window.location.href = "../Administrador/HomeAdmin.html";
       return;
     }
 
-    // 2️⃣ Validar usuario registrado en localStorage
-    const emailGuardado = localStorage.getItem("email"); // debe haberse guardado al registrarse
-    const contraseñaGuardada = localStorage.getItem("contraseña");
+    // 2️⃣ Validar usuarios registrados en localStorage
+    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    const usuarioEncontrado = usuarios.find(u => u.email === email && u.contraseña === contraseña);
 
-    if (email === emailGuardado && contraseña === contraseñaGuardada) {
-      alert("✅ Inicio de sesión exitoso");
+    if (usuarioEncontrado) {
       localStorage.setItem("usuarioLogueado", email);
-      window.location.href = "../Tienda/Home.html";
+      localStorage.setItem("rolUsuario", usuarioEncontrado.rol);
+      
+      // Redirigir según el rol
+      switch(usuarioEncontrado.rol) {
+        case "Administrador":
+          alert("✅ Bienvenido Administrador");
+          window.location.href = "../Administrador/HomeAdmin.html";
+          break;
+        case "Vendedor":
+          alert("✅ Bienvenido Vendedor");
+          window.location.href = "../Administrador/HomeVendedor.html";
+          break;
+        case "Cliente":
+          alert("✅ Bienvenido Cliente");
+          window.location.href = "../Tienda/Home.html";
+          break;
+        default:
+          alert("✅ Bienvenido");
+          window.location.href = "../Tienda/Home.html";
+      }
     } else {
       alert("❌ Correo o contraseña incorrectos.");
     }

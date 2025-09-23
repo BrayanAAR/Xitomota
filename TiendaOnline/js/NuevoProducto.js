@@ -133,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
+
   }
 
   // Función para mostrar errores
@@ -154,3 +155,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("categoria").value = producto.categoria || '';
   }
 });
+
+function cerrarSesion() {
+  if (confirm("¿Estás seguro de que deseas cerrar sesión?")) {
+    localStorage.removeItem("usuarioLogueado");
+    localStorage.removeItem("rolUsuario");
+    alert("✅ Sesión cerrada exitosamente");
+    window.location.href = "../Tienda/IniciarSesion.html";
+  }
+}

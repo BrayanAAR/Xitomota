@@ -1,5 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("miFormulario");
+  
+  // Verificar si estamos editando un usuario
+  const urlParams = new URLSearchParams(window.location.search);
+  const editIndex = urlParams.get('edit');
+  let usuarioEditando = null;
+  
+  if (editIndex !== null) {
+    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    usuarioEditando = usuarios[parseInt(editIndex)];
+    
+    if (usuarioEditando) {
+      document.querySelector('.registro_top p').textContent = 'Editar Usuario';
+    }
+  }
 
   // Regiones y comunas
   const regiones = {
@@ -17,6 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
     option.value = region;
     option.textContent = region;
     selectRegion.appendChild(option);
+  }
+  
+  // Cargar datos del usuario si estamos editando
+  if (editIndex !== null && usuarioEditando) {
+    setTimeout(() => {
+      cargarDatosUsuario(usuarioEditando);
+    }, 100);
   }
 
   // Cambiar comunas al seleccionar región
@@ -85,8 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // Recuperar usuarios existentes o crear lista vacía
       let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
       
-      // Crear objeto usuario nuevo
-      const nuevoUsuario = {
+      // Crear objeto usuario con los datos del formulario
+      const datosUsuario = {
         run: run.value,
         nombre: nombre.value,
         email: email.value,
@@ -95,20 +116,39 @@ document.addEventListener("DOMContentLoaded", () => {
         region: selectRegion.value,
         comuna: selectComuna.value,
         rol: document.getElementById("tipoUsuario") ? document.getElementById("tipoUsuario").value : "Usuario",
-        fechaRegistro: new Date().toLocaleDateString()
+        fechaRegistro: usuarioEditando ? usuarioEditando.fechaRegistro : new Date().toLocaleDateString()
       };
 
-      // Agregar nuevo usuario a la lista
-      usuarios.push(nuevoUsuario);
-      localStorage.setItem("usuarios", JSON.stringify(usuarios));
+      if (editIndex !== null && usuarioEditando) {
+        // Editar usuario existente
+        usuarios[parseInt(editIndex)] = datosUsuario;
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        
+        alert("✅ Usuario actualizado correctamente");
+        
+        // Redirigir al listado después de editar
+        window.location.href = "ListadoUsuarios.html";
+      } else {
+        // Crear nuevo usuario
+        usuarios.push(datosUsuario);
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        
+        alert("✅ Usuario registrado correctamente");
+        form.reset();
+      }
       
       localStorage.setItem("email", email.value);          // email correcto
       localStorage.setItem("contraseña", contraseña.value); // contraseña correcta
-
-      alert("✅ Usuario registrado correctamente");
-      form.reset();
     }
   });
+
+  // Configurar botón Cancelar
+  const btnCancelar = document.getElementById("irIngresarCuenta");
+  if (btnCancelar) {
+    btnCancelar.addEventListener("click", () => {
+      window.location.href = "ListadoUsuarios.html";
+    });
+  }
 
   // Validar RUN
   function validarRUN(run) {
@@ -129,4 +169,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return dv === dvEsperado;
   }
+
+  // Función para cargar datos del usuario en el formulario (para edición)
+  function cargarDatosUsuario(usuario) {
+    document.getElementById("run").value = usuario.run || '';
+    document.getElementById("nombre").value = usuario.nombre || '';
+    document.getElementById("email").value = usuario.email || '';
+    document.getElementById("contraseña").value = usuario.contraseña || '';
+    document.getElementById("confirmarContraseña").value = usuario.contraseña || '';
+    document.getElementById("direccion").value = usuario.direccion || '';
+    
+    // Cargar tipo de usuario si existe
+    if (document.getElementById("tipoUsuario")) {
+      document.getElementById("tipoUsuario").value = usuario.rol || "Cliente";
+    }
+    
+    // Función para cargar región y comuna
+    function cargarRegionComuna() {
+      if (selectRegion.options.length > 1 && usuario.region) {
+        selectRegion.value = usuario.region;
+        
+        // Disparar evento change para cargar comunas
+        const event = new Event('change');
+        selectRegion.dispatchEvent(event);
+        
+        // Esperar a que se carguen las comunas y luego seleccionar
+        setTimeout(() => {
+          if (selectComuna.options.length > 1 && usuario.comuna) {
+            selectComuna.value = usuario.comuna;
+          }
+        }, 150);
+      }
+    }
+    
+    // Intentar cargar región y comuna
+    cargarRegionComuna();
+    
+    // Si no funcionó, intentar de nuevo después de un momento
+    setTimeout(cargarRegionComuna, 200);
+  }
 });
+
+function cerrarSesion() {
+  if (confirm("¿Estás seguro de que deseas cerrar sesión?")) {
+    localStorage.removeItem("usuarioLogueado");
+    localStorage.removeItem("rolUsuario");
+    alert("✅ Sesión cerrada exitosamente");
+    window.location.href = "../Tienda/IniciarSesion.html";
+  }
+}
