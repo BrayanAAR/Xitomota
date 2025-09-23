@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Admin</title>
-    <link rel="stylesheet" href="../css/HomeAdmin.css">
+  <title>Dashboard Vendedor</title>
+  <link rel="stylesheet" href="../css/HomeVendedor.css">
 </head>
-<body class="admin"> <!-- cambia a "user" para ocultar Home -->
+<body class="vendedor">
 
   <!-- Sidebar -->
   <aside class="sidebar">
@@ -14,33 +14,39 @@
       <div class="logo">Xitomota</div>
       <ul class="menu">
         <li class="home"><a href="#">Home</a></li>
-        <li><a href="ListadoUsuarios.html">Listado de Usuarios</a></li>
-        <li><a href="Inventario.html">Inventario</a></li>
-        <li><a href="#" onclick="cerrarSesion()">Cerrar Sesión</a></li>
-
-        <!-- Home solo Admin -->
-
+        <li><a href="VendedorInventario.html">Ver Productos</a></li>
+        <li><a href="#" onclick="cerrarSesion(); return false;">Cerrar Sesión</a></li>
       </ul>
     </div>
-    <div class="sidebar-footer">⚙ Settings</div>
+    <div class="sidebar-footer">⚙ Vendedor Panel</div>
   </aside>
 
   <!-- Contenido principal -->
   <main class="main">
-    <h1 id="welcomeMessage">¡Hola Administrador!</h1>
-    <p>Bienvenido al panel de control.</p>
+    <h1 id="welcomeMessage">¡Hola Vendedor!</h1>
+    <p>Bienvenido al panel de vendedor.</p>
   </main>
 
   <script src="../js/ControlRoles.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Verificar que solo administradores accedan
-        if (!verificarAcceso(['Administrador'])) {
+        // Verificar que vendedores y administradores puedan acceder
+        const rolUsuario = localStorage.getItem("rolUsuario");
+        const usuarioLogueado = localStorage.getItem("usuarioLogueado");
+
+        if (!usuarioLogueado) {
+            alert("❌ Debes iniciar sesión para acceder.");
+            window.location.href = "../Tienda/IniciarSesion.html";
+            return;
+        }
+
+        if (rolUsuario !== "Vendedor" && rolUsuario !== "Administrador") {
+            alert("❌ Acceso denegado. Solo vendedores y administradores pueden acceder.");
+            window.location.href = "../Tienda/Home.html";
             return;
         }
         
         // Personalizar mensaje de bienvenida
-        const rolUsuario = localStorage.getItem("rolUsuario");
         document.getElementById("welcomeMessage").textContent = `¡Hola ${rolUsuario}!`;
     });
 
