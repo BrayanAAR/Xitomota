@@ -28,8 +28,14 @@ function cargarProductos() {
 }
 
 function editarProducto(index) {
-  // Botón sin funcionalidad - solo está presente visualmente
-  // No hace nada cuando se hace clic
+  // Verificar que el producto existe
+  let productos = JSON.parse(localStorage.getItem("productos")) || [];
+  if (productos[index]) {
+    // Redirigir a la página de nuevo producto con el parámetro de edición
+    window.location.href = `NuevoProducto.html?edit=${index}`;
+  } else {
+    alert("Producto no encontrado");
+  }
 }
 
 function eliminarProducto(index) {
