@@ -242,11 +242,9 @@ footer{
     justify-content: center;
     flex-direction: column;
     margin: 2ex;
-    background-color: aqua;
 }
 
 .container_footer_1a{
-    background-color: chartreuse;
     width: 100%;
     height: 10ex;
     display: flex;
@@ -255,25 +253,39 @@ footer{
 }
 
 .container_footer_1b{
-    background-color: rgb(168, 184, 153);
     width: 100%;
     height: 10ex;
+    margin-left: 10%;
 }
 
-.container_footer_2{
-    background-color: cadetblue;
-    width: 50%;
-    height: 20ex;
+.container_footer_2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 1em 0;
+}
+
+.container_footer_2 svg {
+    transition: transform 0.3s ease, fill 0.3s ease;
+    cursor: pointer;
+}
+
+.container_footer_2 svg:hover {
+    transform: scale(1.2);
+    fill: #ff9800;
 }
 
 .container_footer_3{
-    background-color: green;
     width: 20%;
     height: 20ex;
+    align-items: end;
+    justify-content:end ;
+    
 }
 
 .logo_foot{
-    width: 7ex;
+    width: auto;
 }
 
 .h3_foot{
@@ -283,3 +295,7 @@ footer{
     display: flex;
 }
 
+.Copyright{
+    text-align: center;
+    margin-top: 15%;
+}
