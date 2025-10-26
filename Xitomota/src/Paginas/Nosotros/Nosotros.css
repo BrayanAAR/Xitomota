@@ -80,10 +80,6 @@ main {
     justify-content: center;    
 }
 
-.nosotros-main {
-    padding-top: 6.5rem;
-}
-
 
 .nosotros {
     max-width: 900px;          
@@ -132,9 +128,7 @@ main {
     color: #333;
 }
 
-/*¨Carrito de compras¨*/
-
-/*.carrito-icono {
+.carrito-icono {
   position: relative;
   cursor: pointer;
 }
@@ -165,4 +159,4 @@ main {
   font-weight: bold;
   padding: 2px 6px;
   border-radius: 50%;
-}*/
+}

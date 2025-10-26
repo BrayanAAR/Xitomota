@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 
 export default function RegistroUsuario() {
     return (
@@ -46,16 +45,16 @@ export default function RegistroUsuario() {
                         <input className="forms" type="tel" id="telefono" name="telefono" /><br /><br />
                         <div className="registro_1">
                             <button type="submit" className="btn-registrar">Registrar</button>
-                            {/* Navegar a login usando Link para SPA */}
-                            <Link to="/login" className="btn-ingresar">Ingresar</Link>
+                            <button type="button" id="irIngresarCuenta" className="btn-ingresar">Ingresar</button>
                         </div>
                         
                     </form> 
                 </div>
 
+
             
             </main>
-            {/* Nota: la lógica antigua en ../js/RegistroUsuario.js debe migrarse a React si se requiere */}
+                <script src="../js/RegistroUsuario.js"></script>
         </>
     );
 }  

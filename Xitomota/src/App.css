@@ -1,4 +1,4 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,7 +39,7 @@
 
 .read-the-docs {
   color: #888;
-}
+} */
 
 /* Layout helpers to keep footer at the bottom */
 .app-root {
@@ -51,3 +51,211 @@
 .app-main {
   flex: 1 0 auto;
 }
+
+/* ====================================================================
+   MERGED STYLES
+   The following styles were auto-merged from individual page CSS files
+   into this single global stylesheet on 2025-10-25.
+   Originals archived under src/styles/archive/ (one file per original).
+   ==================================================================== */
+
+/* ----- From: src/index.css ----- */
+/* :root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+h1 { font-size: 3.2em; line-height: 1.1; }
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover { border-color: #646cff; }
+
+@media (prefers-color-scheme: light) {
+  :root { color: #213547; background-color: #ffffff; }
+  a:hover { color: #747bff; }
+  button { background-color: #f9f9f9; }
+} */
+
+/* ----- From: src/Paginas/Home/Home.css ----- */
+/* (home-specific layout and banner rules) */
+body {
+    background-image: url(/src/img/FondoHome.jpg);
+    margin: 0%;
+    background-repeat:repeat;
+    background-size: 100%;
+
+}
+
+/* imagenes */
+.logo{ width: 10ex; }
+.carrito{ width: 3ex; }
+.PrimerProducto{ display:block; width:100%; max-height:100%; height:auto; object-fit:cover; }
+
+.container_1, .container_2, .container_3 { width:33%; height:auto; display:flex; align-items:center; justify-content:start; flex-direction:row; }
+
+.container_5{ width:100%; height:auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; flex-direction:column; margin-top: 10ex;}
+.container_5a{ width:100%; height:auto; display:flex; justify-content:space-between; align-items:center; flex-direction:row; margin:4ex; }
+.container_5b{ width:80%; height:auto; display:flex; justify-content:space-between; align-items:center; flex-direction:row; margin:4ex; }
+
+.foto_promocional { width:350px; height:350px; margin-bottom:3ex; object-fit:cover; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.2); transition: transform 0.2s; }
+.foto_promocional:hover { transform: scale(1.05); }
+
+.container_5a, .container_5b { width:90%; display:flex; text-align:center;  align-items:center; flex-wrap:wrap; margin-top:5ex 0; }
+.h4 { margin-top: 3ex; }
+
+.home-main { padding-top:6.5rem; align-items:stretch; }
+.container_4{ width:100%; display:block; }
+.container_4b{ width:100%; }
+
+/* ----- From: src/Paginas/Nosotros/Nosotros.css ----- */
+/* main { padding: 40px 20px; display:flex; justify-content:center; }
+.nosotros-main { padding-top: 6.5rem; }
+.nosotros { max-width:900px; background:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+.nosotros .titulo{ font-size:2.2rem; font-weight:bold; margin-bottom:20px; text-align:center; color:#222; }
+.nosotros .subtitulo{ font-size:1.6rem; font-weight:bold; margin-top:40px; margin-bottom:15px; color:#444; }
+.nosotros p{ line-height:1.7; margin-bottom:15px; color:#555; text-align:justify; }
+.lista-devs{ list-style:none; padding:0; }
+.lista-devs li{ margin-bottom:10px; padding:10px; background:#f9f9f9; border-left:4px solid #007bff; border-radius:6px; color:#333; } */
+
+/* ----- From: src/Paginas/Autentificacion/RegistroUsuario.css ----- */
+/* .registro{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:40%; min-height:50vh; display:flex; justify-content:center; align-items:center; flex-direction:column; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:2em auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+.forms{ width:100%; padding:0.7em; border:1px solid #aaa; border-radius:8px; outline:none; transition:all 0.3s; font-size:1em; }
+.registro_1{ width:100%; display:flex; justify-content:space-around; align-items:center; flex-direction:row; }
+.contact-buttons{ width:100%; display:flex; justify-content:space-between; margin-top:1em; }
+.btn-registrar, .btn-ingresar{ padding:0.6em 1.2em; border:none; border-radius:8px; font-size:1em; cursor:pointer; transition:all 0.3s ease; }
+.btn-registrar{ background-color:#4a6cf7; color:white; }
+.btn-ingresar{ background-color:#eee; color:#333; }
+.carrito-icono{ position:relative; cursor:pointer; }
+.carrito-icono svg{ margin-right:0.5em; color:#333; transition:transform 0.2s; }
+.carrito-icono svg:hover{ transform:scale(1.1); color:blue; }
+.carrito-icono p{ margin:0; font-weight:bold; }
+#cart-count{ position:absolute; top:-8px; right:-8px; background:red; color:white; font-size:0.8em; font-weight:bold; padding:2px 6px; border-radius:50%; } */
+
+/* ----- From: src/Paginas/Autentificacion/IniciarSesion.css ----- */
+/* main{ display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:100vh; padding:2em; box-sizing:border-box; }
+.container_iniciar{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:100%; max-width:400px; min-height:50vh; display:flex; flex-direction:column; justify-content:center; align-items:center; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:2em auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+.forms{ width:100%; margin-bottom:1em; padding:0.7em; border:1px solid #aaa; border-radius:8px; outline:none; transition:all 0.3s; font-size:1em; }
+.btn-ingresar{ padding:0.6em 1.2em; border:none; border-radius:8px; font-size:1em; cursor:pointer; transition:all 0.3s ease; background-color:#4a6cf7; color:white; } */
+
+/* ----- From: src/Paginas/Contacto/Contacto.css ----- */
+/* .contacto{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:40%; min-height:50vh; display:flex; justify-content:center; align-items:center; flex-direction:column; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:2em auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+.contact-input{ width:100%; padding:0.7em; border:1px solid #aaa; border-radius:8px; outline:none; transition:all 0.3s; font-size:1em; }
+.btn-enviar, .btn-limpiar{ padding:0.6em 1.2em; border:none; border-radius:8px; font-size:1em; cursor:pointer; transition:all 0.3s ease; }
+.btn-enviar{ background-color:#4a6cf7; color:white; }
+.btn-limpiar{ background-color:#eee; color:#333; }
+.alerta-exito{ background-color:#d4edda; color:#155724; border:1px solid #c3e6cb; padding:1em; border-radius:10px; width:40%; margin:1em auto; text-align:center; font-weight:bold; }
+.oculto{ display:none; }
+.contacto-main{ padding-top:6.5rem; } */
+
+/* ----- From: src/Paginas/Productos/Producto.css ----- */
+/* .foto_promocional{ width:300px; height:300px; object-fit:cover; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.2); transition:transform 0.2s; }
+.foto_promocional:hover{ transform:scale(1.05); }
+.container_5a, .container_5b{ width:100%; display:flex; justify-content:space-around; align-items:flex-start; flex-wrap:wrap; margin:2ex 0; height:auto; gap:2em; }
+.container_5a1, .container_5a2, .container_5a3, .container_5b1, .container_5b2, .container_5b3{ display:flex; flex-direction:column; align-items:center; text-align:center; }
+.container_5b{ height:80ex; margin:4ex; } */
+
+/* ----- From: src/Paginas/Productos/DetalleProducto.css ----- */
+/* .foto_promocional{ width:100%; max-width:350px; height:350px; object-fit:cover; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.2); transition:transform 0.2s; }
+.foto_promocional:hover{ transform:scale(1.05); }
+.main_1{ display:flex; text-align:start; flex-direction:row; margin:2%; }
+.main_2{ width:95%; height:80ex; display:flex; flex-direction:row; align-items:center; margin-left:2%; }
+.main_2_1{ background-color:#ededed; width:50%; height:100%; display:flex; flex-direction:column; align-items:start; }
+.main_2_2{ background-color:rgba(206,177,177,0.055); width:50%; height:100%; display:flex; flex-direction:column; align-items:start; }
+.main_2_2_down{ display:flex; align-items:center; gap:10px; margin-top:20px; }
+.main_2_2_down input[type="number"]{ width:60px; padding:5px; }
+.main_3{ width:95%; height:50ex; display:flex; flex-direction:row; justify-content:space-between; margin-top:10%; margin:2%; } */
+
+/* ----- From: src/Paginas/Blogs/Blogs.css ----- */
+/* .uno{ width:80%; height:auto; margin-left:10%; }
+.dos{ background-color:azure; width:100%; }
+.tres{ background-color:#ebebeb; width:100%; min-height:20ex; display:flex; justify-content:center; align-items:center; flex-direction:row; }
+.tres_1{ width:50%; height:auto; align-items:start; flex-direction:column; padding:2em; }
+.tres_2{ display:flex; justify-content:center; align-items:center; overflow:hidden; }
+.Caso1{ width:100%; height:60ex; object-fit:cover; display:block; }
+.blogs-main{ padding-top:6.5rem; } */
+
+/* ----- From: src/css/Inventario.css (admin layout) ----- */
+/* .sidebar{ width:220px; background:#f5f5f5; border-right:1px solid #ddd; display:flex; flex-direction:column; justify-content:space-between; }
+.logo{ font-size:20px; font-weight:bold; padding:20px; border-bottom:1px solid #ddd; }
+.menu{ list-style:none; padding:0; margin:0; flex-grow:1; }
+.menu li{ border-bottom:1px solid #eee; }
+.menu li a{ display:block; padding:12px 20px; text-decoration:none; color:#333; transition:background 0.2s; }
+.menu li a:hover{ background:#ddd; }
+.sidebar-footer{ padding:15px; color:#666; font-size:14px; border-top:1px solid #ddd; }
+.main{ flex:1; padding:20px; background:#fff; overflow-y:auto; }
+.btnNuevo{ background:#007bff; color:white; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; font-size:14px; margin-bottom:20px; transition:background-color 0.2s; }
+.btnNuevo:hover{ background:#0056b3; } */
+
+/* ----- From: src/css/ListadoUsuarios.css ----- */
+/* .tabla-contenedor{ overflow-x:auto; }
+#tablaUsuarios{ width:100%; border-collapse:collapse; }
+#tablaUsuarios th, #tablaUsuarios td{ border:1px solid #ddd; padding:8px; }
+#tablaUsuarios tr:nth-child(even){ background-color:#f9f9f9; }
+#tablaUsuarios tr:hover{ background-color:#f1f1f1; }
+.paginacion{ display:flex; justify-content:center; margin-top:20px; }
+.paginacion button{ background:#f8f9fa; border:1px solid #ddd; padding:8px 12px; margin:0 2px; cursor:pointer; border-radius:4px; transition:background-color 0.2s; }
+.paginacion button:hover{ background:#e9ecef; }
+.paginacion button.activo{ background-color:#007bff; color:#fff; border-color:#007bff; } */
+
+/* ----- From: src/css/NuevoProducto.css ----- */
+/* .registro{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:60%; min-height:auto; display:flex; justify-content:center; align-items:center; flex-direction:column; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:2em auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+.forms{ width:100%; padding:0.7em; border:1px solid #aaa; border-radius:8px; outline:none; transition:all 0.3s; font-size:1em; box-sizing:border-box; }
+.registro_1{ width:100%; display:flex; justify-content:space-around; align-items:center; flex-direction:row; margin-top:1em; }
+.btn-registrar{ background-color:#4a6cf7; color:white; }
+.btn-registrar:hover{ background-color:#3a5ae0; transform:translateY(-1px); } */
+
+/* ----- From: src/css/NuevoUsuario.css ----- */
+/* .registro_top{ width:100%; text-align:center; font-size:1.5em; font-weight:bold; margin-bottom:1em; }
+.registro{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:60%; min-height:auto; display:flex; justify-content:center; align-items:center; flex-direction:column; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:2em auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; } */
+
+/* ----- From: src/css/VendedorInventario.css ----- */
+/* .modal{ position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); animation:fadeIn 0.3s; }
+@keyframes fadeIn{ from{ opacity:0; } to{ opacity:1; } }
+.modal-content{ background-color:#fefefe; margin:5% auto; padding:0; border:none; width:80%; max-width:600px; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.3); animation:slideIn 0.3s; }
+@keyframes slideIn{ from{ transform:translateY(-50px); opacity:0; } to{ transform:translateY(0); opacity:1; } }
+.modal-header{ background: linear-gradient(135deg,#667eea 0%, #764ba2 100%); color:white; padding:20px; border-radius:8px 8px 0 0; display:flex; justify-content:space-between; align-items:center; }
+.close{ color:white; font-size:28px; font-weight:bold; cursor:pointer; transition:opacity 0.2s; }
+.close:hover, .close:focus{ opacity:0.7; }
+.modal-body{ padding:20px; line-height:1.6; }
+.btn-ver{ background-color:#17a2b8; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer; font-size:12px; transition:background-color 0.2s; }
+.btn-ver:hover{ background-color:#138496; }
+.stock-critico{ color:#dc3545; font-weight:bold; }
+.stock-normal{ color:#28a745; font-weight:bold; }
+.stock-agotado{ color:#6c757d; font-style:italic; } */
+
+/* End of merged styles */
+

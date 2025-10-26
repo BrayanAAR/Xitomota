@@ -1,5 +1,6 @@
 import React from "react"
-import './Producto.css';
+// Migrado a `src/App.css` (reglas globales). Archivo original: src/Paginas/Productos/Producto.css
+// import './Producto.css';
 import foto_prom2 from '../../img/Producto2.jpg';
 import foto_prom5 from '../../img/Producto5.jpg';
 import { Link } from "react-router-dom";

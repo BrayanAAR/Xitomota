@@ -1,5 +1,6 @@
 import React from "react";
-import './Blogs.css';
+// Migrado a `src/App.css` (reglas globales). Archivo original: src/Paginas/Blogs/Blogs.css
+// import './Blogs.css';
 import caso1 from '../../img/Caso1.jpg';
 
 export default function Blogs() {

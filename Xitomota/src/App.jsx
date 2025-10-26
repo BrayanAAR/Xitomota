@@ -29,7 +29,7 @@ function App() {
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/productos" element={<Producto />} />
-            <Route path="/productos/1" element={<Producto1 />} />
+            <Route path="/categorias/poleras" element={<Producto1 />} />
             {/* Agrega más rutas aquí cuando los componentes estén disponibles */}
           </Routes>
         </main>

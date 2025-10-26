@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 function Header() {
+
     return (
        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div className="container-fluid">
@@ -15,26 +16,26 @@ function Header() {
                             <Link className="nav-link active" aria-current="page" to="/">Inicio</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/productos">Productos</Link>
+                            <Link className="nav-link active" to="/productos">Categorias</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/nosotros">Nosotros</Link>
+                            <Link className="nav-link active" to="/nosotros">Nosotros</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/blogs">Blogs</Link>
+                            <Link className="nav-link active" to="/blogs">Blogs</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/contacto">Contacto</Link>
+                            <Link className="nav-link active" to="/contacto">Contacto</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/login">Iniciar Sesión</Link>
-                        </li>
+                        {/* <li className="nav-item">
+                            <Link className="nav-link active" to="/login">Iniciar Sesión</Link>
+                        </li> */}
                         {/* <li className="nav-item">
                             <Link className="nav-link" to="/registro">Registrarse</Link>
                         </li> */}
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/carrito">Carrito</Link>
-                        </li>
+                        {/* <li className="nav-item">
+                            <Link className="nav-link active" to="/carrito">Carrito</Link>
+                        </li> */}
                     </ul>
                 </div>
             </div>
