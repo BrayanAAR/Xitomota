@@ -117,6 +117,7 @@ body {
     margin: 0%;
     background-repeat:repeat;
     background-size: 100%;
+    padding-top: 6.5rem;
 
 }
 
@@ -137,56 +138,176 @@ body {
 .container_5a, .container_5b { width:90%; display:flex; text-align:center;  align-items:center; flex-wrap:wrap; margin-top:5ex 0; }
 .h4 { margin-top: 3ex; }
 
-.home-main { padding-top:6.5rem; align-items:stretch; }
+.home-main { align-items:stretch; }
 .container_4{ width:100%; display:block; }
 .container_4b{ width:100%; }
 
 /* ----- From: src/Paginas/Nosotros/Nosotros.css ----- */
-/* main { padding: 40px 20px; display:flex; justify-content:center; }
-.nosotros-main { padding-top: 6.5rem; }
+/* main { padding: 40px 20px; display:flex; justify-content:center; } */
 .nosotros { max-width:900px; background:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
 .nosotros .titulo{ font-size:2.2rem; font-weight:bold; margin-bottom:20px; text-align:center; color:#222; }
 .nosotros .subtitulo{ font-size:1.6rem; font-weight:bold; margin-top:40px; margin-bottom:15px; color:#444; }
 .nosotros p{ line-height:1.7; margin-bottom:15px; color:#555; text-align:justify; }
 .lista-devs{ list-style:none; padding:0; }
-.lista-devs li{ margin-bottom:10px; padding:10px; background:#f9f9f9; border-left:4px solid #007bff; border-radius:6px; color:#333; } */
+.lista-devs li{ margin-bottom:10px; padding:10px; background:#f9f9f9; border-left:4px solid #007bff; border-radius:6px; color:#333; }
 
 /* ----- From: src/Paginas/Autentificacion/RegistroUsuario.css ----- */
-/* .registro{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:40%; min-height:50vh; display:flex; justify-content:center; align-items:center; flex-direction:column; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:2em auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-.forms{ width:100%; padding:0.7em; border:1px solid #aaa; border-radius:8px; outline:none; transition:all 0.3s; font-size:1em; }
+.registro{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:40%; min-height:50vh; display:flex; justify-content:center; align-items:center; flex-direction:column; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:2em auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+/* .forms{ width:100%; padding:0.7em; border:1px solid #aaa; border-radius:8px; outline:none; transition:all 0.3s; font-size:1em; } */
 .registro_1{ width:100%; display:flex; justify-content:space-around; align-items:center; flex-direction:row; }
 .contact-buttons{ width:100%; display:flex; justify-content:space-between; margin-top:1em; }
 .btn-registrar, .btn-ingresar{ padding:0.6em 1.2em; border:none; border-radius:8px; font-size:1em; cursor:pointer; transition:all 0.3s ease; }
 .btn-registrar{ background-color:#4a6cf7; color:white; }
-.btn-ingresar{ background-color:#eee; color:#333; }
-.carrito-icono{ position:relative; cursor:pointer; }
-.carrito-icono svg{ margin-right:0.5em; color:#333; transition:transform 0.2s; }
-.carrito-icono svg:hover{ transform:scale(1.1); color:blue; }
-.carrito-icono p{ margin:0; font-weight:bold; }
-#cart-count{ position:absolute; top:-8px; right:-8px; background:red; color:white; font-size:0.8em; font-weight:bold; padding:2px 6px; border-radius:50%; } */
+/* .btn-ingresar{ background-color:#eee; color:#333; } */
 
 /* ----- From: src/Paginas/Autentificacion/IniciarSesion.css ----- */
-/* main{ display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:100vh; padding:2em; box-sizing:border-box; }
-.container_iniciar{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:100%; max-width:400px; min-height:50vh; display:flex; flex-direction:column; justify-content:center; align-items:center; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:2em auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+/* main{ display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:100vh; padding:2em; box-sizing:border-box; } */
+.container_iniciar{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:100%; max-width:400px; min-height:50vh; display:flex; flex-direction:column; justify-content:center; align-items:center; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:6.5rem auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 .forms{ width:100%; margin-bottom:1em; padding:0.7em; border:1px solid #aaa; border-radius:8px; outline:none; transition:all 0.3s; font-size:1em; }
-.btn-ingresar{ padding:0.6em 1.2em; border:none; border-radius:8px; font-size:1em; cursor:pointer; transition:all 0.3s ease; background-color:#4a6cf7; color:white; } */
+.btn-ingresar{ padding:0.6em 1.2em; border:none; border-radius:8px; font-size:1em; cursor:pointer; transition:all 0.3s ease; background-color:#4a6cf7; color:white; }
+.IniciarSesion_1 { width: 100%; display: flex; justify-content: center;  gap: 1em; }
 
 /* ----- From: src/Paginas/Contacto/Contacto.css ----- */
-/* .contacto{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:40%; min-height:50vh; display:flex; justify-content:center; align-items:center; flex-direction:column; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:2em auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+.contacto{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:40%; min-height:50vh; display:flex; justify-content:center; align-items:center; flex-direction:column; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:2em auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 .contact-input{ width:100%; padding:0.7em; border:1px solid #aaa; border-radius:8px; outline:none; transition:all 0.3s; font-size:1em; }
 .btn-enviar, .btn-limpiar{ padding:0.6em 1.2em; border:none; border-radius:8px; font-size:1em; cursor:pointer; transition:all 0.3s ease; }
 .btn-enviar{ background-color:#4a6cf7; color:white; }
 .btn-limpiar{ background-color:#eee; color:#333; }
 .alerta-exito{ background-color:#d4edda; color:#155724; border:1px solid #c3e6cb; padding:1em; border-radius:10px; width:40%; margin:1em auto; text-align:center; font-weight:bold; }
 .oculto{ display:none; }
-.contacto-main{ padding-top:6.5rem; } */
 
 /* ----- From: src/Paginas/Productos/Producto.css ----- */
-/* .foto_promocional{ width:300px; height:300px; object-fit:cover; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.2); transition:transform 0.2s; }
-.foto_promocional:hover{ transform:scale(1.05); }
-.container_5a, .container_5b{ width:100%; display:flex; justify-content:space-around; align-items:flex-start; flex-wrap:wrap; margin:2ex 0; height:auto; gap:2em; }
-.container_5a1, .container_5a2, .container_5a3, .container_5b1, .container_5b2, .container_5b3{ display:flex; flex-direction:column; align-items:center; text-align:center; }
-.container_5b{ height:80ex; margin:4ex; } */
+/* --- 1. Contenedor de la Página --- */
+.productos-pagina {
+  /* Aquí pones tu fondo degradado */
+  background: linear-gradient(to bottom, #e8c8e9, #dbc2db); /* Ejemplo de degradado */
+  padding: 3rem 0; /* Espacio arriba y abajo */
+}
+
+/* Contenedor que centra el contenido */
+.productos-container {
+  width: 90%;
+  max-width: 1200px; /* Límite para pantallas grandes */
+  margin: 0 auto; /* Centra el contenedor */
+}
+
+/* Título de la página (como en tu foto) */
+.productos-titulo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid rgba(0,0,0,0.05);
+  padding-bottom: 1rem;
+}
+
+/* --- 2. La GRILLA de Productos --- */
+.productos-grid {
+  display: grid;
+  
+  /* --- ¡LA MAGIA RESPONSIVA! --- */
+  /* Crea columnas que se ajustan solas:
+    - 'auto-fit': Llena el espacio con tantas columnas como quepan.
+    - 'minmax(250px, 1fr)': Cada columna tiene un mínimo de 250px 
+      y un máximo de 1 fracción (se reparten el espacio).
+  */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  
+  gap: 1.5rem; /* Espacio entre las tarjetas */
+}
+
+
+/* --- 3. La "Tarjeta" de Producto --- */
+.producto-card {
+  background-color: #ffffff; /* Fondo blanco para la tarjeta */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden; /* Para que la imagen respete los bordes */
+  
+  /* Flexbox para ordenar el contenido verticalmente */
+  display: flex;
+  flex-direction: column;
+  
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px); /* Efecto "levantar" */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* --- 4. Contenido de la Tarjeta --- */
+
+/* Contenedor de la imagen */
+.producto-imagen {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Fuerza a que la imagen sea cuadrada */
+}
+/* Placeholder gris si no hay imagen */
+.img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4;
+  color: #ccc;
+  font-weight: 600;
+}
+.producto-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Evita que la imagen se deforme */
+}
+
+/* Contenedor de la información (texto) */
+.producto-info {
+  padding: 1rem;
+  /* Estas 3 líneas aseguran que todas las tarjetas
+     tengan la misma altura y el botón quede abajo */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; 
+}
+
+.producto-nombre {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.25rem;
+}
+
+.producto-categoria {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 0.75rem;
+}
+
+.producto-precio {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+.btn-anadir-carrito {
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  
+  /* Esta línea empuja el botón al fondo de la tarjeta */
+  margin-top: auto; 
+}
+
+.btn-anadir-carrito:hover {
+  background-color: #555;
+}
 
 /* ----- From: src/Paginas/Productos/DetalleProducto.css ----- */
 /* .foto_promocional{ width:100%; max-width:350px; height:350px; object-fit:cover; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.2); transition:transform 0.2s; }
@@ -200,13 +321,13 @@ body {
 .main_3{ width:95%; height:50ex; display:flex; flex-direction:row; justify-content:space-between; margin-top:10%; margin:2%; } */
 
 /* ----- From: src/Paginas/Blogs/Blogs.css ----- */
-/* .uno{ width:80%; height:auto; margin-left:10%; }
-.dos{ background-color:azure; width:100%; }
-.tres{ background-color:#ebebeb; width:100%; min-height:20ex; display:flex; justify-content:center; align-items:center; flex-direction:row; }
-.tres_1{ width:50%; height:auto; align-items:start; flex-direction:column; padding:2em; }
-.tres_2{ display:flex; justify-content:center; align-items:center; overflow:hidden; }
-.Caso1{ width:100%; height:60ex; object-fit:cover; display:block; }
-.blogs-main{ padding-top:6.5rem; } */
+.blog-container { width: 90%; max-width: 1200px; margin: 0 auto; }
+.blog-title { text-align: center; margin-bottom: 3rem; font-size: 1.5rem; }
+.blog-article { display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; background-color: rgba(255, 255, 255, 0.1);  border-radius: 12px; overflow: hidden; }
+.article-text, .article-image { flex: 1; padding: 2rem; min-width: 300px; }
+.article-text h2 { font-size: 2rem; margin-bottom: 1rem; }
+.article-text p { font-size: 1.1rem; line-height: 1.6;}
+.article-image-content { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; display: block; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);}
 
 /* ----- From: src/css/Inventario.css (admin layout) ----- */
 /* .sidebar{ width:220px; background:#f5f5f5; border-right:1px solid #ddd; display:flex; flex-direction:column; justify-content:space-between; }
@@ -282,7 +403,6 @@ body {
   gap: 1.5rem; /* Espacio entre tarjetas */
   margin-bottom: 3rem; /* Espacio antes del título "Poleras" */
   flex-wrap: wrap; /* Si no caben, pasan a la línea de abajo */
-  padding-top: 6.5rem; /* Espacio desde el top para no tapar con el header */
 }
 
 /* Quita la decoración del link */
@@ -382,4 +502,287 @@ body {
   font-size: 1.1rem;
   font-weight: 700;
   color: #333;
+}
+
+/* ------------------------- CARRITO ----------------------------- */
+/* Contenedor principal del carrito */
+.carrito-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 2rem auto;
+  font-family: Arial, sans-serif;
+}
+
+.carrito-container h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.carrito-wrapper {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden; /* Para que el borde redondeado se aplique a todo */
+}
+
+/* --- Estilo de Grid para el encabezado y las filas --- */
+.carrito-header,
+.carrito-item {
+  display: grid;
+  /* Definimos las 6 columnas */
+  grid-template-columns: 2fr 1fr 1.5fr 1fr 1fr;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+/* Encabezado */
+.carrito-header {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.9rem;
+  border-bottom: 2px solid #e0e0e0;
+  /* Re-ajustamos la grilla para el encabezado */
+  grid-template-columns: 1fr 2fr 1fr 1.5fr 1fr 1fr;
+}
+
+/* Renombramos las áreas para el encabezado (opcional pero claro) */
+.header-img { grid-column: 1 / 2; }
+.header-nombre { grid-column: 2 / 3; }
+.header-precio { grid-column: 3 / 4; }
+.header-cantidad { grid-column: 4 / 5; }
+.header-subtotal { grid-column: 5 / 6; }
+.header-acciones { grid-column: 6 / 7; }
+
+
+/* Filas de items */
+.carrito-item {
+  border-bottom: 1px solid #f1f1f1;
+  /* Ajustamos la grilla para los items */
+  grid-template-columns: 3fr 1fr 1.5fr 1fr 1fr;
+}
+.carrito-item:last-child {
+  border-bottom: none;
+}
+
+/* Columna 1: Imagen y Nombre */
+.item-img-nombre {
+  grid-column: 1 / 2;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.img-placeholder-carrito {
+  width: 50px;
+  height: 50px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  flex-shrink: 0; /* Evita que la imagen se encoja */
+}
+.item-img-nombre span {
+  font-weight: 600;
+}
+
+/* Columna 2: Precio */
+.item-precio {
+  grid-column: 2 / 3;
+  color: #555;
+}
+
+/* Columna 3: Cantidad */
+.item-cantidad {
+  grid-column: 3 / 4;
+  display: flex;
+  align-items: center;
+}
+.item-cantidad button {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+.item-cantidad input {
+  width: 40px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-right: none;
+  height: 25px;
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño */
+}
+
+/* Columna 4: Subtotal */
+.item-subtotal {
+  grid-column: 4 / 5;
+  font-weight: 600;
+  color: #d9534f; /* Color rojo/naranjo como en la foto */
+}
+
+/* Columna 5: Acciones */
+.item-acciones {
+  grid-column: 5 / 6;
+}
+
+/* --- Botones --- */
+.btn-eliminar {
+  background-color: #d9534f; /* Rojo */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.btn-eliminar:hover {
+  background-color: #c9302c;
+}
+
+/* --- Footer --- */
+.carrito-footer {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-total {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.footer-botones {
+  display: flex;
+  gap: 0.5rem;
+}
+.btn-limpiar, .btn-comprar {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-limpiar {
+  background-color: #6c757d; /* Gris */
+  color: white;
+}
+.btn-limpiar:hover {
+  background-color: #5a6268;
+}
+.btn-comprar {
+  background-color: #28a745; /* Verde */
+  color: white;
+}
+.btn-comprar:hover {
+  background-color: #218838;
+}
+
+/* Mensaje de carrito vacío */
+.carrito-vacio {
+  padding: 2rem;
+  text-align: center;
+  color: #6c757d;
+}
+
+.img-placeholder-carrito img {
+  width: 60px;
+  height: 60px;
+  color: #adb5bd;
+}
+
+/* ------------------------- FIN CARRITO ----------------------------- */
+
+/* ------------------------------- HEADER ------------------------------- */
+
+/* ------------------------------------------- */
+/* --- ESTILOS PARA LOS BOTONES Y BÚSQUEDA --- */
+/* ------------------------------------------- */
+
+/* Contenedor de búsqueda (para el centro) */
+.search-container {
+  display: flex;
+}
+.search-container input {
+  background-color: white;
+  border: 1px solid #555;
+  color: #333;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem 0 0 0.25rem;
+  outline: none;
+}
+.search-container button {
+  background-color: #343a40; /* Gris oscuro */
+  border: 1px solid #555;
+  color: white;
+  padding: 0.375rem 0.75rem;
+  border-left: none;
+  border-radius: 0 0.25rem 0.25rem 0;
+  cursor: pointer;
+}
+
+/* Botón de Iniciar Sesión (como en tu imagen) */
+.btn-login {
+  display: inline-block;
+  background-color: #343a40; /* Fondo oscuro */
+  border: 1px solid #fff; /* Borde blanco */
+  color: #fff; /* Texto blanco */
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn-login:hover {
+  background-color: #fff;
+  color: #343a40;
+}
+
+/* ------------------------------------------- */
+/* --- ESTILOS PARA EL DROPDOWN (YA LOS TENÍAS) --- */
+/* ------------------------------------------- */
+
+/* 5. Asegúrate de que tu dropdown de categorías se vea bien */
+.header-dropdown {
+  position: relative;
+}
+.header-dropdown-button {
+  /* 1. Resetea los estilos de botón */
+  background: none;
+  border: none;
+
+  /* 2. Aplica el mismo padding de los otros links */
+  /* Esta es la línea clave para la alineación vertical */
+  display: flex;
+  align-items: center;
+
+  /* 3. Asegura el color (el gris de "link no activo") */
+  color: rgba(255, 255, 255, 0.55);
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+.dropdown-menu-custom {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin-top: 0.25rem; /* Pequeño espacio */
+  min-width: 180px;
+  z-index: 1000;
+}
+.dropdown-item-custom {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #212529; /* Texto oscuro */
+  text-decoration: none;
+}
+.dropdown-item-custom:hover {
+  background-color: #f8f9fa;
 }

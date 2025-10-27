@@ -30,25 +30,35 @@ export default function Home() {
 							<h4>Poleras</h4>
 						</div>
 						<div className="container_5a2">
-							<img className="foto_promocional" src={camisas} alt="" />
+							<Link to="/categorias/camisas">
+								<img className="foto_promocional" src={camisas} alt="" />
+							</Link>
 							<h4>Camisas</h4>
 						</div>
 						<div className="container_5a3">
-							<img className="foto_promocional" src={polerones} alt="" />
+							<Link to="/categorias/polerones">
+								<img className="foto_promocional" src={polerones} alt="" />
+							</Link>
 							<h4>Polerones</h4>
 						</div>
 					</div>
 					<div className="container_5b">
 						<div className="container_5b1">
-							<img className="foto_promocional" src={chaquetas} alt="" />
+							<Link to="/categorias/chaquetas">
+								<img className="foto_promocional" src={chaquetas} alt="" />
+							</Link>
 							<h4>Chaquetas</h4>
 						</div>
 						<div className="container_5b2">
-							<img className="foto_promocional" src={pantalones} alt="" />
+							<Link to="/categorias/pantalones">
+								<img className="foto_promocional" src={pantalones} alt="" />
+							</Link>
 							<h4>Pantalones</h4>
 						</div>
 						<div className="container_5b3">
-							<img className="foto_promocional" src={buzos} alt="" />
+							<Link to="/categorias/buzos">
+								<img className="foto_promocional" src={buzos} alt="" />
+							</Link>
 							<h4>Buzos</h4>
 						</div>
 					</div>

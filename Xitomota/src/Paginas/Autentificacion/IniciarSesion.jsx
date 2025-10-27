@@ -6,11 +6,6 @@ export default function IniciarSesion() {
     return (
         <>
             <main>
-                <div className="container_Logo">
-                    <img className="logo_main" src={logo} alt="Logo" />
-                    {/* <h1 className="nombreEmpresa">Xitomota</h1> */}
-
-                </div>
                 <div className="container_iniciar">
                     <div className="container_iniciar_top">
                         <p>Iniciar Sesion</p>
@@ -26,8 +21,10 @@ export default function IniciarSesion() {
                         <div className="IniciarSesion_1">
                             <button type="submit" className="btn-ingresar" id="ingresarCuenta">Ingresar</button>
                         </div>
-                        
                     </form> 
+                    <div className="container_registro">
+                        <p>¿No tienes una cuenta? <Link to="/registro">Registrate</Link></p>
+                    </div>
                 </div>
             </main>
 

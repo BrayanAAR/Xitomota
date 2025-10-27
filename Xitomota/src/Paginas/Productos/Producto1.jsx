@@ -6,7 +6,6 @@ import fotoproducto4 from "../../img/Producto4.jpg";
 import fotoproducto5 from "../../img/Producto5.jpg";
 import fotoproducto6 from "../../img/Producto6.jpg";
 import fotoprincipal from "../../img/PrimerProducto.jpg";
-import './DetalleProducto.css';
 
 export default function Producto1() {
     return (

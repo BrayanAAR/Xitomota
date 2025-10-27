@@ -1,12 +1,10 @@
 import React from "react";
 // Migrado a `src/App.css` (reglas globales). Archivo original: src/Paginas/Contacto/Contacto.css
 // import './Contacto.css';
-import Header from "../../componentes/Header";
 
 export default function Contacto() {
 	return (
         <>
-            <Header />
             <main className="contacto-main">
                 <div className="contacto">
                     <form id="formContacto">
