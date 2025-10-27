@@ -259,3 +259,127 @@ body {
 
 /* End of merged styles */
 
+.header-dropdown-button{
+    color: white;
+    padding: 14px;
+    cursor: pointer;
+}
+
+.dropdown-item-custom{
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 5px 0px;
+    border-bottom: 1px solid #ffffff;
+}
+
+/* ------------------------------------------------------ */
+/* --- Estilos para la NUEVA barra de categorías --- */
+
+.navegacion-categorias {
+  display: flex;
+  justify-content: center; /* Centra las tarjetas */
+  gap: 1.5rem; /* Espacio entre tarjetas */
+  margin-bottom: 3rem; /* Espacio antes del título "Poleras" */
+  flex-wrap: wrap; /* Si no caben, pasan a la línea de abajo */
+  padding-top: 6.5rem; /* Espacio desde el top para no tapar con el header */
+}
+
+/* Quita la decoración del link */
+.categoria-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.categoria-card-small {
+  width: 120px; /* Ancho de la tarjeta pequeña */
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+  padding: 0.5rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.categoria-card-small:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.categoria-card-small p {
+  margin: 0.5rem 0 0 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* --- NUEVO CSS para la imagen real en la tarjeta pequeña --- */
+.categoria-img-small {
+  width: 100px;
+  height: 100px;
+  object-fit: cover; /* Esto asegura que la imagen cubra el área sin distorsionarse */
+  border-radius: 4px; /* Opcional: para que coincida con el borde del placeholder */
+  margin: 0 auto; /* Centrar la imagen si es necesario */
+  display: block; /* Para eliminar cualquier espacio extra debajo de la imagen */
+}
+
+/* Mantén el estilo de .img-placeholder-small para las categorías que aún no tienen imagen */
+.img-placeholder-small {
+  width: 100px;
+  height: 100px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #adb5bd;
+  font-size: 0.8rem;
+  margin: 0 auto;
+}
+
+
+/* --- CSS que ya tenías (con placeholder grande) --- */
+
+.categoria-main {
+  width: 90%;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+.categoria-main h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 1rem;
+}
+
+.productos-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.producto-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+}
+
+.producto-info {
+  padding: 1rem;
+  flex-grow: 1; 
+}
+
+.producto-nombre {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.producto-precio {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+}
