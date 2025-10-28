@@ -25,8 +25,6 @@ function Header() {
     }, []);
 
     return (
-        /* Le quitamos el 'fixed-top' temporalmente para que veas los cambios
-           Puedes volver a agregarlo si lo necesitas */
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div className="container-fluid">
                 
