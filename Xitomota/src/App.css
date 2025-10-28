@@ -786,3 +786,141 @@ body {
 .dropdown-item-custom:hover {
   background-color: #f8f9fa;
 }
+
+/* ------------------------------- FIN HEADER ------------------------------- */
+
+/* ------------------------------- CHECKOUT ------------------------------- */
+/* --- 1. Contenedor Principal Grid --- */
+.checkout-grid-container {
+    display: grid;
+    /* Dos columnas: la primera (form) es 2 tercios, la segunda (resumen) es 1 tercio */
+    grid-template-columns: 2fr 1fr;
+    gap: 40px; /* Espacio entre las columnas */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- 2. Columna Izquierda (Formulario) --- */
+.checkout-form-column h3 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.checkout-form-column p {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px; /* Espacio entre campos en la misma fila */
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1; /* Por defecto, los campos en una fila comparten el espacio */
+}
+
+.form-group.full-width {
+    flex-basis: 100%; /* Ocupa todo el ancho si está en un form-row */
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* Estilos para todos los inputs, selects y textareas */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Importante para que el padding no rompa el ancho */
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite al usuario ajustar la altura */
+}
+
+
+/* --- 3. Columna Derecha (Resumen) --- */
+.checkout-summary-column {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    /* Hacemos que la columna "se pegue" arriba si la página es larga */
+    position: sticky;
+    top: 20px; 
+    align-self: start;
+}
+
+.checkout-summary-column h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+/* Botón azul de arriba */
+.total-button-top {
+    text-align: right;
+    margin-bottom: 15px;
+}
+.total-button-top button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Tabla de resumen */
+.resumen-carrito-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+.resumen-carrito-table th,
+.resumen-carrito-table td {
+    text-align: left;
+    padding: 12px 8px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+.resumen-carrito-table th {
+    font-size: 0.8rem;
+    color: #555;
+}
+.summary-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    object-fit: cover;
+}
+
+/* Botón verde de abajo */
+.pagar-button-container {
+    text-align: right;
+    margin-top: 20px;
+}
+.btn-pagar-final {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+}
+.btn-pagar-final:hover {
+    background-color: #218838;
+}

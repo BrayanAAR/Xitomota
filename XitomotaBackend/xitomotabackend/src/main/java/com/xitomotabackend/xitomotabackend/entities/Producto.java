@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 
 @Entity // Le dice a JPA que esta clase es una tabla
 @Table(name = "productos") // Nombre de la tabla en la base de datos
-public class Objeto {
+public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +21,7 @@ public class Objeto {
     // Constructores, Getters y Setters...
     
     // Constructor vacío (requerido por JPA)
-    public Objeto() {}
+    public Producto() {}
 
     // Getters y Setters
     public Long getId() {

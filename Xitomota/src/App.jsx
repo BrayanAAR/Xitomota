@@ -6,6 +6,7 @@ import Contacto from './Paginas/Contacto/Contacto.jsx'
 import IniciarSesion from './Paginas/Autentificacion/IniciarSesion.jsx'
 import RegistroUsuario from './Paginas/Autentificacion/RegistroUsuario.jsx'
 import Carrito from './Paginas/Carrito/Carrito.jsx'
+import Checkout from './Paginas/Checkout/Checkout.jsx'
 import Producto1 from './Paginas/Productos/Producto1.jsx'
 import PaginaProductos from './Paginas/Productos/Producto.jsx'
 
@@ -34,6 +35,7 @@ function App() {
             <Route path="/login" element={<IniciarSesion />} />
             <Route path="/registro" element={<RegistroUsuario />} />
             <Route path="/carrito" element={<Carrito />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/productos" element={<PaginaProductos />} />
