@@ -29,4 +29,12 @@ public class ProductoController {
     public List<Producto> getProductosByCategoria(@PathVariable String categoria) {
         return productoRepository.findByCategoria(categoria);
     }
+
+    @GetMapping("/productos/{id}")
+    public Producto getProductoPorId(@PathVariable Long id) {
+        // .findById(id) ya te lo da JpaRepository.
+        // .orElseThrow(...) es una buena práctica por si el ID no existe.
+        return productoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado con id: " + id));
+    }
 }

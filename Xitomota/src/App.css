@@ -52,66 +52,7 @@
   flex: 1 0 auto;
 }
 
-/* ====================================================================
-   MERGED STYLES
-   The following styles were auto-merged from individual page CSS files
-   into this single global stylesheet on 2025-10-25.
-   Originals archived under src/styles/archive/ (one file per original).
-   ==================================================================== */
-
-/* ----- From: src/index.css ----- */
-/* :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  font-family: inherit;
-  color: inherit;
-  background: transparent;
-}
-
-h1 { font-size: 3.2em; line-height: 1.1; }
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover { border-color: #646cff; }
-
-@media (prefers-color-scheme: light) {
-  :root { color: #213547; background-color: #ffffff; }
-  a:hover { color: #747bff; }
-  button { background-color: #f9f9f9; }
-} */
-
-/* ----- From: src/Paginas/Home/Home.css ----- */
-/* (home-specific layout and banner rules) */
+/* --------------- HOME --------------- */
 body {
     background-image: url(/src/img/FondoHome.jpg);
     margin: 0%;
@@ -142,8 +83,7 @@ body {
 .container_4{ width:100%; display:block; }
 .container_4b{ width:100%; }
 
-/* ----- From: src/Paginas/Nosotros/Nosotros.css ----- */
-/* main { padding: 40px 20px; display:flex; justify-content:center; } */
+/* --------------- NOSOTROS --------------- */
 .nosotros { max-width:900px; background:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
 .nosotros .titulo{ font-size:2.2rem; font-weight:bold; margin-bottom:20px; text-align:center; color:#222; }
 .nosotros .subtitulo{ font-size:1.6rem; font-weight:bold; margin-top:40px; margin-bottom:15px; color:#444; }
@@ -151,23 +91,20 @@ body {
 .lista-devs{ list-style:none; padding:0; }
 .lista-devs li{ margin-bottom:10px; padding:10px; background:#f9f9f9; border-left:4px solid #007bff; border-radius:6px; color:#333; }
 
-/* ----- From: src/Paginas/Autentificacion/RegistroUsuario.css ----- */
+/* --------------- REGISTRO --------------- */
 .registro{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:40%; min-height:50vh; display:flex; justify-content:center; align-items:center; flex-direction:column; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:2em auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-/* .forms{ width:100%; padding:0.7em; border:1px solid #aaa; border-radius:8px; outline:none; transition:all 0.3s; font-size:1em; } */
 .registro_1{ width:100%; display:flex; justify-content:space-around; align-items:center; flex-direction:row; }
 .contact-buttons{ width:100%; display:flex; justify-content:space-between; margin-top:1em; }
 .btn-registrar, .btn-ingresar{ padding:0.6em 1.2em; border:none; border-radius:8px; font-size:1em; cursor:pointer; transition:all 0.3s ease; }
 .btn-registrar{ background-color:#4a6cf7; color:white; }
-/* .btn-ingresar{ background-color:#eee; color:#333; } */
 
-/* ----- From: src/Paginas/Autentificacion/IniciarSesion.css ----- */
-/* main{ display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:100vh; padding:2em; box-sizing:border-box; } */
+/* --------------- INICIAR SESION --------------- */
 .container_iniciar{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:100%; max-width:400px; min-height:50vh; display:flex; flex-direction:column; justify-content:center; align-items:center; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:6.5rem auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 .forms{ width:100%; margin-bottom:1em; padding:0.7em; border:1px solid #aaa; border-radius:8px; outline:none; transition:all 0.3s; font-size:1em; }
 .btn-ingresar{ padding:0.6em 1.2em; border:none; border-radius:8px; font-size:1em; cursor:pointer; transition:all 0.3s ease; background-color:#4a6cf7; color:white; }
 .IniciarSesion_1 { width: 100%; display: flex; justify-content: center;  gap: 1em; }
 
-/* ----- From: src/Paginas/Contacto/Contacto.css ----- */
+/* --------------- CONTACTO --------------- */
 .contacto{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:40%; min-height:50vh; display:flex; justify-content:center; align-items:center; flex-direction:column; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:2em auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 .contact-input{ width:100%; padding:0.7em; border:1px solid #aaa; border-radius:8px; outline:none; transition:all 0.3s; font-size:1em; }
 .btn-enviar, .btn-limpiar{ padding:0.6em 1.2em; border:none; border-radius:8px; font-size:1em; cursor:pointer; transition:all 0.3s ease; }
@@ -176,7 +113,7 @@ body {
 .alerta-exito{ background-color:#d4edda; color:#155724; border:1px solid #c3e6cb; padding:1em; border-radius:10px; width:40%; margin:1em auto; text-align:center; font-weight:bold; }
 .oculto{ display:none; }
 
-/* ----- From: src/Paginas/Productos/Producto.css ----- */
+/* ----------------- PRODUCTOS --------------------- */
 /* --- 1. Contenedor de la Página --- */
 .productos-pagina {
   /* Aquí pones tu fondo degradado */
@@ -309,18 +246,46 @@ body {
   background-color: #555;
 }
 
-/* ----- From: src/Paginas/Productos/DetalleProducto.css ----- */
-/* .foto_promocional{ width:100%; max-width:350px; height:350px; object-fit:cover; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.2); transition:transform 0.2s; }
-.foto_promocional:hover{ transform:scale(1.05); }
-.main_1{ display:flex; text-align:start; flex-direction:row; margin:2%; }
-.main_2{ width:95%; height:80ex; display:flex; flex-direction:row; align-items:center; margin-left:2%; }
-.main_2_1{ background-color:#ededed; width:50%; height:100%; display:flex; flex-direction:column; align-items:start; }
-.main_2_2{ background-color:rgba(206,177,177,0.055); width:50%; height:100%; display:flex; flex-direction:column; align-items:start; }
-.main_2_2_down{ display:flex; align-items:center; gap:10px; margin-top:20px; }
-.main_2_2_down input[type="number"]{ width:60px; padding:5px; }
-.main_3{ width:95%; height:50ex; display:flex; flex-direction:row; justify-content:space-between; margin-top:10%; margin:2%; } */
+/* --- Estilo para el botón "Agregar al Carrito" de las tarjetas --- */
 
-/* ----- From: src/Paginas/Blogs/Blogs.css ----- */
+.btn-agregar-carrito {
+    /* --- Color y Fondo --- */
+    background-color: #363636; /* Un azul primario (puedes cambiarlo) */
+    color: white;
+    
+    /* --- Bordes y Sombra --- */
+    border: none; /* Quitamos el borde feo por defecto */
+    border-radius: 5px; /* Esquinas redondeadas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    
+    /* --- Espaciado y Tamaño --- */
+    width: 100%; /* Ocupa todo el ancho de la tarjeta */
+    padding: 12px 10px; /* Espacio interno (alto y ancho) */
+    margin-top: 10px; /* Espacio para separarlo del precio */
+    
+    /* --- Texto --- */
+    font-size: 1rem; /* Tamaño de letra */
+    font-weight: 600; /* Letra en negrita */
+    
+    /* --- Interacción --- */
+    cursor: pointer; /* Manito al pasar por encima */
+    transition: background-color 0.2s ease, transform 0.2s ease; /* Transición suave */
+}
+
+/* Efecto al pasar el mouse por encima */
+.btn-agregar-carrito:hover {
+    background-color: #0056b3; /* Azul un poco más oscuro */
+    transform: translateY(-2px); /* Se eleva un poquito */
+}
+
+/* Efecto al hacer clic */
+.btn-agregar-carrito:active {
+    background-color: #004085; /* Azul más oscuro */
+    transform: translateY(0); /* Vuelve a su posición original */
+    box-shadow: none; /* Quitamos la sombra */
+}
+
+/* ------------------------ BLOGS ----------------------- */
 .blog-container { width: 90%; max-width: 1200px; margin: 0 auto; }
 .blog-title { text-align: center; margin-bottom: 3rem; font-size: 1.5rem; }
 .blog-article { display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; background-color: rgba(255, 255, 255, 0.1);  border-radius: 12px; overflow: hidden; }
@@ -380,6 +345,7 @@ body {
 
 /* End of merged styles */
 
+/* --------------- DROPDOWN HEADER --------------- */
 .header-dropdown-button{
     color: white;
     padding: 14px;
@@ -922,5 +888,142 @@ body {
     width: 100%;
 }
 .btn-pagar-final:hover {
+    background-color: #218838;
+}
+
+/* ------------------------------- FIN CHECKOUT ------------------------------- */
+
+/* ------------------------------- PAGO REALIZADO ------------------------------- */
+
+/* --- Estilos para la página de Confirmación (PagoRealizado.jsx) --- */
+
+/* Encabezado con el checkmark verde */
+.confirmacion-header h2 {
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.confirmacion-header h2 span {
+    color: #28a745; /* Verde de éxito */
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.confirmacion-header p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* --- Estilos para los campos deshabilitados --- */
+/* Hace que los inputs y textareas parezcan texto normal */
+.form-group input:disabled,
+.form-group textarea:disabled {
+    background-color: #f4f4f4; /* Fondo gris claro */
+    border: 1px solid #ddd;
+    color: #333; /* Texto más oscuro para que sea legible */
+    -webkit-text-fill-color: #333; /* Para navegadores WebKit (Chrome/Safari) */
+    opacity: 1; /* Previene que se vea transparente */
+    cursor: default; /* Quita el cursor de texto */
+}
+
+/* Placeholder para la imagen en la tabla de resumen */
+.summary-img-placeholder {
+    width: 50px;
+    height: 50px;
+    background-color: #e9ecef; /* Gris claro */
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #adb5bd;
+    font-size: 0.7rem;
+}
+/* Opcional: si quieres que diga "Imagen"
+.summary-img-placeholder::after {
+    content: "Imagen";
+}
+*/
+
+
+/* --- Footer de la Confirmación (Total y botones) --- */
+.confirmacion-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #eee;
+    text-align: right;
+}
+
+.confirmacion-footer h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.confirmacion-botones {
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    gap: 15px; /* Espacio entre los botones */
+}
+
+.confirmacion-botones button {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+}
+
+/* Botón rojo de PDF */
+.btn-imprimir {
+    background-color: #dc3545; /* Rojo */
+}
+.btn-imprimir:hover {
+    background-color: #c82333;
+}
+
+/* Botón verde de Email */
+.btn-enviar-email {
+    background-color: #28a745; /* Verde */
+}
+.btn-enviar-email:hover {
+    background-color: #218838;
+}
+/* ------------------------------- FIN PAGO REALIZADO ------------------------------- */
+
+/* ------------------------------- PAGO FALLIDO ------------------------------- */
+/* --- Estilos para la página de Pago Fallido --- */
+
+/* Encabezado con la X roja */
+.confirmacion-header.error-pago h2 {
+    color: #333; /* Color de texto normal */
+}
+
+.confirmacion-header.error-pago h2 span {
+    color: #dc3545; /* Rojo de error */
+    font-size: 2rem; /* Más grande para la X */
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* Botón verde de "Volver" */
+.btn-volver-pago {
+    background-color: #28a745; /* Verde (como en tu foto) */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 20px; /* Más espacio */
+}
+.btn-volver-pago:hover {
     background-color: #218838;
 }

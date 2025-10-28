@@ -4,16 +4,16 @@ import { Link } from 'react-router-dom'; // Importar Link para la navegación
 
 // Función para formatear el precio (se queda igual)
 const formatearPrecio = (precio) => {
-  return new Intl.NumberFormat('es-CL', {
-    style: 'currency',
-    currency: 'CLP'
-  }).format(precio);
+  return new Intl.NumberFormat('es-CL', {
+    style: 'currency',
+    currency: 'CLP'
+  }).format(precio);
 };
 
 export default function Carrito() {
-  // --- 3. ESTADO ---
+  // --- 3. ESTADO ---
   // El carrito empieza vacío y guardamos el ID
-  const [CarritoItems, setCarritoItems] = useState([]);
+  const [CarritoItems, setCarritoItems] = useState([]);
   const [cartId, setCartId] = useState(localStorage.getItem('cartId'));
   // Estado para saber cuándo estamos cargando
   const [isLoading, setIsLoading] = useState(true);
@@ -68,8 +68,8 @@ export default function Carrito() {
     }
   };
 
-  // Función para cambiar la cantidad
-  const cambiarCantidad = async (itemId, delta) => {
+  // Función para cambiar la cantidad
+  const cambiarCantidad = async (itemId, delta) => {
     // Buscamos el item actual para saber su cantidad
     const item = CarritoItems.find(i => i.id === itemId);
     if (!item) return;
@@ -86,10 +86,10 @@ export default function Carrito() {
     } catch (error) {
       console.error("Error al cambiar la cantidad:", error);
     }
-  };
+};
 
-  // Función para eliminar un item
-  const eliminarItem = async (itemId) => {
+  // Función para eliminar un item
+  const eliminarItem = async (itemId) => {
     try {
       await axios.delete(`http://localhost:8080/api/v1/carrito/item/${itemId}`);
       // Recargamos el carrito para ver los cambios
@@ -97,10 +97,10 @@ export default function Carrito() {
     } catch (error) {
       console.error("Error al eliminar el item:", error);
     }
-  };
+  };
 
-  // Función para vaciar el carrito
-  const limpiarCarrito = async () => {
+  // Función para vaciar el carrito
+  const limpiarCarrito = async () => {
     try {
       // No tenemos un endpoint "limpiar", así que borramos cada item uno por uno
       // (Sería mejor crear un endpoint /api/v1/carrito/{cartId}/limpiar en el backend)
@@ -114,101 +114,95 @@ export default function Carrito() {
     } catch (error) {
       console.error("Error al limpiar el carrito:", error);
     }
-  };
+  };
 
-  // --- CÁLCULOS ---
-  // El backend ahora nos da un objeto { id, producto, cantidad }
-  // Así que los cálculos deben acceder a 'item.producto.precio'
-  const calcularSubtotal = (precio, cantidad) => {
-    return precio * cantidad;
-  };
+  // --- CÁLCULOS ---
+  // El backend ahora nos da un objeto { id, producto, cantidad }
+  // Así que los cálculos deben acceder a 'item.producto.precio'
+  const calcularSubtotal = (precio, cantidad) => {
+    return precio * cantidad;
+  };
 
-  const calcularTotal = () => {
-    return CarritoItems.reduce((total, item) => 
-      total + (item.producto.precio * item.cantidad), 0 // <--- Cambio aquí
-    );
-  };
+  const calcularTotal = () => {
+    return CarritoItems.reduce((total, item) => 
+      total + (item.producto.precio * item.cantidad), 0 // <--- Cambio aquí
+    );
+  };
 
-  const totalCarrito = calcularTotal();
+  const totalCarrito = calcularTotal();
 
   // --- RENDERIZADO ---
   if (isLoading) {
     return <div className="carrito-container"><h2>Cargando Carrito...</h2></div>
   }
-  
-  return (
-    <div className="carrito-container">
-      <h2>Carrito de Compras</h2>
-      
-      <div className="carrito-wrapper">
-        
-        {/* Encabezado (igual) */}
-        <div className="carrito-header">...</div>
+   
+  return (
+    <div className="carrito-container">
+      <h2>Carrito de Compras</h2>
+      <div className="carrito-wrapper">
+        {/* Encabezado (igual) */}
+        <div className="carrito-header">...</div>
 
-        {/* --- Lista de items --- */}
-        <div className="carrito-items-lista">
+        {/* --- Lista de items --- */}
+        <div className="carrito-items-lista">
         {/* --- 6. CAMBIOS EN EL RENDER --- */}
-          {CarritoItems.length === 0 ? (
-            <p className="carrito-vacio">El carrito está vacío.</p>
-          ) : (
-            CarritoItems.map(item => { // 'item' ahora es un CarritoItem
+          {CarritoItems.length === 0 ? (
+            <p className="carrito-vacio">El carrito está vacío.</p>
+          ) : (
+            CarritoItems.map(item => { // 'item' ahora es un CarritoItem
             // El precio y nombre están dentro del objeto 'producto'
-              const subtotal = calcularSubtotal(item.producto.precio, item.cantidad);
-              // Construimos la URL de la imagen como en las otras páginas
+              const subtotal = calcularSubtotal(item.producto.precio, item.cantidad);
+              // Construimos la URL de la imagen como en las otras páginas
             const imagenUrl = `http://localhost:8080/images/${item.producto.imagen}`;
 
-              return (
-                <div key={item.id} className="carrito-item"> {/* key es item.id (ID del CarritoItem) */}
-                  <div className="item-img-nombre">
-                    <div className="img-placeholder-carrito">
-                        <img src={imagenUrl} alt={item.producto.nombre} />
-                    </div>
-                    <span>{item.producto.nombre}</span> {/* item.producto.nombre */}
-                  </div>
-                  
-                  <div className="item-precio">{formatearPrecio(item.producto.precio)}</div>
-                  
-                  <div className="item-cantidad">
+              return (
+                <div key={item.id} className="carrito-item"> {/* key es item.id (ID del CarritoItem) */}
+                  <div className="item-img-nombre">
+                    <div className="img-placeholder-carrito">
+                      <img src={imagenUrl} alt={item.producto.nombre} />
+                    </div>
+                  <span>{item.producto.nombre}</span> {/* item.producto.nombre */}
+                  </div>
+                  <div className="item-precio">{formatearPrecio(item.producto.precio)}</div>
+                  <div className="item-cantidad">
                     {/* Pasamos el ID del CarritoItem (item.id) */}
-                    <button onClick={() => cambiarCantidad(item.id, -1)}>-</button>
-                    <input type="number" value={item.cantidad} readOnly />
-                    <button onClick={() => cambiarCantidad(item.id, 1)}>+</button>
-                  </div>
-                  
-                  <div className="item-subtotal">{formatearPrecio(subtotal)}</div>
-                  
-                  <div className="item-acciones">
-                    <button 
-                      className="btn-eliminar"
-                      onClick={() => eliminarItem(item.id)}
-                    >
-                      Eliminar
-                    </button>
-                  </div>
-                </div>
-              );
-            })
-          )}
-        </div>
+                    <button onClick={() => cambiarCantidad(item.id, -1)}>-</button>
+                    <input type="number" value={item.cantidad} readOnly />
+                    <button onClick={() => cambiarCantidad(item.id, 1)}>+</button>
+                  </div>
+                  <div className="item-subtotal">{formatearPrecio(subtotal)}</div>
+                  <div className="item-acciones">
+                    <button 
+                      className="btn-eliminar"
+                      onClick={() => eliminarItem(item.id)}
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
 
-        {/* --- Footer del carrito (sin cambios de lógica) --- */}
-        {CarritoItems.length > 0 && (
-          <div className="carrito-footer">
-            <div className="footer-total">
-              <strong>Total: {formatearPrecio(totalCarrito)}</strong>
-            </div>
-            <div className="footer-botones">
-              <button className="btn-limpiar" onClick={limpiarCarrito}>
-                Limpiar
-              </button>
-              <Link to="/checkout" className="btn-comprar">
+        {/* --- Footer del carrito (sin cambios de lógica) --- */}
+        {CarritoItems.length > 0 && (
+          <div className="carrito-footer">
+            <div className="footer-total">
+              <strong>Total: {formatearPrecio(totalCarrito)}</strong>
+            </div>
+            <div className="footer-botones">
+              <button className="btn-limpiar" onClick={limpiarCarrito}>
+                Limpiar
+              </button>
+              <Link to="/checkout" className="btn-comprar">
                 Comprar ahora
               </Link>
-            </div>
-          </div>
-        )}
+            </div>
+          </div>
+        )}
 
-      </div>
-    </div>
-  );
+      </div>
+    </div>
+  );
 }

@@ -8,10 +8,10 @@ import { useNavigate } from 'react-router-dom';
 
 // Función para formatear el precio (igual que antes)
 const formatearPrecio = (precio) => {
-  return new Intl.NumberFormat('es-CL', {
-    style: 'currency',
-    currency: 'CLP'
-  }).format(precio);
+    return new Intl.NumberFormat('es-CL', {
+        style: 'currency',
+        currency: 'CLP'
+    }).format(precio);
 };
 
 export default function Checkout() {
@@ -65,12 +65,22 @@ export default function Checkout() {
                 `http://localhost:8080/api/v1/orden/crear/${cartId}`,
                 formData
             );
-            alert(`¡Gracias por tu compra, ${response.data.nombre}! Tu orden N° ${response.data.id} ha sido creada.`);
             localStorage.removeItem('cartId');
-            navigate('/gracias');
+            navigate(`/pagorealizado/${response.data.id}`);
         } catch (error) {
             console.error("Error al crear la orden:", error);
-            alert("Hubo un error al procesar tu pago. Intenta de nuevo.");
+            
+            // --- ¡NUEVA LÓGICA DE ERROR! ---
+            // Reemplazamos el alert() con esto:
+            // Redirigimos a la página de error y pasamos los datos
+            // en el 'state' de la navegación.
+            navigate('/pagofallido', {
+                state: {
+                    formData: formData, // Los datos del formulario
+                    items: itemsCarrito, // Los items del carrito
+                    total: totalCarrito // El total que ya calculamos
+                }
+            });
         }
     };
 

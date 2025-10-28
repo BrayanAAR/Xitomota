@@ -1,14 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
 import Home from './Paginas/Home/Home.jsx'
 import Nosotros from './Paginas/Nosotros/Nosotros.jsx'
 import Blogs from './Paginas/Blogs/Blogs.jsx'
 import Contacto from './Paginas/Contacto/Contacto.jsx'
+
 import IniciarSesion from './Paginas/Autentificacion/IniciarSesion.jsx'
 import RegistroUsuario from './Paginas/Autentificacion/RegistroUsuario.jsx'
+
 import Carrito from './Paginas/Carrito/Carrito.jsx'
 import Checkout from './Paginas/Checkout/Checkout.jsx'
-import Producto1 from './Paginas/Productos/Producto1.jsx'
+import PagoRealizado from './Paginas/Checkout/PagoRealizado.jsx'
+import PagoFallido from './Paginas/Checkout/PagoFallido.jsx'
+
+import DetalleProducto from './Paginas/Productos/DetalleProducto.jsx'
 import PaginaProductos from './Paginas/Productos/Producto.jsx'
+import Ofertas from './Paginas/Ofertas/Ofertas.jsx'
 
 import Camisas from './Paginas/Categorias/Camisas/Camisas.jsx'
 import Chaquetas from './Paginas/Categorias/Chaquetas/Chaquetas.jsx'
@@ -36,10 +43,13 @@ function App() {
             <Route path="/registro" element={<RegistroUsuario />} />
             <Route path="/carrito" element={<Carrito />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/pagorealizado/:ordenId" element={<PagoRealizado />} />
+            <Route path="/pagofallido" element={<PagoFallido />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/productos" element={<PaginaProductos />} />
-            <Route path="/productos/1" element={<Producto1 />} />
+            <Route path="/productos/:id" element={<DetalleProducto />} />
+            <Route path="/ofertas" element={<Ofertas />} />
             {/* Agrega más rutas aquí cuando los componentes estén disponibles */}
             <Route path="/categorias/poleras" element={<Poleras />} />
             <Route path="/categorias/camisas" element={<Camisas />} />

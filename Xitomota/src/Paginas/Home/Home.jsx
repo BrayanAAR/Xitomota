@@ -5,7 +5,6 @@ import polerones from '../../img/polerones.jpg';
 import chaquetas from '../../img/chaquetas.jpg';
 import pantalones from '../../img/pantalones.jpg';
 import buzos from '../../img/buzos.jpg';
-import primer_producto from '../../img/PrimerProducto.jpg';
 import banner from '../../img/banner.jpg';
 import { Link } from 'react-router-dom';
 

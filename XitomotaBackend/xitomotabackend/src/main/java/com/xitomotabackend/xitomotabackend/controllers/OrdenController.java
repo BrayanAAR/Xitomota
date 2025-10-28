@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -75,6 +76,7 @@ public class OrdenController {
             ordenItem.setNombreProducto(cartItem.getProducto().getNombre());
             ordenItem.setCantidad(cartItem.getCantidad());
             ordenItem.setPrecioUnitario(cartItem.getProducto().getPrecio());
+            ordenItem.setImagen(cartItem.getProducto().getImagen());
             
             itemsDeLaOrden.add(ordenItem);
             
@@ -93,5 +95,13 @@ public class OrdenController {
         carritoItemRepository.deleteAll(carrito.getItems());
 
         return ordenGuardada;
+    }
+
+    @GetMapping("/{id}")
+    public Orden getOrdenPorId(@PathVariable Long id) {
+        // Busca la orden y la devuelve. 
+        // Gracias a FetchType.EAGER en la entidad, vendrá con sus items.
+        return ordenRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Orden no encontrada con id: " + id));
     }
 }

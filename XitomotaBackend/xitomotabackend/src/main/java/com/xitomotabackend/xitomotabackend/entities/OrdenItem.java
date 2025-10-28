@@ -29,6 +29,7 @@ public class OrdenItem {
     private String nombreProducto; // Copiamos el nombre
     private int cantidad;
     private double precioUnitario; // Copiamos el precio de ese momento
+    private String imagen;
     
     public Long getId() {
         return id;
@@ -65,6 +66,14 @@ public class OrdenItem {
     }
     public void setPrecioUnitario(double precioUnitario) {
         this.precioUnitario = precioUnitario;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     // --- Getters y Setters ---

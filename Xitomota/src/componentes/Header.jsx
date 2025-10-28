@@ -48,6 +48,9 @@ function Header() {
                         <li className="nav-item">
                             <Link className="nav-link" to="/productos">Productos</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/ofertas">Ofertas</Link>
+                        </li>
                         
                         {/* Categorias dropdown */}
                         <li className="nav-item header-dropdown" ref={dropdownRef}>
