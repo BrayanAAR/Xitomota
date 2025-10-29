@@ -45,7 +45,7 @@ export default function StockCritico() {
                                     <td className="stock-critico-valor">{producto.stock}</td>
                                     <td className="acciones-tabla">
                                         <Link 
-                                            to={`/admin/productos/editar/${producto.id}`}
+                                            to={`/admin/productos/${producto.id}`}
                                             className="btn-editar"
                                         >
                                             Editar

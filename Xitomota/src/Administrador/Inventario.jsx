@@ -1,6 +1,6 @@
 import React, { useState, useEffect, use } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom'; // Para los botones
+import { Link, useNavigate, useLocation } from 'react-router-dom'; // Para los botones
 // (Importa aquí tu CSS de admin, ej: import '../../css/HomeAdmin.css')
 
 // Función para formatear el precio (copiada de tus otros componentes)
@@ -15,6 +15,7 @@ export default function Inventario() {
     // 1. Estado para guardar la lista de productos
     const [productos, setProductos] = useState([]);
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         // 2. Función para cargar los productos desde la API
@@ -29,7 +30,7 @@ export default function Inventario() {
 
         // 3. useEffect para cargar los datos cuando el componente se monta
         fetchProductos();
-        }, []); // El array vacío [] asegura que se ejecute solo una vez
+        }, [location.pathname]); // El array vacío [] asegura que se ejecute solo una vez
 
     // 4. Función para manejar el botón "Eliminar"
     const handleEliminar = async (id) => {
@@ -39,7 +40,7 @@ export default function Inventario() {
                 // Llamamos al nuevo endpoint DELETE
                 await axios.delete(`http://localhost:8080/api/v1/productos/${id}`);
                 // Si sale bien, refrescamos la lista de productos
-                fetchProductos();
+                setProductos(prev => prev.filter(p => p.id !== id));
                 alert("Producto eliminado exitosamente.");
             } catch (error) {
                 console.error("Error al eliminar el producto:", error);
@@ -93,7 +94,7 @@ export default function Inventario() {
                                 <td>{producto.nombre}</td>
                                 <td>{formatearPrecio(producto.precio)}</td>
                                 <td>{producto.stock || 0}</td> {/* Muestra 0 si el stock es null */}
-                                <td>{producto.categoria}</td>
+                                <td>{producto.categoria?.nombre}</td>
                                 <td className="acciones-tabla">
                                     {/* Link para editar (te llevará a una futura pág.) */}
                                     <Link 

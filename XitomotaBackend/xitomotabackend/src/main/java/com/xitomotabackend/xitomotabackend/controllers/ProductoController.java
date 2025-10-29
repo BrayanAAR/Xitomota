@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xitomotabackend.xitomotabackend.entities.Categoria;
 import com.xitomotabackend.xitomotabackend.entities.Producto;
+import com.xitomotabackend.xitomotabackend.repositories.CategoriaRepository;
 import com.xitomotabackend.xitomotabackend.repositories.ProductoRepository;
 
 @RestController
@@ -24,14 +26,17 @@ public class ProductoController {
     @Autowired
     private ProductoRepository productoRepository;
 
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
     @GetMapping("/productos")
     public List<Producto> getAllProductos() {
         return productoRepository.findAll();
     }
 
-    @GetMapping("/productos/categoria/{categoria}")
-    public List<Producto> getProductosByCategoria(@PathVariable String categoria) {
-        return productoRepository.findByCategoria(categoria);
+    @GetMapping("/productos/categoria/{categoriaNombre}")
+    public List<Producto> getProductosByCategoria(@PathVariable String categoriaNombre) {
+        return productoRepository.findByCategoriaNombreIgnoreCase(categoriaNombre);
     }
 
     @GetMapping("/productos/{id}")
@@ -49,22 +54,45 @@ public class ProductoController {
     }
 
     @PostMapping("/productos")
-    public Producto crearProducto(@RequestBody Producto producto) {
-        return productoRepository.save(producto);
+    public Producto crearProducto(@RequestBody Producto productoRequest) {
+        // El frontend enviará algo como: { nombre: "...", precio: ..., categoriaId: 1 }
+        
+        // Buscamos la categoría por el ID que viene en el request (asumimos que viene)
+        // Necesitamos una forma de obtener ese ID. Lo más fácil es añadir un campo temporal
+        // O mejor, modificar el frontend para que envíe el objeto Categoria completo.
+        // --- Opción A: Modificar el JSON que envía el frontend ---
+        // El frontend debe enviar: { ..., categoria: { id: 1 } }
+        
+        if (productoRequest.getCategoria() != null && productoRequest.getCategoria().getId() != null) {
+            Categoria categoria = categoriaRepository.findById(productoRequest.getCategoria().getId())
+                    .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
+            productoRequest.setCategoria(categoria); // Asigna la entidad completa
+        } else {
+             throw new RuntimeException("ID de categoría es requerido");
+        }
+        
+        return productoRepository.save(productoRequest);
     }
 
     @PutMapping("/productos/{id}")
-    public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id, @RequestBody Producto detallesProducto) {
+    public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id, @RequestBody Producto productoDetalles) {
         Producto producto = productoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado con id: " + id));
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+        
+        producto.setNombre(productoDetalles.getNombre());
+        producto.setPrecio(productoDetalles.getPrecio());
+        producto.setStock(productoDetalles.getStock());
+        producto.setImagen(productoDetalles.getImagen());
 
-        producto.setNombre(detallesProducto.getNombre());
-        producto.setDescripcion(detallesProducto.getDescripcion());
-        producto.setPrecio(detallesProducto.getPrecio());
-        producto.setImagen(detallesProducto.getImagen());
-        producto.setCategoria(detallesProducto.getCategoria());
-        producto.setStock(detallesProducto.getStock());
-
+        // Asignamos la categoría (igual que en POST)
+        if (productoDetalles.getCategoria() != null && productoDetalles.getCategoria().getId() != null) {
+            Categoria categoria = categoriaRepository.findById(productoDetalles.getCategoria().getId())
+                    .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
+            producto.setCategoria(categoria);
+        } else {
+             throw new RuntimeException("ID de categoría es requerido");
+        }
+        
         final Producto productoActualizado = productoRepository.save(producto);
         return ResponseEntity.ok(productoActualizado);
     }

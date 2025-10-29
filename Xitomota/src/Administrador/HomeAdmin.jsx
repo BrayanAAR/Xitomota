@@ -47,17 +47,14 @@ export default function HomeAdmin() {
                 <div className="stat-card compras">
                     <h3>Compras</h3>
                     <p className="stat-number">{stats.compras}</p>
-                    <p className="stat-delta">Probabilidad de aumento: 20%</p>
                 </div>
                 <div className="stat-card productos">
                     <h3>Productos</h3>
                     <p className="stat-number">{stats.productos}</p>
-                    <p className="stat-delta">Inventario actual: 500</p>
                 </div>
                 <div className="stat-card usuarios">
                     <h3>Usuarios</h3>
                     <p className="stat-number">{stats.usuarios}</p>
-                    <p className="stat-delta">Nuevos usuarios este mes: 120</p>
                 </div>
             </div>
 

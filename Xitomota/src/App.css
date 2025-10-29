@@ -92,13 +92,121 @@
 .lista-devs li{ margin-bottom:10px; padding:10px; background:#f9f9f9; border-left:4px solid #007bff; border-radius:6px; color:#333; }
 
 /* --------------- CONTACTO --------------- */
-.contacto{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:40%; min-height:50vh; display:flex; justify-content:center; align-items:center; flex-direction:column; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:2em auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-.contact-input{ width:100%; padding:0.7em; border:1px solid #aaa; border-radius:8px; outline:none; transition:all 0.3s; font-size:1em; }
-.btn-enviar, .btn-limpiar{ padding:0.6em 1.2em; border:none; border-radius:8px; font-size:1em; cursor:pointer; transition:all 0.3s ease; }
-.btn-enviar{ background-color:#4a6cf7; color:white; }
-.btn-limpiar{ background-color:#eee; color:#333; }
-.alerta-exito{ background-color:#d4edda; color:#155724; border:1px solid #c3e6cb; padding:1em; border-radius:10px; width:40%; margin:1em auto; text-align:center; font-weight:bold; }
-.oculto{ display:none; }
+/* --- ESTILOS PARA LA PÁGINA DE CONTACTO --- */
+
+.contacto-container {
+    display: flex; /* Para centrar la tarjeta */
+    justify-content: center;
+    align-items: center; 
+    padding: 40px 20px;
+    background-color: #f4f7fa; /* Fondo gris claro (opcional) */
+    min-height: 80vh; /* Asegura altura mínima */
+}
+
+.contacto-form-card {
+    background-color: #ffffff;
+    padding: 30px 40px; /* Más padding */
+    border-radius: 12px; /* Esquinas más redondeadas */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px; /* Ancho máximo de la tarjeta */
+    border: 1px solid #e0e0e0; /* Borde sutil */
+}
+
+.contacto-form-card h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.contacto-form-card p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Grupos de Label + Input */
+.form-group-contacto {
+    margin-bottom: 20px;
+}
+
+.form-group-contacto label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* Estilo para inputs y textarea */
+.form-group-contacto input[type="text"],
+.form-group-contacto input[type="email"],
+.form-group-contacto textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group-contacto textarea {
+    resize: vertical; /* Permite ajustar altura */
+    min-height: 100px; /* Altura mínima */
+}
+
+/* Efecto focus */
+.form-group-contacto input:focus,
+.form-group-contacto textarea:focus {
+    outline: none;
+    border-color: #007bff; /* Borde azul */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Sombra suave */
+}
+
+/* Contenedor de botones */
+.form-actions-contacto {
+    display: flex;
+    justify-content: flex-end; /* Alinea botones a la derecha */
+    gap: 15px; /* Espacio entre botones */
+    margin-top: 30px;
+}
+
+/* Estilos base para los botones */
+.form-actions-contacto button {
+    padding: 10px 25px; /* Botones un poco más anchos */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Botón Enviar (Azul) */
+.btn-enviar {
+    background-color: #007bff;
+    color: white;
+}
+.btn-enviar:hover {
+    background-color: #0056b3;
+}
+.btn-enviar:active {
+    transform: scale(0.98); /* Efecto al presionar */
+}
+
+/* Botón Limpiar (Gris) */
+.btn-limpiar {
+    background-color: #6c757d;
+    color: white;
+}
+.btn-limpiar:hover {
+    background-color: #5a6268;
+}
+.btn-limpiar:active {
+    transform: scale(0.98);
+}
 
 /* ----------------- PRODUCTOS --------------------- */
 /* --- 1. Contenedor de la Página --- */

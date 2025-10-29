@@ -47,8 +47,8 @@ export default function TarjetaProducto({ producto, mostrarCategoria = true }) {
             </Link>
             <div className="producto-info">
               <h3 className="producto-nombre">{producto.nombre}</h3>
-              {mostrarCategoria && (
-                <p>Categoría: {producto.categoria}</p>
+              {mostrarCategoria && producto.categoria && (
+                <p>Categoría: {producto.categoria.nombre}</p>
               )}
               <p className="producto-precio">{formatearPrecio(producto.precio)}</p>
             </div>

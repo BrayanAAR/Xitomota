@@ -1,32 +1,78 @@
-import React from "react";
-// Migrado a `src/App.css` (reglas globales). Archivo original: src/Paginas/Contacto/Contacto.css
-// import './Contacto.css';
+import React, { useState } from 'react';
 
 export default function Contacto() {
-	return (
-        <>
-            <main className="contacto-main">
-                <div className="contacto">
-                    <form id="formContacto">
-                        <label for="nombre">Nombre Completo:</label>
-                        <input className="contact-input" type="text" id="nombre" name="nombre" maxlength="100" required /><br />
+    // Estados para los campos (necesarios para limpiar)
+    const [nombre, setNombre] = useState('');
+    const [correo, setCorreo] = useState('');
+    const [comentario, setComentario] = useState('');
 
-                        <label for="correo">Correo:</label>
-                        <input className="contact-input" type="email" id="correo" name="correo" maxlength="100" required /><br />
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Aquí iría la lógica para enviar los datos (a la BD, email, etc.)
+        alert('Mensaje enviado (simulación)');
+        // Limpiar formulario después de enviar (opcional)
+        setNombre('');
+        setCorreo('');
+        setComentario('');
+    };
 
-                        <label for="comentario">Comentario:</label>
-                        <textarea className="contact-input" id="comentario" name="comentario" rows="4" maxlength="500" required></textarea><br />
+    const handleLimpiar = () => {
+        setNombre('');
+        setCorreo('');
+        setComentario('');
+    };
 
-                        <div className="contact-buttons">
-                            <button type="submit" className="btn-enviar">Enviar</button>
-                            <button type="reset" className="btn-limpiar">Limpiar</button>
-                        </div>
-                    </form>
-                </div>
-                <div id="mensajeExito" className="alerta-exito oculto">
-                    ¡Formulario enviado correctamente!
-                </div>
-            </main>
-        </>
+    return (
+        // Contenedor principal para centrar y dar fondo
+        <div className="contacto-container"> 
+            <div className="contacto-form-card"> {/* La tarjeta contenedora */}
+                <h2>Contáctanos</h2>
+                <p>Envíanos tus dudas o comentarios.</p>
+                
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group-contacto"> {/* Grupo para label + input */}
+                        <label htmlFor="nombreCompleto">Nombre Completo:</label>
+                        <input 
+                            type="text" 
+                            id="nombreCompleto" 
+                            name="nombreCompleto"
+                            value={nombre}
+                            onChange={(e) => setNombre(e.target.value)}
+                            required 
+                        />
+                    </div>
+                    
+                    <div className="form-group-contacto">
+                        <label htmlFor="correo">Correo:</label>
+                        <input 
+                            type="email" 
+                            id="correo" 
+                            name="correo"
+                            value={correo}
+                            onChange={(e) => setCorreo(e.target.value)}
+                            required 
+                        />
+                    </div>
+
+                    <div className="form-group-contacto">
+                        <label htmlFor="comentario">Comentario:</label>
+                        <textarea 
+                            id="comentario" 
+                            name="comentario" 
+                            rows="5" // Más altura
+                            value={comentario}
+                            onChange={(e) => setComentario(e.target.value)}
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div className="form-actions-contacto"> {/* Contenedor para botones */}
+                        <button type="submit" className="btn-enviar">Enviar</button>
+                        {/* Usamos type="button" para que no envíe el form */}
+                        <button type="button" onClick={handleLimpiar} className="btn-limpiar">Limpiar</button> 
+                    </div>
+                </form>
+            </div>
+        </div>
     );
 }
