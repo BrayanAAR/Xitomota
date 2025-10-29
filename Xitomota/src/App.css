@@ -53,7 +53,7 @@
 }
 
 /* --------------- HOME --------------- */
-body {
+.tienda-layout {
     background-image: url(/src/img/FondoHome.jpg);
     margin: 0%;
     background-repeat:repeat;
@@ -1027,3 +1027,5 @@ body {
 .btn-volver-pago:hover {
     background-color: #218838;
 }
+
+/* ------------------------------- FIN PAGO FALLIDO ------------------------------- */

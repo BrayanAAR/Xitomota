@@ -17,6 +17,7 @@ public class Producto {
     private Double precio;
     private String imagen;
     private String categoria;
+    private int stock;
 
     // Constructores, Getters y Setters...
     
@@ -69,4 +70,14 @@ public class Producto {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    
 }

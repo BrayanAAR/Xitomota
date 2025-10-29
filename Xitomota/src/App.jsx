@@ -8,6 +8,14 @@ import Contacto from './Paginas/Contacto/Contacto.jsx'
 import IniciarSesion from './Paginas/Autentificacion/IniciarSesion.jsx'
 import RegistroUsuario from './Paginas/Autentificacion/RegistroUsuario.jsx'
 
+import HomeAdmin from './Administrador/HomeAdmin.jsx'
+import Inventario from './Administrador/Inventario.jsx'
+import ListadoOrdenes from './Administrador/ListadoOrdenes.jsx'
+import DetalleOrden from './Administrador/DetalleOrden.jsx'
+
+import AdminLayout from './Layouts/AdminLayout.jsx'
+import TiendaLayout from './Layouts/TiendaLayout.jsx'
+
 import Carrito from './Paginas/Carrito/Carrito.jsx'
 import Checkout from './Paginas/Checkout/Checkout.jsx'
 import PagoRealizado from './Paginas/Checkout/PagoRealizado.jsx'
@@ -24,44 +32,48 @@ import Polerones from './Paginas/Categorias/Polerones/Polerones.jsx'
 import Pantalones from './Paginas/Categorias/Pantalones/Pantalones.jsx'
 import Buzos from './Paginas/Categorias/Buzos/Buzos.jsx'
 
-import Header from './componentes/Header.jsx'
-import Footer from './componentes/Footer.jsx'
-
 function App() {
   return (
     <Router>
       <div className="app-root">
-        {/* Header fuera de Routes para que permanezca visible */}
-        <Header />
-
         {/* Main que crecerá y empujará el footer hacia abajo cuando el contenido sea corto */}
         <main className="app-main">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/nosotros" element={<Nosotros />} />
-            <Route path="/login" element={<IniciarSesion />} />
-            <Route path="/registro" element={<RegistroUsuario />} />
-            <Route path="/carrito" element={<Carrito />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/pagorealizado/:ordenId" element={<PagoRealizado />} />
-            <Route path="/pagofallido" element={<PagoFallido />} />
-            <Route path="/blogs" element={<Blogs />} />
-            <Route path="/contacto" element={<Contacto />} />
-            <Route path="/productos" element={<PaginaProductos />} />
-            <Route path="/productos/:id" element={<DetalleProducto />} />
-            <Route path="/ofertas" element={<Ofertas />} />
+            <Route element={<TiendaLayout />}>
+              {/* RUTAS PÚBLICAS TIENDA */}
+              <Route path="/" element={<Home />} />
+              <Route path="/nosotros" element={<Nosotros />} />
+              <Route path="/login" element={<IniciarSesion />} />
+              <Route path="/registro" element={<RegistroUsuario />} />
+              <Route path="/carrito" element={<Carrito />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/pagorealizado/:ordenId" element={<PagoRealizado />} />
+              <Route path="/pagofallido" element={<PagoFallido />} />
+              <Route path="/blogs" element={<Blogs />} />
+              <Route path="/contacto" element={<Contacto />} />
+              <Route path="/productos" element={<PaginaProductos />} />
+              <Route path="/productos/:id" element={<DetalleProducto />} />
+              <Route path="/ofertas" element={<Ofertas />} />
+              {/* RUTAS DE CATEGORIAS */}
+              <Route path="/categorias/poleras" element={<Poleras />} />
+              <Route path="/categorias/camisas" element={<Camisas />} />
+              <Route path="/categorias/polerones" element={<Polerones />} />
+              <Route path="/categorias/chaquetas" element={<Chaquetas />} />
+              <Route path="/categorias/pantalones" element={<Pantalones />} />
+              <Route path="/categorias/buzos" element={<Buzos />} />
+            </Route>
+
+            <Route path="/admin" element={<AdminLayout />} >
+              {/* RUTAS PRIVADAS ADMIN */}
+              <Route index element={<HomeAdmin />} />
+              <Route path="inventario" element={<Inventario />} />
+              <Route path="ordenes" element={<ListadoOrdenes />} />
+              <Route path="ordenes/:ordenId" element={<DetalleOrden />} />
+            </Route>
             {/* Agrega más rutas aquí cuando los componentes estén disponibles */}
-            <Route path="/categorias/poleras" element={<Poleras />} />
-            <Route path="/categorias/camisas" element={<Camisas />} />
-            <Route path="/categorias/polerones" element={<Polerones />} />
-            <Route path="/categorias/chaquetas" element={<Chaquetas />} />
-            <Route path="/categorias/pantalones" element={<Pantalones />} />
-            <Route path="/categorias/buzos" element={<Buzos />} />
+            
           </Routes>
         </main>
-
-        {/* Footer fuera de Routes para que permanezca visible */}
-        <Footer />
       </div>
     </Router>
   )

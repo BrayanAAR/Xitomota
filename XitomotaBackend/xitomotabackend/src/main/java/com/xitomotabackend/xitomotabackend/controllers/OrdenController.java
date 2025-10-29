@@ -104,4 +104,9 @@ public class OrdenController {
         return ordenRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Orden no encontrada con id: " + id));
     }
+
+    @GetMapping
+    public List<Orden> getAllOrdenes() {
+        return ordenRepository.findAll();
+    }
 }
