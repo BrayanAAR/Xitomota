@@ -10,5 +10,6 @@ import com.xitomotabackend.xitomotabackend.entities.Producto;
 @Repository
 public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
-    List<Producto> findByCategoria(String categoria);
+    List<Producto> findByCategoriaNombreIgnoreCase(String nombreCategoria);
+    List<Producto> findByStockLessThanEqual(int stockLevel);
 }

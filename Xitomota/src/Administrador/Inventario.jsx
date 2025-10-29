@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom'; // Para los botones
+import { Link, useNavigate, useLocation } from 'react-router-dom'; // Para los botones
 // (Importa aquí tu CSS de admin, ej: import '../../css/HomeAdmin.css')
 
 // Función para formatear el precio (copiada de tus otros componentes)
@@ -15,21 +15,22 @@ export default function Inventario() {
     // 1. Estado para guardar la lista de productos
     const [productos, setProductos] = useState([]);
     const navigate = useNavigate();
+    const location = useLocation();
 
-    // 2. Función para cargar los productos desde la API
-    const fetchProductos = async () => {
-        try {
-            const response = await axios.get('http://localhost:8080/api/v1/productos');
-            setProductos(response.data);
-        } catch (error) {
-            console.error("Error al cargar los productos:", error);
-        }
-    };
-
-    // 3. useEffect para cargar los datos cuando el componente se monta
     useEffect(() => {
+        // 2. Función para cargar los productos desde la API
+        const fetchProductos = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/v1/productos');
+                setProductos(response.data);
+            } catch (error) {
+                console.error("Error al cargar los productos:", error);
+            }
+        };
+
+        // 3. useEffect para cargar los datos cuando el componente se monta
         fetchProductos();
-    }, []); // El array vacío [] asegura que se ejecute solo una vez
+        }, [location.pathname]); // El array vacío [] asegura que se ejecute solo una vez
 
     // 4. Función para manejar el botón "Eliminar"
     const handleEliminar = async (id) => {
@@ -39,7 +40,7 @@ export default function Inventario() {
                 // Llamamos al nuevo endpoint DELETE
                 await axios.delete(`http://localhost:8080/api/v1/productos/${id}`);
                 // Si sale bien, refrescamos la lista de productos
-                fetchProductos();
+                setProductos(prev => prev.filter(p => p.id !== id));
                 alert("Producto eliminado exitosamente.");
             } catch (error) {
                 console.error("Error al eliminar el producto:", error);
@@ -51,16 +52,28 @@ export default function Inventario() {
     // 5. JSX (tu HTML convertido)
     return (
         <main className="main"> {/* Esto se renderizará dentro de tu <Outlet> */}
-            <h1>Inventario de Productos</h1>
+            <div className="main-header">
+                <h1>Inventario de Productos</h1>
+                
+                {/* El botón ahora usa 'navigate' de React Router */}
+                <div className="inventario-acciones-header">
+                    <Link to="/admin/stock-critico" className="btn-header btn-critico">
+                        Stock Crítico
+                    </Link>
+                    <Link to="/admin/reportes" className="btn-header btn-reporte" >
+                        Reportes
+                    </Link>
+                    <button 
+                    onClick={() => navigate('/admin/productos/nuevo')} 
+                        className="btn-header btn-nuevo"
+                    >
+                        NUEVO PRODUCTO
+                    </button>
+                </div>
+            </div>
             
-            {/* El botón ahora usa 'navigate' de React Router */}
-            <button 
-                onClick={() => navigate('/admin/productos/nuevo')} 
-                className="btnNuevo"
-            >
-                NUEVO PRODUCTO
-            </button>
-            
+            {/* TABLA PRINCIPAL DE PRODUCTOS */}
+            <h2 style={{ paddingTop: '20px' }}>Inventario</h2>
             <div className="tabla-contenedor">
                 <table id="tablaProductos">
                     <thead>
@@ -81,11 +94,11 @@ export default function Inventario() {
                                 <td>{producto.nombre}</td>
                                 <td>{formatearPrecio(producto.precio)}</td>
                                 <td>{producto.stock || 0}</td> {/* Muestra 0 si el stock es null */}
-                                <td>{producto.categoria}</td>
+                                <td>{producto.categoria?.nombre}</td>
                                 <td className="acciones-tabla">
                                     {/* Link para editar (te llevará a una futura pág.) */}
                                     <Link 
-                                        to={`/admin/productos/editar/${producto.id}`}
+                                        to={`/admin/productos/${producto.id}`}
                                         className="btn-editar"
                                     >
                                         Editar

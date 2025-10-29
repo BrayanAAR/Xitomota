@@ -3,6 +3,7 @@ package com.xitomotabackend.xitomotabackend.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -108,5 +109,15 @@ public class OrdenController {
     @GetMapping
     public List<Orden> getAllOrdenes() {
         return ordenRepository.findAll();
+    }
+
+    @GetMapping("/reportes/top-productos")
+    public List<Object[]> getTopProductos() {
+        return ordenItemRepository.findTopProductosVendidos();
+    }
+
+    @GetMapping("/por-correo/{correo}")
+    public List<Orden> getOrdenesPorCorreo(@PathVariable String correo) {
+        return ordenRepository.findByCorreo(correo);
     }
 }

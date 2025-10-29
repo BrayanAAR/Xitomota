@@ -12,6 +12,15 @@ import HomeAdmin from './Administrador/HomeAdmin.jsx'
 import Inventario from './Administrador/Inventario.jsx'
 import ListadoOrdenes from './Administrador/ListadoOrdenes.jsx'
 import DetalleOrden from './Administrador/DetalleOrden.jsx'
+import FormularioProducto from './Administrador/FormularioProducto.jsx'
+import Reportes from './Administrador/Reportes.jsx'
+import StockCritico from './Administrador/StockCritico.jsx'
+import ListadoUsuarios from './Administrador/ListadoUsuarios.jsx'
+import FormularioUsuario from './Administrador/FormularioUsuario.jsx'
+import HistorialCompras from './Administrador/HistorialCompras.jsx'
+import Perfil from './Administrador/Perfil.jsx'
+import ListadoCategorias from './Administrador/ListadoCategorias.jsx'
+import FormularioCategoria from './Administrador/FormularioCategoria.jsx'
 
 import AdminLayout from './Layouts/AdminLayout.jsx'
 import TiendaLayout from './Layouts/TiendaLayout.jsx'
@@ -69,6 +78,18 @@ function App() {
               <Route path="inventario" element={<Inventario />} />
               <Route path="ordenes" element={<ListadoOrdenes />} />
               <Route path="ordenes/:ordenId" element={<DetalleOrden />} />
+              <Route path="productos/nuevo" element={<FormularioProducto />} />
+              <Route path="productos/:id" element={<FormularioProducto />} />
+              <Route path="reportes" element={<Reportes />} />
+              <Route path="stock-critico" element={<StockCritico />} />
+              <Route path="usuarios" element={<ListadoUsuarios />} />
+              <Route path="usuarios/nuevo" element={<FormularioUsuario />} />
+              <Route path="usuarios/editar/:id" element={<FormularioUsuario />} />
+              <Route path="usuarios/historial/:email" element={<HistorialCompras />} />
+              <Route path="perfil" element={<Perfil />} />
+              <Route path="categorias" element={<ListadoCategorias />} />
+              <Route path="categorias/nuevo" element={<FormularioCategoria />} />
+              <Route path="categorias/editar/:id" element={<FormularioCategoria />} />
             </Route>
             {/* Agrega más rutas aquí cuando los componentes estén disponibles */}
             

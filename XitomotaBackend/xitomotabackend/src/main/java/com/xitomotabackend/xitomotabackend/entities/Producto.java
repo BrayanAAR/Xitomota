@@ -1,9 +1,12 @@
 package com.xitomotabackend.xitomotabackend.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity // Le dice a JPA que esta clase es una tabla
@@ -16,8 +19,11 @@ public class Producto {
     private String descripcion;
     private Double precio;
     private String imagen;
-    private String categoria;
     private int stock;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 
     // Constructores, Getters y Setters...
     
@@ -64,12 +70,6 @@ public class Producto {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
-    public String getCategoria() {
-        return categoria;
-    }
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
 
     public int getStock() {
         return stock;
@@ -79,5 +79,12 @@ public class Producto {
         this.stock = stock;
     }
 
-    
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
 }
