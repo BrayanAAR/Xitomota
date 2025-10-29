@@ -1,60 +1,50 @@
-// Arreglo de productos
-const productos = [
-  { id: 1, nombre: "Poleron", precio: 30000, imagen: "../img/Producto1.jpg", descripcion: "Poleron de Primavera, muy abrigador." },
-  { id: 2, nombre: "Buzo Deportivo", precio: 20000, imagen: "../img/Producto2.jpg", descripcion: "Ideal para entrenar y salir a correr." },
-  { id: 3, nombre: "Chaqueta de salir", precio: 15000, imagen: "../img/Producto3.jpg", descripcion: "Ideal para reuniones formales." },
-  { id: 4, nombre: "Conjunto deportivo", precio: 17000, imagen: "../img/Producto4.jpg", descripcion: "Ideal para entrenar y salir a correr." },
-  { id: 5, nombre: "Chaqueta Aviadora", precio: 25000, imagen: "../img/Producto5.jpg", descripcion: "Chaqueta clásica con estilo retro." },
-  { id: 6, nombre: "Chaqueta jeans", precio: 18000, imagen: "../img/Producto6.jpg", descripcion: "Chaqueta clásica con estilo Urbano, rapero de los 80's new york." }
-];
+// Ejemplo: src/components/ListaObjetos.js
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // Importamos axios
 
-// Carrito (cargar desde localStorage si existe)
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+function ListaObjetos() {
+    
+    // 1. Creamos un "estado" para guardar la lista de objetos
+    //    Inicialmente es un array vacío.
+    const [objetos, setObjetos] = useState([]);
+    
+    // 2. useEffect se ejecuta una vez, cuando el componente se "monta" (carga)
+    useEffect(() => {
+        
+        // 3. Definimos la función que hace la llamada a la API
+        const fetchObjetos = async () => {
+            try {
+                // Hacemos la llamada GET a la URL de nuestro backend
+                const response = await axios.get('http://localhost:8080/api/v1/objetos');
+                
+                // 4. Cuando los datos llegan, los guardamos en el estado
+                setObjetos(response.data);
+                
+            } catch (error) {
+                // Manejamos cualquier error que ocurra durante la llamada
+                console.error("Error al obtener los objetos:", error);
+            }
+        };
 
-// Selecciono el contenedor de productos
-const contenedor = document.querySelector(".container_5a");
+        // 5. Llamamos a la función
+        fetchObjetos();
+        
+    }, []); // El array vacío [] asegura que esto se ejecute solo una vez
 
-// Mostrar productos dinámicamente
-function mostrarProductos() {
-  contenedor.innerHTML = "";
-  productos.forEach(p => {
-    const card = document.createElement("div");
-    card.classList.add("producto-card");
-    card.innerHTML = `
-      <img class="foto_promocional" src="${p.imagen}" alt="${p.nombre}">
-      <h4>${p.nombre}</h4>
-      <p>$${p.precio.toLocaleString()}</p>
-      <p>${p.descripcion}</p>
-      <button class="btn btn-primary" onclick="agregarAlCarrito(${p.id})">Añadir al carrito</button>
-    `;
-    contenedor.appendChild(card);
-  });
+    // 6. Renderizamos (dibujamos) la lista
+    return (
+        <div>
+            <h2>Mi Lista de Objetos desde el Backend</h2>
+            <ul>
+                {/* 7. Mapeamos el array 'objetos' del estado para crear un <li> por cada uno */}
+                {objetos.map(objeto => (
+                    <li key={objeto.id}>
+                        <strong>{objeto.nombre}</strong>: {objeto.descripcion}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 }
 
-// Añadir producto al carrito
-function agregarAlCarrito(id) {
-  const producto = productos.find(p => p.id === id);
-  const existe = carrito.find(item => item.id === id);
-
-  if (existe) {
-    existe.cantidad++;
-  } else {
-    carrito.push({ ...producto, cantidad: 1 });
-  }
-
-  // Guardar en localStorage
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-  actualizarCarrito(); // actualizar contador
-  alert(`${producto.nombre} añadido al carrito`);
-}
-
-// Actualizar contador en el carrito del header
-function actualizarCarrito() {
-  const total = carrito.reduce((acc, item) => acc + item.cantidad, 0);
-  const countEl = document.getElementById("cart-count");
-  if (countEl) countEl.textContent = total;
-}
-
-// Inicializar al cargar la página
-mostrarProductos();
-actualizarCarrito();
+export default ListaObjetos;

@@ -1,22 +1,86 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Header() {
+    const [open, setOpen] = useState(false);
+    const dropdownRef = useRef(null);
+
+    const categorias = [
+        'Poleras',
+        'Camisas',
+        'Polerones',
+        'Chaquetas',
+        'Pantalones',
+        'Buzos'
+    ];
+
+    useEffect(() => {
+        function handleClickOutside(e) {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setOpen(false);
+            }
+        }
+        document.addEventListener('click', handleClickOutside);
+        return () => document.removeEventListener('click', handleClickOutside);
+    }, []);
+
     return (
-       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div className="container-fluid">
+                
+                {/* --- LOGO --- */}
                 <Link className="navbar-brand" to="/">XITOMOTA</Link>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+                
+                {/* --- BOTÓN MÓVIL --- */}
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
+
+                {/* --- CONTENEDOR PRINCIPAL (LA CLAVE ESTÁ AQUÍ) --- */}
                 <div className="collapse navbar-collapse" id="menuPrincipal">
-                    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                    
+                    {/* --- 1. GRUPO IZQUIERDA: LINKS --- */}
+                    {/* 'me-auto' empuja todo lo demás a la derecha */}
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/">Inicio</Link>
+                            <Link className="nav-link" to="/">Inicio</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/productos">Productos</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/ofertas">Ofertas</Link>
+                        </li>
+                        
+                        {/* Categorias dropdown */}
+                        <li className="nav-item header-dropdown" ref={dropdownRef}>
+                            <button
+                                type="button"
+                                className="nav-link header-dropdown-button"
+                                aria-haspopup="true"
+                                aria-expanded={open}
+                                onClick={() => setOpen(o => !o)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                Categorías
+                            </button>
+                            {open && (
+                                <ul className="dropdown-menu-custom" role="menu">
+                                    {categorias.map(cat => (
+                                        <li key={cat}>
+                                            <Link
+                                                to={`/categorias/${encodeURIComponent(cat.toLowerCase().trim())}`}
+                                                className="dropdown-item-custom"
+                                                onClick={() => setOpen(false)}
+                                            >
+                                                {cat}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </li>
+                        
                         <li className="nav-item">
                             <Link className="nav-link" to="/nosotros">Nosotros</Link>
                         </li>
@@ -26,19 +90,34 @@ function Header() {
                         <li className="nav-item">
                             <Link className="nav-link" to="/contacto">Contacto</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/login">Iniciar Sesión</Link>
-                        </li>
-                        {/* <li className="nav-item">
-                            <Link className="nav-link" to="/registro">Registrarse</Link>
-                        </li> */}
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/carrito">Carrito</Link>
-                        </li>
+                        {/* El Carrito lo movimos a la derecha */}
                     </ul>
+
+                    {/* --- 2. GRUPO CENTRO: BÚSQUEDA --- */}
+                    {/* 'mx-auto' lo centra. 'd-lg-flex' lo muestra solo en pantallas grandes */}
+                    <div className="search-container mx-auto d-none d-lg-flex">
+                        <input type="text" placeholder="Buscar" />
+                        <button className="search-button">Buscar</button>
+                    </div>
+
+                    {/* --- 3. GRUPO DERECHA: SESIÓN Y CARRITO --- */}
+                    {/* Este grupo se alinea solo a la derecha gracias a 'me-auto' y 'mx-auto' */}
+                    <div className="d-flex align-items-center">
+                        {/* 'flex-row' hace que los <li> sean horizontales */}
+                        <ul className="navbar-nav flex-row">
+                            <li className="nav-item">
+                                {/* Usamos la clase 'btn-login' de tu código */}
+                                <Link to="/login" className="btn-login me-2">Iniciar Sesión</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link active" to="/carrito">Carrito</Link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
     );
 }
+
 export default Header;

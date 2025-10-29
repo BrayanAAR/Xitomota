@@ -1,0 +1,324 @@
+/* ----------------- HOME ADMIN --------------------- */
+
+/* --- ESTILOS GLOBALES DEL ADMIN --- */
+.admin-layout {
+    display: grid;
+    /* Define 2 columnas: el sidebar (240px) y el contenido (el resto) */
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+}
+
+/* --- 1. ESTILOS DEL LAYOUT (SIDEBAR) --- */
+/* (Controla AdminLayout.jsx) */
+
+.sidebar {
+    background-color: #0d1b2a; /* Azul oscuro/negro */
+    color: #e0e0e0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar .logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 30px;
+    padding-left: 10px;
+}
+
+.sidebar .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .menu li {
+    margin-bottom: 10px;
+}
+
+.sidebar .menu a {
+    color: #e0e0e0; /* Texto gris claro */
+    text-decoration: none;
+    display: block;
+    padding: 12px 15px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-weight: 500;
+}
+
+/* Efecto hover en los links */
+.sidebar .menu a:hover {
+    background-color: #1b263b; /* Azul más claro */
+    color: #ffffff;
+}
+
+/* Link activo (basado en la foto) */
+.sidebar .menu li.home a,
+.sidebar .menu li.active a { /* Puedes agregar 'active' con NavLink más adelante */
+    background-color: #007bff; /* Azul primario */
+    color: #ffffff;
+}
+
+/* Botones especiales (Tienda y Cerrar Sesión) */
+.sidebar .menu a[href="#!"] { /* Cerrar Sesión */
+    background-color: #e63946; /* Rojo */
+    color: white;
+}
+.sidebar .menu a[href="/"] { /* Ver Tienda */
+    background-color: #495057; /* Gris */
+    color: white;
+}
+
+.sidebar-footer {
+    padding-top: 20px;
+    border-top: 1px solid #1b263b;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* --- 2. ESTILOS DEL CONTENIDO (DASHBOARD) --- */
+/* (Controla HomeAdmin.jsx) */
+
+.admin-main-content {
+    background-color: #f4f7fa; /* Fondo gris claro */
+    padding: 30px;
+    overflow-y: auto; /* Permite scroll si el contenido es largo */
+}
+
+.main-dashboard h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.main-dashboard p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* --- Tarjetas de Métricas (Stats) --- */
+.stats-cards-container {
+    display: grid;
+    /* Crea 3 columnas, pero se ajustan automáticamente */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    padding: 25px;
+    border-radius: 8px;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+.stat-card .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: #ffffff;
+}
+
+.stat-card .stat-delta {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+/* Colores específicos de las tarjetas */
+.stat-card.compras {
+    background-color: #007bff; /* Azul */
+}
+.stat-card.productos {
+    background-color: #28a745; /* Verde */
+}
+.stat-card.usuarios {
+    background-color: #ffc107; /* Amarillo */ /* Texto oscuro para el amarillo */
+}
+
+/* --- Tarjetas de Navegación (Links) --- */
+.nav-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.nav-card {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-card:hover {
+    transform: translateY(-5px); /* Efecto de "levantarse" */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: #0d1b2a; /* Azul oscuro (como el sidebar) */
+}
+
+.nav-card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* --------------------------------- FIN HOME ADMIN --------------------- */
+/* ------------------------------------INVENTARIO ------------------- */
+
+/* --- ESTILOS PARA LA PÁGINA DE INVENTARIO --- */
+
+/* --- Título y Botón "Nuevo Producto" --- */
+.main h1 {
+    /* (Ya deberías tener un h2, pero si usas h1, puedes estilizarlo) */
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    display: inline-block; /* Para que el botón flote al lado */
+}
+
+.btnNuevo {
+    float: right; /* Alinea el botón a la derecha */
+    background-color: #28a745; /* Verde (como la tarjeta de productos) */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.btnNuevo:hover {
+    background-color: #218838;
+}
+
+/* --- Contenedor de la Tabla --- */
+.tabla-contenedor {
+    width: 100%;
+    clear: both; /* Limpia el 'float' del botón de arriba */
+    margin-top: 20px;
+    
+    /* Estilo de "tarjeta" como el dashboard */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    
+    /* Esto es clave para que la tabla no rompa el layout en móviles */
+    overflow-x: auto; 
+}
+
+/* --- Estilos de la Tabla --- */
+#tablaProductos {
+    width: 100%;
+    border-collapse: collapse; /* Bordes limpios */
+    font-size: 0.95rem;
+}
+
+#tablaProductos th,
+#tablaProductos td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee; /* Líneas divisorias sutiles */
+    white-space: nowrap; /* Evita que el texto se parta */
+}
+
+/* Encabezado de la tabla */
+#tablaProductos thead th {
+    background-color: #f8f9fa; /* Fondo gris muy claro */
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+/* Filas de la tabla */
+#tablaProductos tbody tr:hover {
+    background-color: #f5f5f5; /* Efecto hover al pasar el mouse */
+}
+
+/* --- Botones de Acciones (Editar/Eliminar) --- */
+.acciones-tabla {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
+}
+
+.btn-editar,
+.btn-eliminar {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-decoration: none; /* Quita el subrayado del <Link> de Editar */
+    display: inline-block;
+    transition: background-color 0.2s ease;
+}
+
+.btn-editar {
+    background-color: #007bff; /* Azul */
+}
+.btn-editar:hover {
+    background-color: #0056b3;
+}
+
+.btn-eliminar {
+    background-color: #dc3545; /* Rojo */
+}
+.btn-eliminar:hover {
+    background-color: #c82333;
+}
+
+
+/* --- Paginación --- */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.paginacion button {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    color: #007bff; /* Azul */
+    padding: 8px 14px;
+    margin: 0 3px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.paginacion button:hover {
+    background-color: #f4f4f4;
+}
+
+.paginacion button.activo {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    font-weight: 600;
+}
