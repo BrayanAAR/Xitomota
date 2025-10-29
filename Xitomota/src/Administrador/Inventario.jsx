@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom'; // Para los botones
 // (Importa aquí tu CSS de admin, ej: import '../../css/HomeAdmin.css')
@@ -16,20 +16,20 @@ export default function Inventario() {
     const [productos, setProductos] = useState([]);
     const navigate = useNavigate();
 
-    // 2. Función para cargar los productos desde la API
-    const fetchProductos = async () => {
-        try {
-            const response = await axios.get('http://localhost:8080/api/v1/productos');
-            setProductos(response.data);
-        } catch (error) {
-            console.error("Error al cargar los productos:", error);
-        }
-    };
-
-    // 3. useEffect para cargar los datos cuando el componente se monta
     useEffect(() => {
+        // 2. Función para cargar los productos desde la API
+        const fetchProductos = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/v1/productos');
+                setProductos(response.data);
+            } catch (error) {
+                console.error("Error al cargar los productos:", error);
+            }
+        };
+
+        // 3. useEffect para cargar los datos cuando el componente se monta
         fetchProductos();
-    }, []); // El array vacío [] asegura que se ejecute solo una vez
+        }, []); // El array vacío [] asegura que se ejecute solo una vez
 
     // 4. Función para manejar el botón "Eliminar"
     const handleEliminar = async (id) => {
@@ -51,16 +51,28 @@ export default function Inventario() {
     // 5. JSX (tu HTML convertido)
     return (
         <main className="main"> {/* Esto se renderizará dentro de tu <Outlet> */}
-            <h1>Inventario de Productos</h1>
+            <div className="main-header">
+                <h1>Inventario de Productos</h1>
+                
+                {/* El botón ahora usa 'navigate' de React Router */}
+                <div className="inventario-acciones-header">
+                    <Link to="/admin/stock-critico" className="btn-header btn-critico">
+                        Stock Crítico
+                    </Link>
+                    <Link to="/admin/reportes" className="btn-header btn-reporte" >
+                        Reportes
+                    </Link>
+                    <button 
+                    onClick={() => navigate('/admin/productos/nuevo')} 
+                        className="btn-header btn-nuevo"
+                    >
+                        NUEVO PRODUCTO
+                    </button>
+                </div>
+            </div>
             
-            {/* El botón ahora usa 'navigate' de React Router */}
-            <button 
-                onClick={() => navigate('/admin/productos/nuevo')} 
-                className="btnNuevo"
-            >
-                NUEVO PRODUCTO
-            </button>
-            
+            {/* TABLA PRINCIPAL DE PRODUCTOS */}
+            <h2 style={{ paddingTop: '20px' }}>Inventario</h2>
             <div className="tabla-contenedor">
                 <table id="tablaProductos">
                     <thead>
@@ -85,7 +97,7 @@ export default function Inventario() {
                                 <td className="acciones-tabla">
                                     {/* Link para editar (te llevará a una futura pág.) */}
                                     <Link 
-                                        to={`/admin/productos/editar/${producto.id}`}
+                                        to={`/admin/productos/${producto.id}`}
                                         className="btn-editar"
                                     >
                                         Editar

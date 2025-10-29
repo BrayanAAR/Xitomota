@@ -109,4 +109,9 @@ public class OrdenController {
     public List<Orden> getAllOrdenes() {
         return ordenRepository.findAll();
     }
+
+    @GetMapping("/reportes/top-productos")
+    public List<Object[]> getTopProductos() {
+        return ordenItemRepository.findTopProductosVendidos();
+    }
 }

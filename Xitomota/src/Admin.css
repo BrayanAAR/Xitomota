@@ -198,21 +198,73 @@
     display: inline-block; /* Para que el botón flote al lado */
 }
 
-.btnNuevo {
-    float: right; /* Alinea el botón a la derecha */
-    background-color: #28a745; /* Verde (como la tarjeta de productos) */
-    color: white;
-    border: none;
+/* --- ESTILOS PARA LA CABECERA DE PÁGINAS (Inventario, etc.) --- */
+
+.main-header {
+    display: flex;
+    justify-content: space-between; /* Título a la izq., botones a la der. */
+    align-items: center;
+    margin-bottom: 20px;
+    /* Limpia cualquier 'float' anterior */
+    clear: both; 
+}
+
+.main-header h1 {
+    margin: 0; /* Quitamos el margen del h1 */
+}
+
+.inventario-acciones-header {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
+}
+
+/* --- 1. ESTILO BASE COMPARTIDO PARA LOS BOTONES --- */
+.btn-header {
+    /* Tamaño y forma */
     padding: 12px 20px;
+    border: none;
     border-radius: 6px;
+    
+    /* Texto */
+    color: white;
     font-size: 0.9rem;
     font-weight: 600;
     text-transform: uppercase;
+    text-decoration: none; /* Para los <Link> */
+    
+    /* Interacción */
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
-.btnNuevo:hover {
+
+.btn-header:hover {
+    transform: translateY(-2px); /* Pequeño salto */
+}
+
+/* --- 2. COLORES ESPECÍFICOS --- */
+
+/* Botón Nuevo (Verde) */
+.btn-nuevo {
+    background-color: #28a745; 
+}
+.btn-nuevo:hover {
     background-color: #218838;
+}
+
+/* Botón Reportes (Azul) */
+.btn-reporte {
+    background-color: #007bff;
+}
+.btn-reporte:hover {
+    background-color: #0056b3;
+}
+
+/* Botón Crítico (Rojo) */
+.btn-critico {
+    background-color: #dc3545;
+}
+.btn-critico:hover {
+    background-color: #c82333;
 }
 
 /* --- Contenedor de la Tabla --- */
@@ -322,3 +374,198 @@
     border-color: #007bff;
     font-weight: 600;
 }
+
+/* --------------------------------- FIN INVENTARIO --------------------- */
+/* ------------------------------------ FORMULARIO PRODUCTO ------------------- */
+/* --- ESTILOS PARA EL FORMULARIO DE ADMIN --- */
+.admin-form-container {
+    max-width: 800px;
+    margin: 0 auto; /* Centra el formulario */
+}
+
+.admin-form-container form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Importante */
+}
+
+/* Para poner inputs uno al lado del otro */
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+.form-row .form-group {
+    flex: 1; /* Ocupan el mismo espacio */
+}
+
+.form-actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Hereda el estilo del botón "Nuevo" que ya tenías */
+.form-actions .btnNuevo {
+    float: none; /* Reseteamos el float */
+}
+
+.btn-cancelar {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #6c757d; /* Gris */
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease;
+}
+.btn-cancelar:hover {
+    background-color: #5a6268;
+}
+/* --------------------------------- FIN FORMULARIO PRODUCTO --------------------- */
+/* --------------------------- REPORTES --------------------------- */
+
+/* * Le da a tu 'caption' la apariencia de un 
+ * encabezado de tarjeta, similar al dashboard.
+*/
+/* --- Estilos de la Tabla (COMPARTIDOS) --- */
+#tablaProductos,
+#tablaReportes,
+#tablaStockCritico {
+    width: 100%;
+    border-collapse: collapse; /* Bordes limpios */
+    font-size: 0.95rem;
+}
+
+#tablaProductos th,
+#tablaProductos td,
+#tablaReportes th,
+#tablaReportes td,
+#tablaStockCritico th,
+#tablaStockCritico td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee; /* Líneas divisorias sutiles */
+    white-space: nowrap; /* Evita que el texto se parta */
+}
+
+/* Encabezados (thead) */
+#tablaProductos thead th,
+#tablaReportes thead th {
+    background-color: #f8f9fa; /* Fondo gris muy claro */
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+/* Filas (tbody) */
+#tablaProductos tbody tr:hover,
+#tablaReportes tbody tr:hover {
+    background-color: #f5f5f5; /* Efecto hover */
+}
+
+/* --- ESTILOS PARA LA PÁGINA DE REPORTES --- */
+
+#tablaReportes caption {
+    /* --- ¡ESTA ES LA LÍNEA MÁS IMPORTANTE! --- */
+    caption-side: top; /* Fuerza el título a estar arriba */
+    
+    /* --- Estilos que faltaban en tu foto --- */
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 15px 20px;
+    text-align: left;
+    color: #333;
+    background-color: #f8f9fa; /* Fondo gris claro (como el thead) */
+    
+    /* Redondea solo las esquinas superiores */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+/* --------------------- FIN REPORTES --------------------- */
+/* --------------------- STOCK CRÍTICO --------------------- */
+
+/* * Le damos estilo al botón de "Volver"
+ * (Ya estabas usando btn-cancelar, esto lo formaliza)
+*/
+.btn-volver-inventario {
+    background-color: #6c757d; /* Gris */
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    float: right;
+    transition: background-color 0.2s;
+}
+.btn-volver-inventario:hover {
+    background-color: #5a6268;
+}
+
+/* * Limpiamos el float del botón para que la tabla 
+ * no se posicione mal
+*/
+.tabla-contenedor.stock-critico {
+    clear: both;
+    margin-top: 20px;
+}
+
+/* * Hacemos que el encabezado de la tabla sea rojo 
+ * para enfatizar la alerta
+*/
+#tablaStockCritico thead th {
+    background-color: #fff0f1; /* Fondo rojo muy pálido */
+    color: #dc3545; /* Letra roja */
+    border-bottom: 2px solid #f7dfe0;
+}
+
+/* * Estilo para las filas de la tabla de críticos
+*/
+#tablaStockCritico tbody tr {
+    background-color: #fffafa; /* Fondo rosado muy, muy claro */
+    border-left: 3px solid #dc3545; /* Borde de acento rojo */
+}
+
+/* * Un hover más notorio para la tabla de críticos
+*/
+#tablaStockCritico tbody tr:hover {
+    background-color: #fff0f1; /* Mismo color que el header */
+}
+
+/* * Una clase dedicada para el número del stock
+ * (reemplaza tu 'style' en línea)
+*/
+.stock-critico-valor {
+    color: #dc3545; /* Rojo */
+    font-weight: 700;
+    font-size: 1.1rem; /* Un poco más grande */
+    text-align: center;
+}
+/* --------------------- FIN STOCK CRÍTICO --------------------- */

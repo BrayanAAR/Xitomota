@@ -41,6 +41,12 @@ public class ProductoController {
         return productoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado con id: " + id));
     }
+    
+    @GetMapping("/productos/criticos")
+    public List<Producto> getProductosCriticos() {
+        int nivelCritico = 5; // Definir el nivel crítico de stock
+        return productoRepository.findByStockLessThanEqual(nivelCritico);
+    }
 
     @PostMapping("/productos")
     public Producto crearProducto(@RequestBody Producto producto) {
