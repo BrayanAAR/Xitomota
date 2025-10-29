@@ -1,100 +1,91 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-// (Puedes importar tu CSS de login aquí si tienes uno)
-// import '../css/Login.css'; 
+import axios from 'axios'; // <-- Asegúrate de importar axios
+import { Link, useNavigate } from 'react-router-dom';
+// import '../css/Login.css'; // (Tu CSS de login)
 
-export default function Login() {
-    // 1. Estados para guardar lo que el usuario escribe
+export default function IniciarSesion() { // Cambiado 'Login' a 'IniciarSesion' si así se llama tu archivo
     const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
+    const [password, setPassword] = useState(''); // Cambiado 'pass' a 'password'
+    const [error, setError] = useState(''); // Estado para mensajes de error
     const navigate = useNavigate();
 
-    // 2. Función que se ejecuta al apretar el botón
-    const handleLogin = (e) => {
-        e.preventDefault(); // Evita que la página se recargue
+    const handleLogin = async (e) => { // La función ahora es async
+        e.preventDefault();
+        setError(''); // Limpia errores previos
 
-        // 3. Verificamos las credenciales predeterminadas
-        if (email === 'admin@admin.cl' && pass === 'admin') {
-            
-            // 4. ¡Éxito! Guardamos los datos en localStorage
-            // (Tu HomeAdmin.jsx busca estos datos)
-            localStorage.setItem('usuarioLogueado', email);
-            localStorage.setItem('rolUsuario', 'Administrador');
-            
-            alert('✅ ¡Bienvenido Admin!');
-            
-            // 5. Redirigimos al panel de admin
-            navigate('/admin'); // (Ajusta esta ruta si es diferente)
+        // 1. Creamos el objeto para enviar al backend
+        const loginData = {
+            email: email,
+            password: password
+        };
 
-        } else {
-            // Error
-            alert('❌ Credenciales incorrectas');
+        try {
+            // 2. Llamamos al nuevo endpoint del backend
+            const response = await axios.post('http://localhost:8080/api/v1/auth/login', loginData);
+            
+            // 3. ¡Éxito! El backend devolvió los datos del usuario
+            const userData = response.data; // { email: '...', rol: '...' }
+
+            // 4. Guardamos en localStorage
+            localStorage.setItem('usuarioLogueado', userData.email);
+            localStorage.setItem('rolUsuario', userData.rol);
+            
+            alert(`✅ ¡Bienvenido ${userData.email}!`);
+            
+            // 5. Redirigimos según el rol
+            if (userData.rol === 'Administrador') {
+                navigate('/admin'); // Al dashboard de admin
+            } else {
+                navigate('/'); // Al inicio de la tienda para Clientes
+            }
+
+        } catch (err) {
+            // 6. Manejo de Errores (ej: 401 Unauthorized)
+            console.error("Error al iniciar sesión:", err);
+            if (err.response && err.response.status === 401) {
+                setError("Credenciales inválidas. Verifica tu email y contraseña.");
+            } else {
+                setError("Hubo un error al intentar iniciar sesión. Inténtalo de nuevo.");
+            }
         }
     };
 
-    // 6. El formulario (JSX)
+    // 7. El formulario JSX (cambiado 'pass' por 'password')
     return (
-        <div className="login-container" style={styles.container}>
-            <h2>Iniciar Sesión (Prueba)</h2>
-            <form onSubmit={handleLogin} style={styles.form}>
-                <div style={styles.inputGroup}>
+        <div className="auth-container">
+            <h2>Iniciar Sesión</h2>
+            <form onSubmit={handleLogin} className="auth-form">
+                {error && <p className="auth-error">{error}</p>} {/* Muestra errores */}
+                
+                <div className="auth-input-group">
                     <label htmlFor="email">Email:</label>
                     <input 
                         type="email" 
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        style={styles.input}
+                        required // Agregamos required
                     />
                 </div>
-                <div style={styles.inputGroup}>
-                    <label htmlFor="pass">Password:</label>
+                <div className="auth-input-group">
+                    <label htmlFor="password">Password:</label>
                     <input 
                         type="password" 
-                        id="pass"
-                        value={pass}
-                        onChange={(e) => setPass(e.target.value)}
-                        style={styles.input}
+                        id="password" // Cambiado id a 'password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required // Agregamos required
                     />
                 </div>
-                <button type="submit" style={styles.button}>Entrar</button>
+                <button type="submit" className="auth-button">Entrar</button>
             </form>
+
+            <div className="auth-link">
+                ¿No tienes cuenta?{' '}
+                <Link to="/registro">
+                    Regístrate aquí
+                </Link>
+            </div>
         </div>
     );
 }
-
-// --- Estilos básicos (puedes moverlos a tu CSS) ---
-const styles = {
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '50px'
-    },
-    form: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '15px',
-        border: '1px solid #ccc',
-        padding: '20px',
-        borderRadius: '8px'
-    },
-    inputGroup: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '5px'
-    },
-    input: {
-        padding: '8px',
-        width: '250px'
-    },
-    button: {
-        padding: '10px',
-        backgroundColor: '#007bff',
-        color: 'white',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer'
-    }
-};

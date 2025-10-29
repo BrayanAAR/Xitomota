@@ -1,60 +1,133 @@
-import React from "react";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Para redirigir
+// (Importa aquí tu CSS si tienes uno para el registro)
 
 export default function RegistroUsuario() {
-    return (
-        <>
-        <main>
-                <div className="registro">
-                    <form id="miFormulario">
-                        <label htmlFor="run">RUN:</label>
-                        <input className="forms" type="text" id="run" name="run" required /><br /><br />
+    // 1. Estados para cada campo del formulario
+    const [nombre, setNombre] = useState('');
+    const [apellidos, setApellidos] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState(''); // Para verificar
+    const [error, setError] = useState(''); // Para mostrar mensajes de error
+    const navigate = useNavigate(); // Hook para redirigir
 
-                        <label htmlFor="nombre">Nombre Completo:</label>
-                        <input className="forms" type="text" id="nombre" name="nombre" maxLength="50" required /><br /><br />
+    // 2. Función que se ejecuta al enviar el formulario
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Evita que la página se recargue
+        setError(''); // Limpia errores anteriores
 
-                        <label htmlFor="email">Email:</label>
-                        <input className="forms" type="email" id="email" name="email" maxLength="100" required /><br /><br />
+        // --- Validación Simple ---
+        if (password !== confirmPassword) {
+            setError('Las contraseñas no coinciden.');
+            return;
+        }
+        if (password.length < 6) { // Ejemplo de validación
+             setError('La contraseña debe tener al menos 6 caracteres.');
+             return;
+        }
+        // Puedes agregar más validaciones aquí
 
-                        <label htmlFor="contraseña">Contraseña:</label>
-                        <input className="forms" type="password" id="contraseña" name="contraseña" maxLength="100" required /><br /><br />
+        // 3. Creamos el objeto Usuario para enviar al backend
+        const nuevoUsuario = {
+            nombre: nombre,
+            apellidos: apellidos,
+            email: email,
+            password: password,
+            rol: 'Cliente' // Por defecto, todos los registros son 'Cliente'
+        };
 
-                        <label htmlFor="confirmarContraseña">Confirmar Contraseña:</label>
-                        <input className="forms" type="password" id="confirmarContraseña" name="confirmarcontraseña" required /><br /><br />
-
-                        <label htmlFor="tipoUsuario">Tipo de Usuario:</label>
-                        <select id="tipoUsuario" name="tipoUsuario">
-                            <option value="Administrador">Administrador</option>
-                            <option value="Cliente">Cliente</option>
-                            <option value="Vendedor">Vendedor</option>
-                        </select><br /><br />
-
-                        <label htmlFor="region">Región:</label>
-                        <select id="region" name="region">
-                            <option value="">-- Selecciona Región --</option>
-                        </select><br /><br />
-
-                        <label htmlFor="comuna">Comuna:</label>
-                        <select id="comuna" name="comuna">
-                            <option value="">-- Selecciona Comuna --</option>
-                        </select><br /><br />
-
-                        <label htmlFor="direccion">Dirección:</label>
-                        <textarea id="direccion" name="direccion" maxLength="300" required></textarea><br /><br />
-
-                        <label htmlFor="telefono">Telefono (opcional): </label>
-                        <input className="forms" type="tel" id="telefono" name="telefono" /><br /><br />
-                        <div className="registro_1">
-                            <button type="submit" className="btn-registrar">Registrar</button>
-                            <button type="button" id="irIngresarCuenta" className="btn-ingresar">Ingresar</button>
-                        </div>
-                        
-                    </form> 
-                </div>
-
-
+        try {
+            // 4. Llamamos al endpoint POST del backend
+            const response = await axios.post('http://localhost:8080/api/v1/usuarios', nuevoUsuario);
             
-            </main>
-                <script src="../js/RegistroUsuario.js"></script>
-        </>
+            // 5. ¡Éxito!
+            alert(`✅ ¡Usuario ${response.data.nombre} registrado exitosamente! Ahora puedes iniciar sesión.`);
+            
+            // Limpiamos el formulario (opcional)
+            setNombre('');
+            setApellidos('');
+            setEmail('');
+            setPassword('');
+            setConfirmPassword('');
+            
+            // Redirigimos al login
+            navigate('/login');
+
+        } catch (err) {
+            // 6. Manejo de Errores
+            console.error("Error al registrar el usuario:", err);
+            if (err.response && err.response.data && err.response.data.message) {
+                 // Si el backend envía un mensaje específico (ej: email ya existe)
+                 setError(err.response.data.message);
+            } else {
+                 setError('Hubo un error al registrar el usuario. Inténtalo de nuevo.');
+            }
+        }
+    };
+
+    // 7. El JSX del Formulario
+    return (
+        <div className="auth-container"> {/* Usa tus propias clases CSS */}
+            <h2>Crear Cuenta</h2>
+            <form onSubmit={handleSubmit} className="auth-form">
+                {error && <p className="auth-error">{error}</p>} {/* Muestra errores */}
+                
+                {/* Campos del formulario vinculados al estado */}
+                <div className="auth-input-group">
+                    <label htmlFor="nombre">Nombre:</label>
+                    <input 
+                        type="text" 
+                        id="nombre"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                        required 
+                    />
+                </div>
+                <div className="auth-input-group">
+                    <label htmlFor="apellidos">Apellidos:</label>
+                    <input 
+                        type="text" 
+                        id="apellidos"
+                        value={apellidos}
+                        onChange={(e) => setApellidos(e.target.value)}
+                        required 
+                    />
+                </div>
+                <div className="auth-input-group">
+                    <label htmlFor="email">Email:</label>
+                    <input 
+                        type="email" 
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required 
+                    />
+                </div>
+                <div className="auth-input-group">
+                    <label htmlFor="password">Contraseña:</label>
+                    <input 
+                        type="password" 
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required 
+                    />
+                </div>
+                <div className="auth-input-group">
+                    <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required 
+                    />
+                </div>
+                
+                <button type="submit" className="auth-button">Registrar</button>
+            </form>
+        </div>
     );
-}  
+}

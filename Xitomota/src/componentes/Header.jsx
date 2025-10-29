@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation} from 'react-router-dom';
 
 function Header() {
     const [open, setOpen] = useState(false);
@@ -13,6 +13,32 @@ function Header() {
         'Pantalones',
         'Buzos'
     ];
+    
+    const navigate = useNavigate();
+    const [estaLogeado, setEstaLogeado] = useState(false);
+
+    const location = useLocation();
+
+    useEffect(() => {
+        const usuario = localStorage.getItem('usuarioLogueado');
+        setEstaLogeado(!!usuario);
+
+        const handleStorageChange = () => {
+            setEstaLogeado(!!localStorage.getItem('usuarioLogueado'));
+        };
+        window.addEventListener('storage', handleStorageChange);
+        return () => { window.removeEventListener('storage', handleStorageChange); };
+    }, [location.pathname]);
+
+    const handleCerrarSesion = () => {
+        if (window.confirm("¿Estás seguro que deseas cerrar sesión?")) {
+            localStorage.removeItem('usuarioLogueado');
+            localStorage.removeItem('rolUsuario');
+            setEstaLogeado(false);
+            alert("✅ Has cerrado sesión exitosamente.");
+            navigate('/login');
+        }
+    };
 
     useEffect(() => {
         function handleClickOutside(e) {
@@ -90,7 +116,6 @@ function Header() {
                         <li className="nav-item">
                             <Link className="nav-link" to="/contacto">Contacto</Link>
                         </li>
-                        {/* El Carrito lo movimos a la derecha */}
                     </ul>
 
                     {/* --- 2. GRUPO CENTRO: BÚSQUEDA --- */}
@@ -106,8 +131,18 @@ function Header() {
                         {/* 'flex-row' hace que los <li> sean horizontales */}
                         <ul className="navbar-nav flex-row">
                             <li className="nav-item">
-                                {/* Usamos la clase 'btn-login' de tu código */}
-                                <Link to="/login" className="btn-login me-2">Iniciar Sesión</Link>
+                                {estaLogeado ? (
+                                    <button
+                                        onClick={handleCerrarSesion}
+                                        className="btn btn-outline-danger me-2"
+                                    >
+                                        Cerrar Sesión
+                                    </button>
+                                ) : (
+                                    <Link to="/login" className="btn btn-outline-light me-2">
+                                        Iniciar Sesión
+                                    </Link>
+                                )}
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link active" to="/carrito">Carrito</Link>

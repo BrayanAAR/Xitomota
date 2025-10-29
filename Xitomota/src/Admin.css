@@ -376,6 +376,7 @@
 }
 
 /* --------------------------------- FIN INVENTARIO --------------------- */
+
 /* ------------------------------------ FORMULARIO PRODUCTO ------------------- */
 /* --- ESTILOS PARA EL FORMULARIO DE ADMIN --- */
 .admin-form-container {
@@ -448,6 +449,7 @@
     background-color: #5a6268;
 }
 /* --------------------------------- FIN FORMULARIO PRODUCTO --------------------- */
+
 /* --------------------------- REPORTES --------------------------- */
 
 /* * Le da a tu 'caption' la apariencia de un 
@@ -509,6 +511,7 @@
     border-top-right-radius: 8px;
 }
 /* --------------------- FIN REPORTES --------------------- */
+
 /* --------------------- STOCK CRÍTICO --------------------- */
 
 /* * Le damos estilo al botón de "Volver"
@@ -569,3 +572,33 @@
     text-align: center;
 }
 /* --------------------- FIN STOCK CRÍTICO --------------------- */
+
+/* ----------------- PERFIL --------------------- */
+
+/* --- ESTILOS MEJORADOS PARA INPUTS DE CONTRASEÑA (PerfilAdmin) --- */
+
+/* Aplica a los 3 inputs de contraseña dentro del formulario de admin */
+.admin-form-container input[type="password"] {
+    padding: 12px; /* Mismo padding que otros inputs */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px; /* Pequeño espacio extra bajo la etiqueta */
+}
+
+/* Opcional: Estilo para los placeholders */
+.admin-form-container input[type="password"]::placeholder {
+    color: #999;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* Opcional: Un borde sutil al enfocar el input */
+.admin-form-container input[type="password"]:focus {
+    outline: none; /* Quita el borde azul por defecto */
+    border-color: #007bff; /* Borde azul al enfocar */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Sombra suave azul */
+}
+/* ----------------- FIN PERFIL --------------------- */
