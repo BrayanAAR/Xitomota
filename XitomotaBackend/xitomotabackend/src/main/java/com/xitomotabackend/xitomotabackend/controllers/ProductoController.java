@@ -52,6 +52,11 @@ public class ProductoController {
         return productoRepository.findAll(pageable);
     }
 
+    @GetMapping("/productos/tienda")
+    public List<Producto> getProductosParaTienda() {
+        return productoRepository.findAll();
+    }
+
     @GetMapping("/productos/categoria/{categoriaNombre}")
     public List<Producto> getProductosByCategoria(@PathVariable String categoriaNombre) {
         return productoRepository.findByCategoriaNombreIgnoreCase(categoriaNombre);
