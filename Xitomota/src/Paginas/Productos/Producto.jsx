@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import TarjetaProducto from './TarjetaProducto';
 
-// --- Productos (Componente Padre) ---
 export default function Productos() {
 
   const [productos, setProductos] = useState([]);
@@ -24,16 +23,9 @@ export default function Productos() {
       <div>
         <h2 style={{textAlign: 'center'}}>Todos los productos</h2>
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-
-            {/* Ahora el .map() solo se preocupa de renderizar las tarjetas.
-              El botón y su lógica están DENTRO de cada tarjeta.
-            */}
             {productos.map(producto => (
               <TarjetaProducto key={producto.id} producto={producto} />
             ))}
-            
-            {/* El botón que estaba aquí se eliminó */}
-
         </div>
       </div>
     );

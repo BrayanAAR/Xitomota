@@ -1,46 +1,39 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // <-- Asegúrate de importar axios
+import axios from 'axios'; 
 import { Link, useNavigate } from 'react-router-dom';
-// import '../css/Login.css'; // (Tu CSS de login)
 
-export default function IniciarSesion() { // Cambiado 'Login' a 'IniciarSesion' si así se llama tu archivo
+export default function IniciarSesion() { 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState(''); // Cambiado 'pass' a 'password'
-    const [error, setError] = useState(''); // Estado para mensajes de error
+    const [password, setPassword] = useState(''); 
+    const [error, setError] = useState(''); 
     const navigate = useNavigate();
 
-    const handleLogin = async (e) => { // La función ahora es async
+    const handleLogin = async (e) => { 
         e.preventDefault();
-        setError(''); // Limpia errores previos
+        setError(''); 
 
-        // 1. Creamos el objeto para enviar al backend
         const loginData = {
             email: email,
             password: password
         };
 
         try {
-            // 2. Llamamos al nuevo endpoint del backend
             const response = await axios.post('http://localhost:8080/api/v1/auth/login', loginData);
             
-            // 3. ¡Éxito! El backend devolvió los datos del usuario
-            const userData = response.data; // { email: '...', rol: '...' }
+            const userData = response.data; 
 
-            // 4. Guardamos en localStorage
             localStorage.setItem('usuarioLogueado', userData.email);
             localStorage.setItem('rolUsuario', userData.rol);
             
             alert(`✅ ¡Bienvenido ${userData.email}!`);
             
-            // 5. Redirigimos según el rol
             if (userData.rol === 'Administrador') {
-                navigate('/admin'); // Al dashboard de admin
+                navigate('/admin'); 
             } else {
-                navigate('/'); // Al inicio de la tienda para Clientes
+                navigate('/');
             }
 
         } catch (err) {
-            // 6. Manejo de Errores (ej: 401 Unauthorized)
             console.error("Error al iniciar sesión:", err);
             if (err.response && err.response.status === 401) {
                 setError("Credenciales inválidas. Verifica tu email y contraseña.");
@@ -50,12 +43,11 @@ export default function IniciarSesion() { // Cambiado 'Login' a 'IniciarSesion' 
         }
     };
 
-    // 7. El formulario JSX (cambiado 'pass' por 'password')
     return (
         <div className="auth-container">
             <h2>Iniciar Sesión</h2>
             <form onSubmit={handleLogin} className="auth-form">
-                {error && <p className="auth-error">{error}</p>} {/* Muestra errores */}
+                {error && <p className="auth-error">{error}</p>} 
                 
                 <div className="auth-input-group">
                     <label htmlFor="email">Email:</label>
@@ -64,17 +56,17 @@ export default function IniciarSesion() { // Cambiado 'Login' a 'IniciarSesion' 
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        required // Agregamos required
+                        required 
                     />
                 </div>
                 <div className="auth-input-group">
                     <label htmlFor="password">Password:</label>
                     <input 
                         type="password" 
-                        id="password" // Cambiado id a 'password'
+                        id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        required // Agregamos required
+                        required
                     />
                 </div>
                 <button type="submit" className="auth-button">Entrar</button>

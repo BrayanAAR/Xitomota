@@ -1,47 +1,4 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-} */
-
-/* Layout helpers to keep footer at the bottom */
+/* Manten footer al fondo */
 .app-root {
   display: flex;
   flex-direction: column;
@@ -63,54 +20,160 @@
 }
 
 /* imagenes */
-.logo{ width: 10ex; }
-.carrito{ width: 3ex; }
-.PrimerProducto{ display:block; width:100%; max-height:100%; height:auto; object-fit:cover; }
+.logo{ 
+  width: 10ex; 
+}
 
-.container_1, .container_2, .container_3 { width:33%; height:auto; display:flex; align-items:center; justify-content:start; flex-direction:row; }
+.carrito{ 
+  width: 3ex; 
+}
 
-.container_5{ width:100%; height:auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; flex-direction:column; margin-top: 10ex;}
-.container_5a{ width:100%; height:auto; display:flex; justify-content:space-between; align-items:center; flex-direction:row; margin:4ex; }
-.container_5b{ width:80%; height:auto; display:flex; justify-content:space-between; align-items:center; flex-direction:row; margin:4ex; }
+.PrimerProducto{ 
+  display:block; 
+  width:100%; 
+  max-height:100%; 
+  height:auto; 
+  object-fit:cover; 
+}
 
-.foto_promocional { width:350px; height:350px; margin-bottom:3ex; object-fit:cover; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.2); transition: transform 0.2s; }
-.foto_promocional:hover { transform: scale(1.05); }
+.container_1, .container_2, .container_3 { 
+  width:33%; 
+  height:auto; 
+  display:flex; 
+  align-items:center; 
+  justify-content:start; 
+  flex-direction:row; 
+}
 
-.container_5a, .container_5b { width:90%; display:flex; text-align:center;  align-items:center; flex-wrap:wrap; margin-top:5ex 0; }
-.h4 { margin-top: 3ex; }
+.container_5{ 
+  width:100%; 
+  height:auto; 
+  display:flex; 
+  justify-content:space-between; 
+  align-items:center; 
+  flex-wrap:wrap; 
+  flex-direction:column; 
+  margin-top: 10ex;
+}
+.container_5a{ 
+  width:100%; 
+  height:auto; 
+  display:flex; 
+  justify-content:space-between; 
+  align-items:center; 
+  flex-direction:row; 
+  margin:4ex; 
+}
+.container_5b{ 
+  width:80%; 
+  height:auto; 
+  display:flex; 
+  justify-content:space-between; 
+  align-items:center; 
+  flex-direction:row; 
+  margin:4ex; 
+}
 
-.home-main { align-items:stretch; }
-.container_4{ width:100%; display:block; }
-.container_4b{ width:100%; }
+.foto_promocional { 
+  width:350px; 
+  height:350px; 
+  margin-bottom:3ex; 
+  object-fit:cover; 
+  border-radius:10px; 
+  box-shadow:0 2px 6px rgba(0,0,0,0.2); 
+  transition: transform 0.2s; 
+}
+
+.foto_promocional:hover { 
+  transform: scale(1.05); 
+}
+
+.container_5a, .container_5b { 
+  width:90%; 
+  display:flex; 
+  text-align:center;  
+  align-items:center; 
+  flex-wrap:wrap; 
+  margin-top:5ex 0; 
+}
+.h4 { 
+  margin-top: 3ex; 
+}
+
+.home-main { 
+  align-items:stretch; 
+}
+.container_4{ 
+  width:100%; 
+  display:block; 
+}
+.container_4b{ 
+  width:100%; 
+}
 
 /* --------------- NOSOTROS --------------- */
-.nosotros { max-width:900px; background:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
-.nosotros .titulo{ font-size:2.2rem; font-weight:bold; margin-bottom:20px; text-align:center; color:#222; }
-.nosotros .subtitulo{ font-size:1.6rem; font-weight:bold; margin-top:40px; margin-bottom:15px; color:#444; }
-.nosotros p{ line-height:1.7; margin-bottom:15px; color:#555; text-align:justify; }
-.lista-devs{ list-style:none; padding:0; }
-.lista-devs li{ margin-bottom:10px; padding:10px; background:#f9f9f9; border-left:4px solid #007bff; border-radius:6px; color:#333; }
+.nosotros { 
+  max-width:900px; 
+  background:#fff; 
+  padding:30px; 
+  border-radius:12px; 
+  box-shadow:0 4px 12px rgba(0,0,0,0.1); 
+}
+
+.nosotros .titulo{ 
+  font-size:2.2rem; 
+  font-weight:bold; 
+  margin-bottom:20px; 
+  text-align:center; 
+  color:#222; 
+}
+
+.nosotros .subtitulo{ 
+  font-size:1.6rem; 
+  font-weight:bold; 
+  margin-top:40px; 
+  margin-bottom:15px; 
+  color:#444; 
+}
+.nosotros p{ 
+  line-height:1.7; 
+  margin-bottom:15px; 
+  color:#555; 
+  text-align:justify; 
+}
+.lista-devs{ 
+  list-style:none; 
+  padding:0; 
+}
+.lista-devs li{ 
+  margin-bottom:10px; 
+  padding:10px; 
+  background:#f9f9f9; 
+  border-left:4px solid #007bff; 
+  border-radius:6px; 
+  color:#333; 
+}
 
 /* --------------- CONTACTO --------------- */
 /* --- ESTILOS PARA LA PÁGINA DE CONTACTO --- */
 
 .contacto-container {
-    display: flex; /* Para centrar la tarjeta */
+    display: flex; 
     justify-content: center;
     align-items: center; 
     padding: 40px 20px;
-    background-color: #f4f7fa; /* Fondo gris claro (opcional) */
-    min-height: 80vh; /* Asegura altura mínima */
+    background-color: #f4f7fa; 
+    min-height: 80vh; 
 }
 
 .contacto-form-card {
     background-color: #ffffff;
-    padding: 30px 40px; /* Más padding */
-    border-radius: 12px; /* Esquinas más redondeadas */
+    padding: 30px 40px; 
+    border-radius: 12px; 
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 600px; /* Ancho máximo de la tarjeta */
-    border: 1px solid #e0e0e0; /* Borde sutil */
+    max-width: 600px; 
+    border: 1px solid #e0e0e0;
 }
 
 .contacto-form-card h2 {
@@ -153,29 +216,29 @@
 }
 
 .form-group-contacto textarea {
-    resize: vertical; /* Permite ajustar altura */
-    min-height: 100px; /* Altura mínima */
+    resize: vertical; 
+    min-height: 100px; 
 }
 
 /* Efecto focus */
 .form-group-contacto input:focus,
 .form-group-contacto textarea:focus {
     outline: none;
-    border-color: #007bff; /* Borde azul */
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Sombra suave */
+    border-color: #007bff; 
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); 
 }
 
 /* Contenedor de botones */
 .form-actions-contacto {
     display: flex;
-    justify-content: flex-end; /* Alinea botones a la derecha */
-    gap: 15px; /* Espacio entre botones */
+    justify-content: flex-end; 
+    gap: 15px; 
     margin-top: 30px;
 }
 
 /* Estilos base para los botones */
 .form-actions-contacto button {
-    padding: 10px 25px; /* Botones un poco más anchos */
+    padding: 10px 25px; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -193,7 +256,7 @@
     background-color: #0056b3;
 }
 .btn-enviar:active {
-    transform: scale(0.98); /* Efecto al presionar */
+    transform: scale(0.98); 
 }
 
 /* Botón Limpiar (Gris) */
@@ -211,19 +274,19 @@
 /* ----------------- PRODUCTOS --------------------- */
 /* --- 1. Contenedor de la Página --- */
 .productos-pagina {
-  /* Aquí pones tu fondo degradado */
-  background: linear-gradient(to bottom, #e8c8e9, #dbc2db); /* Ejemplo de degradado */
-  padding: 3rem 0; /* Espacio arriba y abajo */
+  /* poner fondo degradado */
+  background: linear-gradient(to bottom, #e8c8e9, #dbc2db); 
+  padding: 3rem 0; 
 }
 
 /* Contenedor que centra el contenido */
 .productos-container {
   width: 90%;
-  max-width: 1200px; /* Límite para pantallas grandes */
-  margin: 0 auto; /* Centra el contenedor */
+  max-width: 1200px; 
+  margin: 0 auto; 
 }
 
-/* Título de la página (como en tu foto) */
+/* Título de la página */
 .productos-titulo {
   font-size: 2.5rem;
   font-weight: 700;
@@ -236,25 +299,17 @@
 /* --- 2. La GRILLA de Productos --- */
 .productos-grid {
   display: grid;
-  
-  /* --- ¡LA MAGIA RESPONSIVA! --- */
-  /* Crea columnas que se ajustan solas:
-    - 'auto-fit': Llena el espacio con tantas columnas como quepan.
-    - 'minmax(250px, 1fr)': Cada columna tiene un mínimo de 250px 
-      y un máximo de 1 fracción (se reparten el espacio).
-  */
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  
-  gap: 1.5rem; /* Espacio entre las tarjetas */
+  gap: 1.5rem; 
 }
 
 
 /* --- 3. La "Tarjeta" de Producto --- */
 .producto-card {
-  background-color: #ffffff; /* Fondo blanco para la tarjeta */
+  background-color: #ffffff; 
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  overflow: hidden; /* Para que la imagen respete los bordes */
+  overflow: hidden; 
   
   /* Flexbox para ordenar el contenido verticalmente */
   display: flex;
@@ -264,7 +319,7 @@
 }
 
 .producto-card:hover {
-  transform: translateY(-5px); /* Efecto "levantar" */
+  transform: translateY(-5px); 
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
@@ -273,7 +328,7 @@
 /* Contenedor de la imagen */
 .producto-imagen {
   width: 100%;
-  aspect-ratio: 1 / 1; /* Fuerza a que la imagen sea cuadrada */
+  aspect-ratio: 1 / 1; 
 }
 /* Placeholder gris si no hay imagen */
 .img-placeholder {
@@ -289,14 +344,12 @@
 .producto-imagen img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Evita que la imagen se deforme */
+  object-fit: cover; 
 }
 
 /* Contenedor de la información (texto) */
 .producto-info {
   padding: 1rem;
-  /* Estas 3 líneas aseguran que todas las tarjetas
-     tengan la misma altura y el botón quede abajo */
   display: flex;
   flex-direction: column;
   flex-grow: 1; 
@@ -332,8 +385,6 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
-  
-  /* Esta línea empuja el botón al fondo de la tarjeta */
   margin-top: auto; 
 }
 
@@ -344,101 +395,82 @@
 /* --- Estilo para el botón "Agregar al Carrito" de las tarjetas --- */
 
 .btn-agregar-carrito {
-    /* --- Color y Fondo --- */
-    background-color: #363636; /* Un azul primario (puedes cambiarlo) */
+    background-color: #363636; 
     color: white;
-    
-    /* --- Bordes y Sombra --- */
-    border: none; /* Quitamos el borde feo por defecto */
-    border-radius: 5px; /* Esquinas redondeadas */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    
-    /* --- Espaciado y Tamaño --- */
-    width: 100%; /* Ocupa todo el ancho de la tarjeta */
-    padding: 12px 10px; /* Espacio interno (alto y ancho) */
-    margin-top: 10px; /* Espacio para separarlo del precio */
-    
-    /* --- Texto --- */
-    font-size: 1rem; /* Tamaño de letra */
-    font-weight: 600; /* Letra en negrita */
-    
-    /* --- Interacción --- */
-    cursor: pointer; /* Manito al pasar por encima */
-    transition: background-color 0.2s ease, transform 0.2s ease; /* Transición suave */
+    border: none; 
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    width: 100%; 
+    padding: 12px 10px; 
+    margin-top: 10px; 
+    font-size: 1rem; 
+    font-weight: 600;
+    cursor: pointer; 
+    transition: background-color 0.2s ease, transform 0.2s ease; 
 }
 
 /* Efecto al pasar el mouse por encima */
 .btn-agregar-carrito:hover {
-    background-color: #0056b3; /* Azul un poco más oscuro */
-    transform: translateY(-2px); /* Se eleva un poquito */
+    background-color: #0056b3; 
+    transform: translateY(-2px); 
 }
 
 /* Efecto al hacer clic */
 .btn-agregar-carrito:active {
-    background-color: #004085; /* Azul más oscuro */
-    transform: translateY(0); /* Vuelve a su posición original */
-    box-shadow: none; /* Quitamos la sombra */
+    background-color: #004085;
+    transform: translateY(0); 
+    box-shadow: none;
 }
 
 /* ------------------------ BLOGS ----------------------- */
-.blog-container { width: 90%; max-width: 1200px; margin: 0 auto; }
-.blog-title { text-align: center; margin-bottom: 3rem; font-size: 1.5rem; }
-.blog-article { display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; background-color: rgba(255, 255, 255, 0.1);  border-radius: 12px; overflow: hidden; }
-.article-text, .article-image { flex: 1; padding: 2rem; min-width: 300px; }
-.article-text h2 { font-size: 2rem; margin-bottom: 1rem; }
-.article-text p { font-size: 1.1rem; line-height: 1.6;}
-.article-image-content { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; display: block; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);}
+.blog-container { 
+    width: 90%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
 
-/* ----- From: src/css/Inventario.css (admin layout) ----- */
-/* .sidebar{ width:220px; background:#f5f5f5; border-right:1px solid #ddd; display:flex; flex-direction:column; justify-content:space-between; }
-.logo{ font-size:20px; font-weight:bold; padding:20px; border-bottom:1px solid #ddd; }
-.menu{ list-style:none; padding:0; margin:0; flex-grow:1; }
-.menu li{ border-bottom:1px solid #eee; }
-.menu li a{ display:block; padding:12px 20px; text-decoration:none; color:#333; transition:background 0.2s; }
-.menu li a:hover{ background:#ddd; }
-.sidebar-footer{ padding:15px; color:#666; font-size:14px; border-top:1px solid #ddd; }
-.main{ flex:1; padding:20px; background:#fff; overflow-y:auto; }
-.btnNuevo{ background:#007bff; color:white; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; font-size:14px; margin-bottom:20px; transition:background-color 0.2s; }
-.btnNuevo:hover{ background:#0056b3; } */
+.blog-title { 
+    text-align: center; 
+    margin-bottom: 3rem; 
+    font-size: 1.5rem; 
+}
 
-/* ----- From: src/css/ListadoUsuarios.css ----- */
-/* .tabla-contenedor{ overflow-x:auto; }
-#tablaUsuarios{ width:100%; border-collapse:collapse; }
-#tablaUsuarios th, #tablaUsuarios td{ border:1px solid #ddd; padding:8px; }
-#tablaUsuarios tr:nth-child(even){ background-color:#f9f9f9; }
-#tablaUsuarios tr:hover{ background-color:#f1f1f1; }
-.paginacion{ display:flex; justify-content:center; margin-top:20px; }
-.paginacion button{ background:#f8f9fa; border:1px solid #ddd; padding:8px 12px; margin:0 2px; cursor:pointer; border-radius:4px; transition:background-color 0.2s; }
-.paginacion button:hover{ background:#e9ecef; }
-.paginacion button.activo{ background-color:#007bff; color:#fff; border-color:#007bff; } */
+.blog-article { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 2rem; 
+    background-color: rgba(255, 255, 255, 0.1);  
+    border-radius: 12px; 
+    overflow: hidden; 
+}
 
-/* ----- From: src/css/NuevoProducto.css ----- */
-/* .registro{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:60%; min-height:auto; display:flex; justify-content:center; align-items:center; flex-direction:column; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:2em auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-.forms{ width:100%; padding:0.7em; border:1px solid #aaa; border-radius:8px; outline:none; transition:all 0.3s; font-size:1em; box-sizing:border-box; }
-.registro_1{ width:100%; display:flex; justify-content:space-around; align-items:center; flex-direction:row; margin-top:1em; }
-.btn-registrar{ background-color:#4a6cf7; color:white; }
-.btn-registrar:hover{ background-color:#3a5ae0; transform:translateY(-1px); } */
+.article-text, .article-image { 
+    flex: 1; 
+    padding: 2rem; 
+    min-width: 300px; 
+}
 
-/* ----- From: src/css/NuevoUsuario.css ----- */
-/* .registro_top{ width:100%; text-align:center; font-size:1.5em; font-weight:bold; margin-bottom:1em; }
-.registro{ background: linear-gradient(135deg,#f0f4ff,#dce3ff); width:60%; min-height:auto; display:flex; justify-content:center; align-items:center; flex-direction:column; border:2px solid #4a6cf7; border-radius:1.5em; box-shadow:0 6px 20px rgba(74,108,247,0.3); padding:2em; margin:2em auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; } */
+.article-text h2 { 
+    font-size: 2rem; 
+    margin-bottom: 1rem; 
+}
 
-/* ----- From: src/css/VendedorInventario.css ----- */
-/* .modal{ position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); animation:fadeIn 0.3s; }
-@keyframes fadeIn{ from{ opacity:0; } to{ opacity:1; } }
-.modal-content{ background-color:#fefefe; margin:5% auto; padding:0; border:none; width:80%; max-width:600px; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.3); animation:slideIn 0.3s; }
-@keyframes slideIn{ from{ transform:translateY(-50px); opacity:0; } to{ transform:translateY(0); opacity:1; } }
-.modal-header{ background: linear-gradient(135deg,#667eea 0%, #764ba2 100%); color:white; padding:20px; border-radius:8px 8px 0 0; display:flex; justify-content:space-between; align-items:center; }
-.close{ color:white; font-size:28px; font-weight:bold; cursor:pointer; transition:opacity 0.2s; }
-.close:hover, .close:focus{ opacity:0.7; }
-.modal-body{ padding:20px; line-height:1.6; }
-.btn-ver{ background-color:#17a2b8; color:white; padding:6px 12px; border:none; border-radius:4px; cursor:pointer; font-size:12px; transition:background-color 0.2s; }
-.btn-ver:hover{ background-color:#138496; }
-.stock-critico{ color:#dc3545; font-weight:bold; }
-.stock-normal{ color:#28a745; font-weight:bold; }
-.stock-agotado{ color:#6c757d; font-style:italic; } */
+.article-text p { 
+    font-size: 1.1rem; 
+    line-height: 1.6;
+}
 
-/* End of merged styles */
+.article-image-content { 
+    width: 100%; 
+    height: auto; 
+    aspect-ratio: 16 / 9; 
+    object-fit: cover; 
+    display: block; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+/* ------------------------ FIN BLOGS ----------------------- */
 
 /* --------------- DROPDOWN HEADER --------------- */
 .header-dropdown-button{
@@ -456,14 +488,14 @@
 }
 
 /* ------------------------------------------------------ */
-/* --- Estilos para la NUEVA barra de categorías --- */
+/* --- BARRA CATEGORIAS --- */
 
 .navegacion-categorias {
   display: flex;
-  justify-content: center; /* Centra las tarjetas */
-  gap: 1.5rem; /* Espacio entre tarjetas */
-  margin-bottom: 3rem; /* Espacio antes del título "Poleras" */
-  flex-wrap: wrap; /* Si no caben, pasan a la línea de abajo */
+  justify-content: center; 
+  gap: 1.5rem; 
+  margin-bottom: 3rem; 
+  flex-wrap: wrap; 
 }
 
 /* Quita la decoración del link */
@@ -473,7 +505,7 @@
 }
 
 .categoria-card-small {
-  width: 120px; /* Ancho de la tarjeta pequeña */
+  width: 120px; 
   border: 1px solid #eee;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.03);
@@ -493,17 +525,15 @@
   font-size: 0.9rem;
 }
 
-/* --- NUEVO CSS para la imagen real en la tarjeta pequeña --- */
 .categoria-img-small {
   width: 100px;
   height: 100px;
-  object-fit: cover; /* Esto asegura que la imagen cubra el área sin distorsionarse */
-  border-radius: 4px; /* Opcional: para que coincida con el borde del placeholder */
-  margin: 0 auto; /* Centrar la imagen si es necesario */
-  display: block; /* Para eliminar cualquier espacio extra debajo de la imagen */
+  object-fit: cover; 
+  border-radius: 4px; 
+  margin: 0 auto; 
+  display: block; 
 }
 
-/* Mantén el estilo de .img-placeholder-small para las categorías que aún no tienen imagen */
 .img-placeholder-small {
   width: 100px;
   height: 100px;
@@ -516,9 +546,6 @@
   font-size: 0.8rem;
   margin: 0 auto;
 }
-
-
-/* --- CSS que ya tenías (con placeholder grande) --- */
 
 .categoria-main {
   width: 90%;
@@ -565,6 +592,8 @@
   color: #333;
 }
 
+/* ------------------------- FIN BARRA CATEGORIAS ----------------------------- */
+
 /* ------------------------- CARRITO ----------------------------- */
 /* Contenedor principal del carrito */
 .carrito-container {
@@ -582,14 +611,13 @@
 .carrito-wrapper {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  overflow: hidden; /* Para que el borde redondeado se aplique a todo */
+  overflow: hidden; 
 }
 
 /* --- Estilo de Grid para el encabezado y las filas --- */
 .carrito-header,
 .carrito-item {
   display: grid;
-  /* Definimos las 6 columnas */
   grid-template-columns: 2fr 1fr 1.5fr 1fr 1fr;
   align-items: center;
   padding: 1rem;
@@ -603,7 +631,6 @@
   color: #495057;
   font-size: 0.9rem;
   border-bottom: 2px solid #e0e0e0;
-  /* Re-ajustamos la grilla para el encabezado */
   grid-template-columns: 1fr 2fr 1fr 1.5fr 1fr 1fr;
 }
 
@@ -619,7 +646,6 @@
 /* Filas de items */
 .carrito-item {
   border-bottom: 1px solid #f1f1f1;
-  /* Ajustamos la grilla para los items */
   grid-template-columns: 3fr 1fr 1.5fr 1fr 1fr;
 }
 .carrito-item:last-child {
@@ -638,7 +664,7 @@
   height: 50px;
   background-color: #e9ecef;
   border-radius: 4px;
-  flex-shrink: 0; /* Evita que la imagen se encoja */
+  flex-shrink: 0;
 }
 .item-img-nombre span {
   font-weight: 600;
@@ -670,14 +696,14 @@
   border-left: none;
   border-right: none;
   height: 25px;
-  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño */
+  box-sizing: border-box; 
 }
 
 /* Columna 4: Subtotal */
 .item-subtotal {
   grid-column: 4 / 5;
   font-weight: 600;
-  color: #d9534f; /* Color rojo/naranjo como en la foto */
+  color: #d9534f; 
 }
 
 /* Columna 5: Acciones */
@@ -687,7 +713,7 @@
 
 /* --- Botones --- */
 .btn-eliminar {
-  background-color: #d9534f; /* Rojo */
+  background-color: #d9534f; 
   color: white;
   border: none;
   border-radius: 5px;
@@ -724,14 +750,14 @@
   cursor: pointer;
 }
 .btn-limpiar {
-  background-color: #6c757d; /* Gris */
+  background-color: #6c757d; 
   color: white;
 }
 .btn-limpiar:hover {
   background-color: #5a6268;
 }
 .btn-comprar {
-  background-color: #28a745; /* Verde */
+  background-color: #28a745; 
   color: white;
 }
 .btn-comprar:hover {
@@ -755,9 +781,7 @@
 
 /* ------------------------------- HEADER ------------------------------- */
 
-/* ------------------------------------------- */
 /* --- ESTILOS PARA LOS BOTONES Y BÚSQUEDA --- */
-/* ------------------------------------------- */
 
 /* Contenedor de búsqueda (para el centro) */
 .search-container {
@@ -772,7 +796,7 @@
   outline: none;
 }
 .search-container button {
-  background-color: #343a40; /* Gris oscuro */
+  background-color: #343a40; 
   border: 1px solid #555;
   color: white;
   padding: 0.375rem 0.75rem;
@@ -781,12 +805,12 @@
   cursor: pointer;
 }
 
-/* Botón de Iniciar Sesión (como en tu imagen) */
+/* Botón de Iniciar Sesión */
 .btn-login {
   display: inline-block;
-  background-color: #343a40; /* Fondo oscuro */
-  border: 1px solid #fff; /* Borde blanco */
-  color: #fff; /* Texto blanco */
+  background-color: #343a40; 
+  border: 1px solid #fff; 
+  color: #fff; 
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   text-decoration: none;
@@ -799,25 +823,16 @@
   color: #343a40;
 }
 
-/* ------------------------------------------- */
-/* --- ESTILOS PARA EL DROPDOWN (YA LOS TENÍAS) --- */
-/* ------------------------------------------- */
+/* --- ESTILOS PARA EL DROPDOWN  --- */
 
-/* 5. Asegúrate de que tu dropdown de categorías se vea bien */
 .header-dropdown {
   position: relative;
 }
 .header-dropdown-button {
-  /* 1. Resetea los estilos de botón */
   background: none;
   border: none;
-
-  /* 2. Aplica el mismo padding de los otros links */
-  /* Esta es la línea clave para la alineación vertical */
   display: flex;
   align-items: center;
-
-  /* 3. Asegura el color (el gris de "link no activo") */
   color: rgba(255, 255, 255, 0.55);
 }
 .nav-item {
@@ -834,14 +849,14 @@
   border-radius: 4px;
   list-style: none;
   padding: 0.5rem 0;
-  margin-top: 0.25rem; /* Pequeño espacio */
+  margin-top: 0.25rem; 
   min-width: 180px;
   z-index: 1000;
 }
 .dropdown-item-custom {
   display: block;
   padding: 0.5rem 1rem;
-  color: #212529; /* Texto oscuro */
+  color: #212529; 
   text-decoration: none;
 }
 .dropdown-item-custom:hover {
@@ -854,9 +869,8 @@
 /* --- 1. Contenedor Principal Grid --- */
 .checkout-grid-container {
     display: grid;
-    /* Dos columnas: la primera (form) es 2 tercios, la segunda (resumen) es 1 tercio */
     grid-template-columns: 2fr 1fr;
-    gap: 40px; /* Espacio entre las columnas */
+    gap: 40px; 
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
@@ -875,16 +889,16 @@
 
 .form-row {
     display: flex;
-    gap: 20px; /* Espacio entre campos en la misma fila */
+    gap: 20px; 
     margin-bottom: 15px;
 }
 
 .form-group {
-    flex: 1; /* Por defecto, los campos en una fila comparten el espacio */
+    flex: 1; 
 }
 
 .form-group.full-width {
-    flex-basis: 100%; /* Ocupa todo el ancho si está en un form-row */
+    flex-basis: 100%;
 }
 
 .form-group label {
@@ -902,11 +916,11 @@
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box; /* Importante para que el padding no rompa el ancho */
+    box-sizing: border-box; 
 }
 
 .form-group textarea {
-    resize: vertical; /* Permite al usuario ajustar la altura */
+    resize: vertical;
 }
 
 
@@ -915,7 +929,6 @@
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
-    /* Hacemos que la columna "se pegue" arriba si la página es larga */
     position: sticky;
     top: 20px; 
     align-self: start;
@@ -990,8 +1003,6 @@
 
 /* ------------------------------- PAGO REALIZADO ------------------------------- */
 
-/* --- Estilos para la página de Confirmación (PagoRealizado.jsx) --- */
-
 /* Encabezado con el checkmark verde */
 .confirmacion-header h2 {
     font-size: 1.8rem;
@@ -1002,7 +1013,7 @@
 }
 
 .confirmacion-header h2 span {
-    color: #28a745; /* Verde de éxito */
+    color: #28a745; 
     font-size: 2.5rem;
     font-weight: 600;
 }
@@ -1013,23 +1024,21 @@
     margin-bottom: 20px;
 }
 
-/* --- Estilos para los campos deshabilitados --- */
-/* Hace que los inputs y textareas parezcan texto normal */
 .form-group input:disabled,
 .form-group textarea:disabled {
-    background-color: #f4f4f4; /* Fondo gris claro */
+    background-color: #f4f4f4; 
     border: 1px solid #ddd;
-    color: #333; /* Texto más oscuro para que sea legible */
-    -webkit-text-fill-color: #333; /* Para navegadores WebKit (Chrome/Safari) */
-    opacity: 1; /* Previene que se vea transparente */
-    cursor: default; /* Quita el cursor de texto */
+    color: #333; 
+    -webkit-text-fill-color: #333; 
+    opacity: 1; 
+    cursor: default; 
 }
 
 /* Placeholder para la imagen en la tabla de resumen */
 .summary-img-placeholder {
     width: 50px;
     height: 50px;
-    background-color: #e9ecef; /* Gris claro */
+    background-color: #e9ecef; 
     border-radius: 5px;
     border: 1px solid #ddd;
     display: flex;
@@ -1038,12 +1047,6 @@
     color: #adb5bd;
     font-size: 0.7rem;
 }
-/* Opcional: si quieres que diga "Imagen"
-.summary-img-placeholder::after {
-    content: "Imagen";
-}
-*/
-
 
 /* --- Footer de la Confirmación (Total y botones) --- */
 .confirmacion-footer {
@@ -1060,8 +1063,8 @@
 
 .confirmacion-botones {
     display: flex;
-    justify-content: flex-end; /* Alinea los botones a la derecha */
-    gap: 15px; /* Espacio entre los botones */
+    justify-content: flex-end; 
+    gap: 15px; 
 }
 
 .confirmacion-botones button {
@@ -1076,7 +1079,7 @@
 
 /* Botón rojo de PDF */
 .btn-imprimir {
-    background-color: #dc3545; /* Rojo */
+    background-color: #dc3545; 
 }
 .btn-imprimir:hover {
     background-color: #c82333;
@@ -1084,7 +1087,7 @@
 
 /* Botón verde de Email */
 .btn-enviar-email {
-    background-color: #28a745; /* Verde */
+    background-color: #28a745; 
 }
 .btn-enviar-email:hover {
     background-color: #218838;
@@ -1092,23 +1095,22 @@
 /* ------------------------------- FIN PAGO REALIZADO ------------------------------- */
 
 /* ------------------------------- PAGO FALLIDO ------------------------------- */
-/* --- Estilos para la página de Pago Fallido --- */
 
 /* Encabezado con la X roja */
 .confirmacion-header.error-pago h2 {
-    color: #333; /* Color de texto normal */
+    color: #333; 
 }
 
 .confirmacion-header.error-pago h2 span {
-    color: #dc3545; /* Rojo de error */
-    font-size: 2rem; /* Más grande para la X */
+    color: #dc3545; 
+    font-size: 2rem; 
     font-weight: 700;
     line-height: 1;
 }
 
 /* Botón verde de "Volver" */
 .btn-volver-pago {
-    background-color: #28a745; /* Verde (como en tu foto) */
+    background-color: #28a745; 
     color: white;
     border: none;
     padding: 12px 20px;
@@ -1117,7 +1119,7 @@
     font-weight: 600;
     cursor: pointer;
     margin-top: 10px;
-    margin-bottom: 20px; /* Más espacio */
+    margin-bottom: 20px; 
 }
 .btn-volver-pago:hover {
     background-color: #218838;
@@ -1127,16 +1129,15 @@
 
 /* ----------------- AUTENTIFICACIÓN  --------------------- */
 
-/* --- ESTILOS PARA FORMULARIOS DE AUTENTICACIÓN (Login y Registro) --- */
 
-.auth-container { /* Renombramos 'login-container' a 'auth-container' */
+.auth-container { 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px; /* Más padding vertical */
-    min-height: 80vh; /* Ocupa casi toda la altura */
-    background-color: #f4f7fa; /* Fondo gris claro (como el admin) */
+    padding: 40px 20px; 
+    min-height: 80vh; 
+    background-color: #f4f7fa; 
 }
 
 .auth-container h2 {
@@ -1145,32 +1146,32 @@
     margin-bottom: 25px;
 }
 
-.auth-form { /* Renombramos la clase del form */
+.auth-form { 
     background-color: #ffffff;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px; /* Ancho máximo del formulario */
+    max-width: 400px; 
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Espacio entre los grupos de input */
+    gap: 15px; 
 }
 
 /* Estilo para los mensajes de error */
 .auth-error {
-    color: #dc3545; /* Rojo */
-    background-color: #f8d7da; /* Fondo rojo pálido */
+    color: #dc3545; 
+    background-color: #f8d7da; 
     border: 1px solid #f5c6cb;
     padding: 10px;
     border-radius: 5px;
     text-align: center;
     font-size: 0.9rem;
-    margin-bottom: 10px; /* Espacio extra si hay error */
+    margin-bottom: 10px; 
 }
 
 
-.auth-input-group { /* Renombramos la clase */
+.auth-input-group { 
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -1194,9 +1195,9 @@
 }
 
 /* Botón principal */
-.auth-button { /* Renombramos la clase */
+.auth-button { 
     padding: 12px;
-    background-color: #007bff; /* Azul */
+    background-color: #007bff; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -1204,13 +1205,13 @@
     font-size: 1rem;
     font-weight: 600;
     transition: background-color 0.2s ease;
-    margin-top: 10px; /* Espacio arriba del botón */
+    margin-top: 10px; 
 }
 .auth-button:hover {
     background-color: #0056b3;
 }
 
-/* Link para registrarse (en la pág. de login) */
+/* Link para registrarse */
 .auth-link {
     margin-top: 20px;
     text-align: center;

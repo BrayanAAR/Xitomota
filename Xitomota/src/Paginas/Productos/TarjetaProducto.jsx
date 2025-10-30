@@ -11,7 +11,6 @@ const formatearPrecio = (precio) => {
 };
 
 // --- Componente de Tarjeta Reutilizable ---
-// Acepta el 'producto' y una prop 'mostrarCategoria'
 export default function TarjetaProducto({ producto, mostrarCategoria = true }) {  
     const imagenUrl = `http://localhost:8080/images/${producto.imagen}`;
 
@@ -36,13 +35,12 @@ export default function TarjetaProducto({ producto, mostrarCategoria = true }) {
     };
 
     return (
-        // Usa las clases CSS que ya tenías (ej: "producto-item")
           <div className="producto-item" style={{ border: '1px solid #ccc', margin: '10px', padding: '10px', width: '200px' }}>
             <Link to={`/productos/${producto.id}`}>
                 <img 
                     src={imagenUrl} 
                     alt={producto.nombre} 
-                    style={{ width: '100%', cursor: 'pointer' }} // Añadimos cursor:pointer
+                    style={{ width: '100%', cursor: 'pointer' }}
                 />
             </Link>
             <div className="producto-info">
@@ -52,7 +50,6 @@ export default function TarjetaProducto({ producto, mostrarCategoria = true }) {
               )}
               <p className="producto-precio">{formatearPrecio(producto.precio)}</p>
             </div>
-            {/* --- El Botón --- */}
             <button onClick={handleAgregarAlCarrito} className="btn-agregar-carrito">
               Agregar al Carrito
             </button>

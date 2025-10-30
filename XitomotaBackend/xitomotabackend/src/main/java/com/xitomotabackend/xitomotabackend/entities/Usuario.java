@@ -15,11 +15,11 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true) // El email debe ser único
+    @Column(unique = true)
     private String email;
 
-    private String password; // Guardaremos la contraseña (más adelante se debe encriptar)
-    
+    private String password;
+
     private String nombre;
     private String apellidos;
 

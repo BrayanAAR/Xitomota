@@ -23,7 +23,7 @@ export default function ListadoUsuarios() {
         if (window.confirm("¿Seguro que quieres eliminar este usuario?")) {
             try {
                 await axios.delete(`http://localhost:8080/api/v1/usuarios/${id}`);
-                fetchUsuarios(); // Refresca la lista
+                fetchUsuarios();
                 alert("Usuario eliminado.");
             } catch (error) {
                 console.error("Error al eliminar:", error);
@@ -43,7 +43,7 @@ export default function ListadoUsuarios() {
             </div>
             
             <div className="tabla-contenedor">
-                <table id="tablaProductos"> {/* Reutiliza estilos */}
+                <table id="tablaProductos">
                     <thead>
                         <tr>
                             <th>ID</th>

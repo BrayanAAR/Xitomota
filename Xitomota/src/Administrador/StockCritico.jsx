@@ -8,7 +8,6 @@ export default function StockCritico() {
     useEffect(() => {
         const fetchProductosCriticos = async () => {
             try {
-                // Llama al endpoint que ya creamos
                 const response = await axios.get('http://localhost:8080/api/v1/productos/criticos');
                 setProductosCriticos(response.data);
             } catch (error) {
@@ -21,7 +20,6 @@ export default function StockCritico() {
     return (
         <main className="main">
             <h1>Productos con Stock Crítico (5 o menos)</h1>
-            {/* Botón para volver al inventario principal */}
             <Link to="/admin/inventario" className="btn-volver-inventario">
                 Volver al Inventario
             </Link>

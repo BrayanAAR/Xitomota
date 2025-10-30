@@ -7,7 +7,7 @@ export default function FormularioCategoria() {
     const navigate = useNavigate();
     const [nombre, setNombre] = useState('');
     const [titulo, setTitulo] = useState('Nueva Categoría');
-    const [isLoading, setIsLoading] = useState(false); // Cambiado a false inicial
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if (id) {
@@ -24,7 +24,7 @@ export default function FormularioCategoria() {
                 });
         } else {
             setTitulo('Nueva Categoría');
-            setNombre(''); // Resetea para "Nuevo"
+            setNombre('');
         }
     }, [id]);
 
@@ -57,7 +57,7 @@ export default function FormularioCategoria() {
                     <input 
                         type="text" 
                         id="nombre"
-                        name="nombre" // Necesario aunque no lo usemos en handleChange aquí
+                        name="nombre"
                         value={nombre}
                         onChange={(e) => setNombre(e.target.value)}
                         required 

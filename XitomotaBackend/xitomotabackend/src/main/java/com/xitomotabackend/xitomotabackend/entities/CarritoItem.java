@@ -18,20 +18,17 @@ public class CarritoItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Muchos items pueden pertenecer a un carrito
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "carrito_id") // Columna FK
+    @JoinColumn(name = "carrito_id") 
     private Carrito carrito;
 
-    // Muchos items pueden referenciar a un producto
     @ManyToOne
-    @JoinColumn(name = "producto_id") // Columna FK
+    @JoinColumn(name = "producto_id")
     private Producto producto;
     
     private int cantidad;
 
-    // Getters y Setters
     public Long getId() {
         return id;
     }

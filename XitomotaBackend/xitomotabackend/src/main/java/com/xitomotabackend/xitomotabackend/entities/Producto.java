@@ -9,8 +9,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-@Entity // Le dice a JPA que esta clase es una tabla
-@Table(name = "productos") // Nombre de la tabla en la base de datos
+@Entity
+@Table(name = "productos")
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,12 +25,8 @@ public class Producto {
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    // Constructores, Getters y Setters...
-    
-    // Constructor vacío (requerido por JPA)
     public Producto() {}
 
-    // Getters y Setters
     public Long getId() {
         return id;
     }

@@ -54,19 +54,18 @@ function Header() {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div className="container-fluid">
                 
-                {/* --- LOGO --- */}
+                {/*  LOGO  */}
                 <Link className="navbar-brand" to="/">XITOMOTA</Link>
                 
-                {/* --- BOTÓN MÓVIL --- */}
+                {/*  BOTÓN MÓVIL  */}
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
-                {/* --- CONTENEDOR PRINCIPAL (LA CLAVE ESTÁ AQUÍ) --- */}
+                {/*  CONTENEDOR PRINCIPAL */}
                 <div className="collapse navbar-collapse" id="menuPrincipal">
                     
-                    {/* --- 1. GRUPO IZQUIERDA: LINKS --- */}
-                    {/* 'me-auto' empuja todo lo demás a la derecha */}
+                    {/* GRUPO IZQUIERDA: LINKS */}
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <Link className="nav-link" to="/">Inicio</Link>
@@ -118,17 +117,14 @@ function Header() {
                         </li>
                     </ul>
 
-                    {/* --- 2. GRUPO CENTRO: BÚSQUEDA --- */}
-                    {/* 'mx-auto' lo centra. 'd-lg-flex' lo muestra solo en pantallas grandes */}
+                    {/* GRUPO CENTRO: BÚSQUEDA */}
                     <div className="search-container mx-auto d-none d-lg-flex">
                         <input type="text" placeholder="Buscar" />
                         <button className="search-button">Buscar</button>
                     </div>
 
-                    {/* --- 3. GRUPO DERECHA: SESIÓN Y CARRITO --- */}
-                    {/* Este grupo se alinea solo a la derecha gracias a 'me-auto' y 'mx-auto' */}
+                    {/* GRUPO DERECHA: SESIÓN Y CARRITO */}
                     <div className="d-flex align-items-center">
-                        {/* 'flex-row' hace que los <li> sean horizontales */}
                         <ul className="navbar-nav flex-row">
                             <li className="nav-item">
                                 {estaLogeado ? (

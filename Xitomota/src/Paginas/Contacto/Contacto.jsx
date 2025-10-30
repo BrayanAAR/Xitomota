@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 
 export default function Contacto() {
-    // Estados para los campos (necesarios para limpiar)
     const [nombre, setNombre] = useState('');
     const [correo, setCorreo] = useState('');
     const [comentario, setComentario] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aquí iría la lógica para enviar los datos (a la BD, email, etc.)
         alert('Mensaje enviado (simulación)');
-        // Limpiar formulario después de enviar (opcional)
         setNombre('');
         setCorreo('');
         setComentario('');
@@ -23,14 +20,13 @@ export default function Contacto() {
     };
 
     return (
-        // Contenedor principal para centrar y dar fondo
         <div className="contacto-container"> 
-            <div className="contacto-form-card"> {/* La tarjeta contenedora */}
+            <div className="contacto-form-card">
                 <h2>Contáctanos</h2>
                 <p>Envíanos tus dudas o comentarios.</p>
                 
                 <form onSubmit={handleSubmit}>
-                    <div className="form-group-contacto"> {/* Grupo para label + input */}
+                    <div className="form-group-contacto"> 
                         <label htmlFor="nombreCompleto">Nombre Completo:</label>
                         <input 
                             type="text" 
@@ -59,16 +55,15 @@ export default function Contacto() {
                         <textarea 
                             id="comentario" 
                             name="comentario" 
-                            rows="5" // Más altura
+                            rows="5" 
                             value={comentario}
                             onChange={(e) => setComentario(e.target.value)}
                             required
                         ></textarea>
                     </div>
 
-                    <div className="form-actions-contacto"> {/* Contenedor para botones */}
+                    <div className="form-actions-contacto"> 
                         <button type="submit" className="btn-enviar">Enviar</button>
-                        {/* Usamos type="button" para que no envíe el form */}
                         <button type="button" onClick={handleLimpiar} className="btn-limpiar">Limpiar</button> 
                     </div>
                 </form>

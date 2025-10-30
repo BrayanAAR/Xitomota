@@ -6,11 +6,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xitomotabackend.xitomotabackend.entities.Categoria;
@@ -30,8 +35,21 @@ public class ProductoController {
     private CategoriaRepository categoriaRepository;
 
     @GetMapping("/productos")
-    public List<Producto> getAllProductos() {
-        return productoRepository.findAll();
+    public Page<Producto> getAllProductos(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id,asc") String[] sort) {
+
+        String sortField = sort[0];
+        Sort.Direction sortDirection = Sort.Direction.ASC;
+        if (sort.length > 1 && sort[1].equalsIgnoreCase("desc")) {
+            sortDirection = Sort.Direction.DESC;
+        }
+        Sort sortOrder = Sort.by(sortDirection, sortField);
+
+        Pageable pageable = PageRequest.of(page, size, sortOrder);
+        
+        return productoRepository.findAll(pageable);
     }
 
     @GetMapping("/productos/categoria/{categoriaNombre}")
@@ -41,28 +59,18 @@ public class ProductoController {
 
     @GetMapping("/productos/{id}")
     public Producto getProductoPorId(@PathVariable Long id) {
-        // .findById(id) ya te lo da JpaRepository.
-        // .orElseThrow(...) es una buena práctica por si el ID no existe.
         return productoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado con id: " + id));
     }
     
     @GetMapping("/productos/criticos")
     public List<Producto> getProductosCriticos() {
-        int nivelCritico = 5; // Definir el nivel crítico de stock
+        int nivelCritico = 5; 
         return productoRepository.findByStockLessThanEqual(nivelCritico);
     }
 
     @PostMapping("/productos")
     public Producto crearProducto(@RequestBody Producto productoRequest) {
-        // El frontend enviará algo como: { nombre: "...", precio: ..., categoriaId: 1 }
-        
-        // Buscamos la categoría por el ID que viene en el request (asumimos que viene)
-        // Necesitamos una forma de obtener ese ID. Lo más fácil es añadir un campo temporal
-        // O mejor, modificar el frontend para que envíe el objeto Categoria completo.
-        // --- Opción A: Modificar el JSON que envía el frontend ---
-        // El frontend debe enviar: { ..., categoria: { id: 1 } }
-        
         if (productoRequest.getCategoria() != null && productoRequest.getCategoria().getId() != null) {
             Categoria categoria = categoriaRepository.findById(productoRequest.getCategoria().getId())
                     .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
@@ -84,7 +92,6 @@ public class ProductoController {
         producto.setStock(productoDetalles.getStock());
         producto.setImagen(productoDetalles.getImagen());
 
-        // Asignamos la categoría (igual que en POST)
         if (productoDetalles.getCategoria() != null && productoDetalles.getCategoria().getId() != null) {
             Categoria categoria = categoriaRepository.findById(productoDetalles.getCategoria().getId())
                     .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-// (Importa aquí tu CSS de admin, ej: import '../../css/HomeAdmin.css')
 
-// Función para formatear el precio
 const formatearPrecio = (precio) => {
   return new Intl.NumberFormat('es-CL', {
     style: 'currency',
@@ -11,11 +9,10 @@ const formatearPrecio = (precio) => {
   }).format(precio || 0);
 };
 
-// Función para formatear la fecha (opcional pero útil)
 const formatearFecha = (fechaString) => {
     if (!fechaString) return 'N/A';
     const fecha = new Date(fechaString);
-    return fecha.toLocaleString('es-CL'); // Formato local de Chile
+    return fecha.toLocaleString('es-CL');
 };
 
 export default function ListadoOrdenes() {
@@ -24,7 +21,6 @@ export default function ListadoOrdenes() {
     useEffect(() => {
         const fetchOrdenes = async () => {
             try {
-                // Llamamos a nuestro nuevo endpoint GET /api/v1/orden
                 const response = await axios.get('http://localhost:8080/api/v1/orden');
                 setOrdenes(response.data);
             } catch (error) {
@@ -39,7 +35,7 @@ export default function ListadoOrdenes() {
             <h1>Órdenes de Compra</h1>
             
             <div className="tabla-contenedor">
-                <table id="tablaProductos"> {/* Reutilizamos los estilos de tabla de inventario */}
+                <table id="tablaProductos">
                     <thead>
                         <tr>
                             <th>Nro. Orden</th>
@@ -60,8 +56,8 @@ export default function ListadoOrdenes() {
                                 <td>{formatearPrecio(orden.total)}</td>
                                 <td className="acciones-tabla">
                                     <Link 
-                                        to={`/admin/ordenes/${orden.id}`} // Link al detalle
-                                        className="btn-editar" // Reutilizamos estilo (azul)
+                                        to={`/admin/ordenes/${orden.id}`}
+                                        className="btn-editar"
                                     >
                                         Ver Detalle
                                     </Link>

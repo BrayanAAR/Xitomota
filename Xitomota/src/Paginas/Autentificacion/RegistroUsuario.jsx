@@ -1,65 +1,53 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Para redirigir
-// (Importa aquí tu CSS si tienes uno para el registro)
+import { useNavigate } from 'react-router-dom';
 
 export default function RegistroUsuario() {
-    // 1. Estados para cada campo del formulario
     const [nombre, setNombre] = useState('');
     const [apellidos, setApellidos] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState(''); // Para verificar
-    const [error, setError] = useState(''); // Para mostrar mensajes de error
-    const navigate = useNavigate(); // Hook para redirigir
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState(''); 
+    const navigate = useNavigate();
 
-    // 2. Función que se ejecuta al enviar el formulario
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Evita que la página se recargue
-        setError(''); // Limpia errores anteriores
+        e.preventDefault();
+        setError(''); 
 
-        // --- Validación Simple ---
         if (password !== confirmPassword) {
             setError('Las contraseñas no coinciden.');
             return;
         }
-        if (password.length < 6) { // Ejemplo de validación
+        if (password.length < 6) {
              setError('La contraseña debe tener al menos 6 caracteres.');
              return;
         }
-        // Puedes agregar más validaciones aquí
 
-        // 3. Creamos el objeto Usuario para enviar al backend
         const nuevoUsuario = {
             nombre: nombre,
             apellidos: apellidos,
             email: email,
             password: password,
-            rol: 'Cliente' // Por defecto, todos los registros son 'Cliente'
+            rol: 'Cliente'
         };
 
         try {
-            // 4. Llamamos al endpoint POST del backend
             const response = await axios.post('http://localhost:8080/api/v1/usuarios', nuevoUsuario);
             
-            // 5. ¡Éxito!
             alert(`✅ ¡Usuario ${response.data.nombre} registrado exitosamente! Ahora puedes iniciar sesión.`);
             
-            // Limpiamos el formulario (opcional)
             setNombre('');
             setApellidos('');
             setEmail('');
             setPassword('');
             setConfirmPassword('');
             
-            // Redirigimos al login
             navigate('/login');
 
         } catch (err) {
-            // 6. Manejo de Errores
             console.error("Error al registrar el usuario:", err);
             if (err.response && err.response.data && err.response.data.message) {
-                 // Si el backend envía un mensaje específico (ej: email ya existe)
                  setError(err.response.data.message);
             } else {
                  setError('Hubo un error al registrar el usuario. Inténtalo de nuevo.');
@@ -67,12 +55,11 @@ export default function RegistroUsuario() {
         }
     };
 
-    // 7. El JSX del Formulario
     return (
-        <div className="auth-container"> {/* Usa tus propias clases CSS */}
+        <div className="auth-container"> 
             <h2>Crear Cuenta</h2>
             <form onSubmit={handleSubmit} className="auth-form">
-                {error && <p className="auth-error">{error}</p>} {/* Muestra errores */}
+                {error && <p className="auth-error">{error}</p>} 
                 
                 {/* Campos del formulario vinculados al estado */}
                 <div className="auth-input-group">
