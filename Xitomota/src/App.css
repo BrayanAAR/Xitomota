@@ -395,31 +395,24 @@
 /* --- Estilo para el botón "Agregar al Carrito" de las tarjetas --- */
 
 .btn-agregar-carrito {
-    background-color: #363636; 
+    background-color: #343a40; 
     color: white;
-    border: none; 
+    border: none;
+    padding: 10px 15px;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    width: 100%; 
-    padding: 12px 10px; 
-    margin-top: 10px; 
-    font-size: 1rem; 
-    font-weight: 600;
-    cursor: pointer; 
-    transition: background-color 0.2s ease, transform 0.2s ease; 
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    width: 100%;
 }
 
-/* Efecto al pasar el mouse por encima */
 .btn-agregar-carrito:hover {
-    background-color: #0056b3; 
-    transform: translateY(-2px); 
+    background-color: #495057;
+    transform: translateY(-2px);
 }
-
-/* Efecto al hacer clic */
 .btn-agregar-carrito:active {
-    background-color: #004085;
-    transform: translateY(0); 
-    box-shadow: none;
+    transform: scale(0.98);
 }
 
 /* ------------------------ BLOGS ----------------------- */
@@ -573,23 +566,65 @@
   overflow: hidden; 
   display: flex;
   flex-direction: column;
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between; 
+  height: 420px; 
+  width: 280px; 
+  overflow: hidden; 
+  text-align: center;
+  padding: 15px;
+  margin: 15px; 
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.producto-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.producto-item img {
+    width: 100%; 
+    height: 200px; 
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    background-color: #f8f8f8; 
 }
 
 .producto-info {
-  padding: 1rem;
   flex-grow: 1; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
 }
 
 .producto-nombre {
   font-size: 1.2rem;
   font-weight: 600;
+  color: #333;
   margin-bottom: 0.5rem;
+  height: 2.8em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.producto-info p {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 3px;
 }
 
 .producto-precio {
   font-size: 1.1rem;
   font-weight: 700;
   color: #333;
+  margin-top: 3px;
 }
 
 /* ------------------------- FIN BARRA CATEGORIAS ----------------------------- */

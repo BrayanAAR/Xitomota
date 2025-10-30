@@ -67,7 +67,7 @@ export default function DetalleProducto() {
 
             <div className="detalle-info" style={{ flex: 1 }}>
                 <h1>{producto.nombre}</h1>
-                <p style={{ fontSize: '1.2rem', color: '#555' }}>Categoría: {producto.categoria}</p>
+                <p style={{ fontSize: '1.2rem', color: '#555' }}>Categoría: {producto.categoria?.nombre || 'Sin categoría'}</p>
                 <p style={{ fontSize: '2rem', fontWeight: 'bold', margin: '20px 0' }}>
                     {formatearPrecio(producto.precio)}
                 </p>
