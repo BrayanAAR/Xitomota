@@ -8,9 +8,9 @@ import Footer from '../componentes/Footer.jsx';
 
 export default function StoreLayout() {
   return (
-    <div className="tienda-layout">
+    <div className="store-layout-container">
       <Header />
-      <main>
+      <main className="store-content">
         <Outlet />
       </main>
       <Footer />

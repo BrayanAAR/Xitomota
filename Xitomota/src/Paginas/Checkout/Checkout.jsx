@@ -63,13 +63,18 @@ export default function Checkout() {
             navigate(`/pagorealizado/${response.data.id}`);
         } catch (error) {
             console.error("Error al crear la orden:", error);
-            navigate('/pagofallido', {
-                state: {
-                    formData: formData,
-                    items: itemsCarrito,
-                    total: totalCarrito
+
+            if (error.response) {
+                if (error.response.status === 400) {
+                    alert(`Error ${error.response.data}`);
+                } else {
+                    navigate('/pagofallido', {
+                        state: { formData, items: itemsCarrito, total: totalCarrito }
+                    });
                 }
-            });
+            } else {
+                alert("Error de red. Por favor, intenta nuevamente.");
+            }
         }
     };
 
