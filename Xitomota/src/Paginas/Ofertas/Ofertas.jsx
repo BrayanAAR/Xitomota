@@ -58,7 +58,7 @@ export default function Ofertas() {
 
     return (
         <div className="ofertas-container" style={{ padding: '20px', textAlign: 'center' }}>
-            <h2>🔥 ¡Ofertas Imperdibles! 🔥</h2>
+            <h2>Ofertas Imperdibles</h2>
             <p>¡Aprovecha estos descuentos solo por tiempo limitado!</p>
             
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', marginTop: '20px'}}>

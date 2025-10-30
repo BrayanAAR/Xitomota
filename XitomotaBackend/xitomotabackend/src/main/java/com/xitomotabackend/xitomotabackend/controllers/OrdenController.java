@@ -5,6 +5,8 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,10 +19,12 @@ import com.xitomotabackend.xitomotabackend.entities.Carrito;
 import com.xitomotabackend.xitomotabackend.entities.CarritoItem;
 import com.xitomotabackend.xitomotabackend.entities.Orden;
 import com.xitomotabackend.xitomotabackend.entities.OrdenItem;
+import com.xitomotabackend.xitomotabackend.entities.Producto;
 import com.xitomotabackend.xitomotabackend.repositories.CarritoItemRepository;
 import com.xitomotabackend.xitomotabackend.repositories.CarritoRepository;
 import com.xitomotabackend.xitomotabackend.repositories.OrdenItemRepository;
 import com.xitomotabackend.xitomotabackend.repositories.OrdenRepository;
+import com.xitomotabackend.xitomotabackend.repositories.ProductoRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -41,13 +45,25 @@ public class OrdenController {
     @Autowired
     private CarritoItemRepository carritoItemRepository; 
 
+    @Autowired
+    private ProductoRepository productoRepository;
+
     @Transactional
     @PostMapping("/crear/{cartId}")
-    public Orden crearOrden(@PathVariable Long cartId, @RequestBody Orden ordenInfo) {
+    public ResponseEntity<?> crearOrden(@PathVariable Long cartId, @RequestBody Orden ordenInfo) {
 
         Carrito carrito = carritoRepository.findById(cartId)
                 .orElseThrow(() -> new RuntimeException("Carrito no encontrado"));
         
+        for (CarritoItem cartItem : carrito.getItems()) {
+            Producto producto = productoRepository.findById(cartItem.getProducto().getId())
+                    .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+
+            if (producto.getStock() < cartItem.getCantidad()) {
+                String mensajeError = "Stock insuficiente para el producto: " + producto.getNombre();
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensajeError);
+            }
+        }
         Orden nuevaOrden = new Orden();
         nuevaOrden.setNombre(ordenInfo.getNombre());
         nuevaOrden.setApellidos(ordenInfo.getApellidos());
@@ -62,6 +78,11 @@ public class OrdenController {
         List<OrdenItem> itemsDeLaOrden = new ArrayList<>();
 
         for (CarritoItem cartItem : carrito.getItems()) {
+            Producto producto = cartItem.getProducto();
+            int cantidadComprada = cartItem.getCantidad();
+            producto.setStock(producto.getStock() - cantidadComprada);
+            productoRepository.save(producto);
+
             OrdenItem ordenItem = new OrdenItem();
             ordenItem.setOrden(nuevaOrden);
             ordenItem.setProductoId(cartItem.getProducto().getId());
@@ -72,7 +93,7 @@ public class OrdenController {
             
             itemsDeLaOrden.add(ordenItem);
             
-            totalOrden += (cartItem.getProducto().getPrecio() * cartItem.getCantidad());
+            totalOrden += (producto.getPrecio() * cantidadComprada);
         }
 
         nuevaOrden.setTotal(totalOrden);
@@ -82,7 +103,7 @@ public class OrdenController {
 
         carritoItemRepository.deleteAll(carrito.getItems());
 
-        return ordenGuardada;
+        return ResponseEntity.ok(ordenGuardada);
     }
 
     @GetMapping("/{id}")

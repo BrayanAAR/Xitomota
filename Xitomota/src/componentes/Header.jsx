@@ -19,13 +19,22 @@ function Header() {
 
     const location = useLocation();
 
+    const [esAdmin, setEsAdmin] = useState(false);
+
     useEffect(() => {
         const usuario = localStorage.getItem('usuarioLogueado');
+        const rol = localStorage.getItem('rolUsuario');
+        
         setEstaLogeado(!!usuario);
+        setEsAdmin(rol === 'Administrador');
 
         const handleStorageChange = () => {
-            setEstaLogeado(!!localStorage.getItem('usuarioLogueado'));
-        };
+            const usuario = localStorage.getItem('usuarioLogueado');
+            const rol = localStorage.getItem('rolUsuario');
+
+            setEstaLogeado(!!usuario);
+            setEsAdmin(rol === 'Administrador');
+        }
         window.addEventListener('storage', handleStorageChange);
         return () => { window.removeEventListener('storage', handleStorageChange); };
     }, [location.pathname]);
@@ -128,12 +137,20 @@ function Header() {
                         <ul className="navbar-nav flex-row">
                             <li className="nav-item">
                                 {estaLogeado ? (
-                                    <button
-                                        onClick={handleCerrarSesion}
-                                        className="btn btn-outline-danger me-2"
-                                    >
-                                        Cerrar Sesión
-                                    </button>
+                                    <div className="d-flex">
+                                        {esAdmin && (
+                                            <Link to="/admin" className="btn btn-warning me-2"
+                                        >
+                                            Panel Admin
+                                        </Link>
+                                        )}
+                                        <button
+                                            onClick={handleCerrarSesion}
+                                            className="btn btn-outline-danger me-2"
+                                        >
+                                            Cerrar Sesión
+                                        </button>
+                                    </div>
                                 ) : (
                                     <Link to="/login" className="btn btn-outline-light me-2">
                                         Iniciar Sesión
