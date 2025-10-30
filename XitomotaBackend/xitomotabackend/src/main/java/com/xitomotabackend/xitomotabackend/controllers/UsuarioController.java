@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,9 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @GetMapping("/usuarios")
     public List<Usuario> getAllUsuarios() {
         return usuarioRepository.findAll();
@@ -48,6 +52,9 @@ public class UsuarioController {
 
     @PostMapping("/usuarios")
     public Usuario crearUsuario(@RequestBody Usuario usuario) {
+        String passHasheada = passwordEncoder.encode(usuario.getPassword());
+        usuario.setPassword(passHasheada);
+
         return usuarioRepository.save(usuario);
     }
 
@@ -58,9 +65,9 @@ public class UsuarioController {
 
         if (usuarioOpt.isPresent()) {
             Usuario usuario = usuarioOpt.get();
-            
-            if (usuario.getPassword().equals(loginRequest.getPassword())) {
-                
+
+            if (passwordEncoder.matches(loginRequest.getPassword(), usuario.getPassword())) {
+
                 var response = new java.util.HashMap<String, String>();
                 response.put("email", usuario.getEmail());
                 response.put("rol", usuario.getRol());
