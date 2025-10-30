@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, Link} from 'react-router-dom'; // Hook para leer el ID de la URL
-/* import './TuArchivoDeEstilos.css'; */ // Asegúrate de importar tu CSS
+import { useParams, Link} from 'react-router-dom';
 
-// Función para formatear el precio
 const formatearPrecio = (precio) => {
     return new Intl.NumberFormat('es-CL', {
         style: 'currency',
@@ -12,12 +10,10 @@ const formatearPrecio = (precio) => {
 };
 
 export default function DetalleOrden() {
-    // 1. Obtenemos el 'ordenId' de la URL (ej: /detalleorden/7)
     const { ordenId } = useParams();
-    const [orden, setOrden] = useState(null); // Estado para guardar la orden
+    const [orden, setOrden] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    // 2. Usamos useEffect para buscar la orden al cargar
     useEffect(() => {
         const fetchOrden = async () => {
             try {
@@ -27,14 +23,13 @@ export default function DetalleOrden() {
             } catch (error) {
                 console.error("Error al cargar la orden:", error);
                 setIsLoading(false);
-                // Aquí podrías redirigir a una página de error
             }
         };
 
         if (ordenId) {
             fetchOrden();
         }
-    }, [ordenId]); // Se ejecuta cada vez que el ordenId cambie
+    }, [ordenId]);
 
     if (isLoading) {
         return <div>Cargando confirmación...</div>;
@@ -44,9 +39,7 @@ export default function DetalleOrden() {
         return <div>Error: No se pudo encontrar la orden.</div>;
     }
 
-    // 3. Renderizamos el JSX con los datos de la orden
     return (
-        // Puedes usar las mismas clases CSS de 'checkout'
         <div className="checkout-grid-container" style={{ gridTemplateColumns: '1fr' }}> 
             <div className="checkout-form-column">
 
@@ -56,7 +49,7 @@ export default function DetalleOrden() {
                     <Link to="/admin/ordenes" className="btn-volver-pago">VOLVER AL LISTADO</Link>
                 </div>
 
-                {/* --- Sección Info Cliente --- */}
+                {/* Sección Info Cliente */}
                 <section className="checkout-section">
                     <h3>Información del cliente</h3>
                     <div className="form-row">
@@ -77,7 +70,7 @@ export default function DetalleOrden() {
                     </div>
                 </section>
 
-                {/* --- Sección Dirección --- */}
+                {/* Sección Dirección */}
                 <section className="checkout-section">
                     <h3>Dirección de entrega de los productos</h3>
                     <div className="form-row">
@@ -108,7 +101,7 @@ export default function DetalleOrden() {
                     </div>
                 </section>
 
-                {/* --- Resumen de la Orden --- */}
+                {/* Resumen de la Orden */}
                 <section className="checkout-section">
                     <div className="resumen-carrito-table">
                         <table>
@@ -123,17 +116,15 @@ export default function DetalleOrden() {
                             </thead>
                             <tbody>
                                 {orden.items.map(item => {
-                                    // --- 1. CONSTRUYE LA URL ---
                                     const imagen = `http://localhost:8080/images/${item.imagen}`;
                                     
                                     return (
                                     <tr key={item.id}>
-                                        {/* --- 2. REEMPLAZA EL DIV POR UN IMG --- */}
                                         <td>
                                             <img 
                                                 src={imagen} 
                                                 alt={item.nombreProducto} 
-                                                className="summary-img" // Usamos la clase CSS que ya existe
+                                                className="summary-img"
                                             />
                                         </td>
                                         <td>{item.nombreProducto}</td>
@@ -148,7 +139,7 @@ export default function DetalleOrden() {
                     </div>
                 </section>
 
-                {/* --- Total y Botones --- */}
+                {/* Total y Botones */}
                 <div className="confirmacion-footer">
                     <h3>Total pagado: {formatearPrecio(orden.total)}</h3>
                     <div className="confirmacion-botones">

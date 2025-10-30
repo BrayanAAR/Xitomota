@@ -1,9 +1,6 @@
 import React from 'react';
-// Importamos useLocation para leer los datos y useNavigate para el botón
 import { useLocation, useNavigate } from 'react-router-dom'; 
-/* import './TuArchivoDeEstilos.css'; // Importa tu CSS */
 
-// Función para formatear el precio
 const formatearPrecio = (precio) => {
     return new Intl.NumberFormat('es-CL', {
         style: 'currency',
@@ -15,17 +12,12 @@ export default function PagoFallido() {
     const location = useLocation();
     const navigate = useNavigate();
     
-    // 1. Obtenemos los datos que pasamos desde Checkout.jsx
     const { formData, items, total } = location.state || {};
 
-    // 2. Función para el botón "Volver"
     const handleVolver = () => {
-        // Redirige de vuelta al checkout. 
-        // Como no borramos el cartId, el checkout volverá a cargar.
         navigate('/checkout');
     };
 
-    // Si alguien entra a esta URL sin datos, mostramos un error
     if (!formData || !items) {
         return (
             <div className="checkout-grid-container" style={{ gridTemplateColumns: '1fr' }}>
@@ -38,9 +30,7 @@ export default function PagoFallido() {
         );
     }
 
-    // 3. Renderizamos el JSX
     return (
-        // Reutilizamos los estilos de la página de checkout/confirmación
         <div className="checkout-grid-container" style={{ gridTemplateColumns: '1fr' }}> 
             <div className="checkout-form-column">
 
@@ -53,7 +43,7 @@ export default function PagoFallido() {
                     </button>
                 </div>
 
-                {/* --- Sección Info Cliente (con 'formData') --- */}
+                {/* --- Sección Info Cliente --- */}
                 <section className="checkout-section">
                     <h3>Información del cliente</h3>
                     <div className="form-row">
@@ -74,7 +64,7 @@ export default function PagoFallido() {
                     </div>
                 </section>
 
-                {/* --- Sección Dirección (con 'formData') --- */}
+                {/* --- Sección Dirección --- */}
                 <section className="checkout-section">
                     <h3>Dirección de entrega de los productos</h3>
                     <div className="form-row">
@@ -87,7 +77,6 @@ export default function PagoFallido() {
                             <input type="text" value={formData.departamento} readOnly disabled />
                         </div>
                     </div>
-                    {/* ... (Aquí irían los campos de región, comuna, indicaciones) ... */}
                      <div className="form-row">
                         <div className="form-group">
                             <label>Región*</label>
@@ -106,7 +95,6 @@ export default function PagoFallido() {
                     </div>
                 </section>
 
-                {/* --- Resumen de la Orden (con 'items') --- */}
                 <section className="checkout-section">
                     <div className="resumen-carrito-table">
                         <table>
@@ -140,7 +128,7 @@ export default function PagoFallido() {
                     </div>
                 </section>
 
-                {/* --- Total (con 'total') --- */}
+                {/* --- Total--- */}
                 <div className="confirmacion-footer">
                     <h3>Total pagado: {formatearPrecio(total)}</h3>
                 </div>

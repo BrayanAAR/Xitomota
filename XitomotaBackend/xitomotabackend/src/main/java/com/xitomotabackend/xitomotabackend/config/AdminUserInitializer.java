@@ -15,9 +15,9 @@ public class AdminUserInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // 1. Define los datos del admin predeterminado
+
         String adminEmail = "admin@admin.cl";
-        String adminPassword = "admin"; // ¡NO SEGURO! Debería encriptarse.
+        String adminPassword = "admin"; 
         String adminNombre = "Admin";
         String adminApellidos = "Principal";
         String adminRol = "Administrador";
@@ -27,8 +27,6 @@ public class AdminUserInitializer implements CommandLineRunner {
             Usuario adminUser = new Usuario();
             adminUser.setEmail(adminEmail);
             adminUser.setPassword(adminPassword); // Aquí iría la encriptación
-            // ------------------------------------------
-
             adminUser.setNombre(adminNombre);
             adminUser.setApellidos(adminApellidos);
             adminUser.setRol(adminRol);

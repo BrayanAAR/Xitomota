@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate, Outlet } from 'react-router-dom';
-import '../Admin.css'; // Asegúrate de que la ruta al CSS sea correcta
+import '../Admin.css';
 
 export default function AdminLayout() {
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function AdminLayout() {
     };
 
     return (
-        // Usamos CSS Grid o Flexbox para crear el layout de 2 columnas
+        
         <div className="admin-layout"> 
             
             {/* --- Sidebar (El Layout) --- */}
@@ -40,11 +40,6 @@ export default function AdminLayout() {
 
             {/* --- Área de Contenido Principal --- */}
             <div className="admin-main-content">
-                {/* (Aquí iría tu barra superior/topbar si la tuvieras) */}
-                
-                {/* ¡LO MÁS IMPORTANTE! 
-                  Aquí es donde se renderizarán HomeAdmin, ListadoUsuarios, etc.
-                */}
                 <Outlet />
             </div>
 

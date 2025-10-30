@@ -23,7 +23,7 @@ export default function FormularioUsuario() {
                         apellidos: data.apellidos || '',
                         email: data.email || '',
                         rol: data.rol || 'Cliente',
-                        password: '' // No cargamos la contraseña por seguridad
+                        password: ''
                     });
                     setIsLoading(false);
                 })

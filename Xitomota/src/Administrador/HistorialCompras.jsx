@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 
-// (Copia tus funciones formatearPrecio y formatearFecha aquí)
 const formatearPrecio = (precio) => {
   return new Intl.NumberFormat('es-CL', {
     style: 'currency',
@@ -19,13 +18,12 @@ const formatearFecha = (fecha) => {
 };
 
 export default function HistorialCompras() {
-    const { email } = useParams(); // Leemos el email de la URL
+    const { email } = useParams();
     const [ordenes, setOrdenes] = useState([]);
 
     useEffect(() => {
         const fetchHistorial = async () => {
             try {
-                // Usamos el nuevo endpoint del OrdenController
                 const response = await axios.get(`http://localhost:8080/api/v1/orden/por-correo/${email}`);
                 setOrdenes(response.data);
             } catch (error) {
@@ -56,10 +54,9 @@ export default function HistorialCompras() {
                         {ordenes.map(orden => (
                             <tr key={orden.id}>
                                 <td>#{orden.id}</td>
-                                <td>{/* {formatearFecha(orden.fechaCreacion)} */} {orden.fechaCreacion}</td>
-                                <td>{/* {formatearPrecio(orden.total)} */} ${orden.total}</td>
+                                <td>{orden.fechaCreacion}</td>
+                                <td>${orden.total}</td>
                                 <td className="acciones-tabla">
-                                    {/* Link para ver el mismo detalle de orden */}
                                     <Link to={`/admin/ordenes/${orden.id}`} className="btn-editar">
                                         Ver Detalle
                                     </Link>

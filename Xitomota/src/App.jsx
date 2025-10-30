@@ -91,8 +91,6 @@ function App() {
               <Route path="categorias/nuevo" element={<FormularioCategoria />} />
               <Route path="categorias/editar/:id" element={<FormularioCategoria />} />
             </Route>
-            {/* Agrega más rutas aquí cuando los componentes estén disponibles */}
-            
           </Routes>
         </main>
       </div>

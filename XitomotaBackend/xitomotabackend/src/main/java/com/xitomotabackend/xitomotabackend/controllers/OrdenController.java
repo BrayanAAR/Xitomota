@@ -26,7 +26,7 @@ import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping("/api/v1/orden")
-@CrossOrigin(origins = "http://localhost:5173") // O tu puerto de frontend
+@CrossOrigin(origins = "http://localhost:5173")
 public class OrdenController {
 
     @Autowired
@@ -38,24 +38,16 @@ public class OrdenController {
     @Autowired
     private CarritoRepository carritoRepository;
     
-    // Lo usaremos para borrar el carrito después de la compra
     @Autowired
     private CarritoItemRepository carritoItemRepository; 
 
-    /**
-     * Endpoint principal para crear una orden (Checkout)
-     * Recibirá los datos del formulario (la nueva Orden) y el ID del Carrito
-     * URL: POST /api/v1/orden/crear/{cartId}
-     */
     @Transactional
     @PostMapping("/crear/{cartId}")
     public Orden crearOrden(@PathVariable Long cartId, @RequestBody Orden ordenInfo) {
 
-        // 1. Buscar el carrito
         Carrito carrito = carritoRepository.findById(cartId)
                 .orElseThrow(() -> new RuntimeException("Carrito no encontrado"));
         
-        // 2. Crear la nueva Orden y copiar la info del formulario
         Orden nuevaOrden = new Orden();
         nuevaOrden.setNombre(ordenInfo.getNombre());
         nuevaOrden.setApellidos(ordenInfo.getApellidos());
@@ -69,10 +61,9 @@ public class OrdenController {
         int totalOrden = 0;
         List<OrdenItem> itemsDeLaOrden = new ArrayList<>();
 
-        // 3. Convertir CarritoItems en OrdenItems ("La Foto")
         for (CarritoItem cartItem : carrito.getItems()) {
             OrdenItem ordenItem = new OrdenItem();
-            ordenItem.setOrden(nuevaOrden); // Asignar a la nueva orden
+            ordenItem.setOrden(nuevaOrden);
             ordenItem.setProductoId(cartItem.getProducto().getId());
             ordenItem.setNombreProducto(cartItem.getProducto().getNombre());
             ordenItem.setCantidad(cartItem.getCantidad());
@@ -84,15 +75,11 @@ public class OrdenController {
             totalOrden += (cartItem.getProducto().getPrecio() * cartItem.getCantidad());
         }
 
-        // 4. Guardar el total y la lista de items
         nuevaOrden.setTotal(totalOrden);
         nuevaOrden.setItems(itemsDeLaOrden);
         
-        // 5. Guardar la orden (y sus items, gracias a CascadeType.ALL)
         Orden ordenGuardada = ordenRepository.save(nuevaOrden);
 
-        // 6. Limpiar el carrito (opcional pero recomendado)
-        // Borramos todos los items, lo que vacía el carrito
         carritoItemRepository.deleteAll(carrito.getItems());
 
         return ordenGuardada;
@@ -100,8 +87,6 @@ public class OrdenController {
 
     @GetMapping("/{id}")
     public Orden getOrdenPorId(@PathVariable Long id) {
-        // Busca la orden y la devuelve. 
-        // Gracias a FetchType.EAGER en la entidad, vendrá con sus items.
         return ordenRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Orden no encontrada con id: " + id));
     }

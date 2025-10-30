@@ -1,18 +1,15 @@
 /* ----------------- HOME ADMIN --------------------- */
 
-/* --- ESTILOS GLOBALES DEL ADMIN --- */
 .admin-layout {
     display: grid;
-    /* Define 2 columnas: el sidebar (240px) y el contenido (el resto) */
     grid-template-columns: 240px 1fr;
     min-height: 100vh;
 }
 
 /* --- 1. ESTILOS DEL LAYOUT (SIDEBAR) --- */
-/* (Controla AdminLayout.jsx) */
 
 .sidebar {
-    background-color: #0d1b2a; /* Azul oscuro/negro */
+    background-color: #0d1b2a;
     color: #e0e0e0;
     padding: 20px;
     display: flex;
@@ -39,7 +36,7 @@
 }
 
 .sidebar .menu a {
-    color: #e0e0e0; /* Texto gris claro */
+    color: #e0e0e0;
     text-decoration: none;
     display: block;
     padding: 12px 15px;
@@ -50,24 +47,24 @@
 
 /* Efecto hover en los links */
 .sidebar .menu a:hover {
-    background-color: #1b263b; /* Azul más claro */
+    background-color: #1b263b; 
     color: #ffffff;
 }
 
-/* Link activo (basado en la foto) */
+/* Link activo */
 .sidebar .menu li.home a,
-.sidebar .menu li.active a { /* Puedes agregar 'active' con NavLink más adelante */
-    background-color: #007bff; /* Azul primario */
+.sidebar .menu li.active a { 
+    background-color: #007bff; 
     color: #ffffff;
 }
 
-/* Botones especiales (Tienda y Cerrar Sesión) */
-.sidebar .menu a[href="#!"] { /* Cerrar Sesión */
-    background-color: #e63946; /* Rojo */
+/* Botones especiales */
+.sidebar .menu a[href="#!"] { 
+    background-color: #e63946; 
     color: white;
 }
-.sidebar .menu a[href="/"] { /* Ver Tienda */
-    background-color: #495057; /* Gris */
+.sidebar .menu a[href="/"] { 
+    background-color: #495057;
     color: white;
 }
 
@@ -79,12 +76,11 @@
 }
 
 /* --- 2. ESTILOS DEL CONTENIDO (DASHBOARD) --- */
-/* (Controla HomeAdmin.jsx) */
 
 .admin-main-content {
-    background-color: #f4f7fa; /* Fondo gris claro */
+    background-color: #f4f7fa; 
     padding: 30px;
-    overflow-y: auto; /* Permite scroll si el contenido es largo */
+    overflow-y: auto; 
 }
 
 .main-dashboard h2 {
@@ -103,7 +99,6 @@
 /* --- Tarjetas de Métricas (Stats) --- */
 .stats-cards-container {
     display: grid;
-    /* Crea 3 columnas, pero se ajustan automáticamente */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     margin-bottom: 30px;
@@ -139,13 +134,13 @@
 
 /* Colores específicos de las tarjetas */
 .stat-card.compras {
-    background-color: #007bff; /* Azul */
+    background-color: #007bff; 
 }
 .stat-card.productos {
-    background-color: #28a745; /* Verde */
+    background-color: #28a745; 
 }
 .stat-card.usuarios {
-    background-color: #ffc107; /* Amarillo */ /* Texto oscuro para el amarillo */
+    background-color: #ffc107;
 }
 
 /* --- Tarjetas de Navegación (Links) --- */
@@ -166,14 +161,14 @@
 }
 
 .nav-card:hover {
-    transform: translateY(-5px); /* Efecto de "levantarse" */
+    transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 .nav-card h4 {
     margin: 0 0 10px 0;
     font-size: 1.2rem;
-    color: #0d1b2a; /* Azul oscuro (como el sidebar) */
+    color: #0d1b2a;
 }
 
 .nav-card p {
@@ -186,36 +181,32 @@
 /* --------------------------------- FIN HOME ADMIN --------------------- */
 /* ------------------------------------INVENTARIO ------------------- */
 
-/* --- ESTILOS PARA LA PÁGINA DE INVENTARIO --- */
-
 /* --- Título y Botón "Nuevo Producto" --- */
 .main h1 {
-    /* (Ya deberías tener un h2, pero si usas h1, puedes estilizarlo) */
     font-size: 2rem;
     font-weight: 700;
     color: #333;
     margin-bottom: 20px;
-    display: inline-block; /* Para que el botón flote al lado */
+    display: inline-block;
 }
 
 /* --- ESTILOS PARA LA CABECERA DE PÁGINAS (Inventario, etc.) --- */
 
 .main-header {
     display: flex;
-    justify-content: space-between; /* Título a la izq., botones a la der. */
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    /* Limpia cualquier 'float' anterior */
     clear: both; 
 }
 
 .main-header h1 {
-    margin: 0; /* Quitamos el margen del h1 */
+    margin: 0;
 }
 
 .inventario-acciones-header {
     display: flex;
-    gap: 10px; /* Espacio entre los botones */
+    gap: 10px;
 }
 
 /* --- 1. ESTILO BASE COMPARTIDO PARA LOS BOTONES --- */
@@ -230,7 +221,7 @@
     font-size: 0.9rem;
     font-weight: 600;
     text-transform: uppercase;
-    text-decoration: none; /* Para los <Link> */
+    text-decoration: none;
     
     /* Interacción */
     cursor: pointer;
@@ -238,12 +229,11 @@
 }
 
 .btn-header:hover {
-    transform: translateY(-2px); /* Pequeño salto */
+    transform: translateY(-2px);
 }
 
 /* --- 2. COLORES ESPECÍFICOS --- */
 
-/* Botón Nuevo (Verde) */
 .btn-nuevo {
     background-color: #28a745; 
 }
@@ -251,7 +241,6 @@
     background-color: #218838;
 }
 
-/* Botón Reportes (Azul) */
 .btn-reporte {
     background-color: #007bff;
 }
@@ -259,7 +248,6 @@
     background-color: #0056b3;
 }
 
-/* Botón Crítico (Rojo) */
 .btn-critico {
     background-color: #dc3545;
 }
@@ -270,22 +258,18 @@
 /* --- Contenedor de la Tabla --- */
 .tabla-contenedor {
     width: 100%;
-    clear: both; /* Limpia el 'float' del botón de arriba */
-    margin-top: 20px;
-    
-    /* Estilo de "tarjeta" como el dashboard */
+    clear: both;
+    margin-top: 20px;    
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    
-    /* Esto es clave para que la tabla no rompa el layout en móviles */
     overflow-x: auto; 
 }
 
 /* --- Estilos de la Tabla --- */
 #tablaProductos {
     width: 100%;
-    border-collapse: collapse; /* Bordes limpios */
+    border-collapse: collapse;
     font-size: 0.95rem;
 }
 
@@ -293,13 +277,13 @@
 #tablaProductos td {
     padding: 15px;
     text-align: left;
-    border-bottom: 1px solid #eee; /* Líneas divisorias sutiles */
-    white-space: nowrap; /* Evita que el texto se parta */
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
 }
 
 /* Encabezado de la tabla */
 #tablaProductos thead th {
-    background-color: #f8f9fa; /* Fondo gris muy claro */
+    background-color: #f8f9fa;
     font-weight: 600;
     color: #333;
     text-transform: uppercase;
@@ -308,13 +292,13 @@
 
 /* Filas de la tabla */
 #tablaProductos tbody tr:hover {
-    background-color: #f5f5f5; /* Efecto hover al pasar el mouse */
+    background-color: #f5f5f5;
 }
 
 /* --- Botones de Acciones (Editar/Eliminar) --- */
 .acciones-tabla {
     display: flex;
-    gap: 10px; /* Espacio entre los botones */
+    gap: 10px;
 }
 
 .btn-editar,
@@ -326,21 +310,22 @@
     cursor: pointer;
     font-weight: 500;
     font-size: 0.85rem;
-    text-decoration: none; /* Quita el subrayado del <Link> de Editar */
+    text-decoration: none;
     display: inline-block;
     transition: background-color 0.2s ease;
 }
 
 .btn-editar {
-    background-color: #007bff; /* Azul */
+    background-color: #007bff;
 }
 .btn-editar:hover {
     background-color: #0056b3;
 }
 
 .btn-eliminar {
-    background-color: #dc3545; /* Rojo */
+    background-color: #dc3545;
 }
+
 .btn-eliminar:hover {
     background-color: #c82333;
 }
@@ -356,7 +341,7 @@
 .paginacion button {
     background-color: #ffffff;
     border: 1px solid #ddd;
-    color: #007bff; /* Azul */
+    color: #007bff;
     padding: 8px 14px;
     margin: 0 3px;
     cursor: pointer;
@@ -378,10 +363,9 @@
 /* --------------------------------- FIN INVENTARIO --------------------- */
 
 /* ------------------------------------ FORMULARIO PRODUCTO ------------------- */
-/* --- ESTILOS PARA EL FORMULARIO DE ADMIN --- */
 .admin-form-container {
     max-width: 800px;
-    margin: 0 auto; /* Centra el formulario */
+    margin: 0 auto;
 }
 
 .admin-form-container form {
@@ -409,7 +393,7 @@
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box; /* Importante */
+    box-sizing: border-box;
 }
 
 /* Para poner inputs uno al lado del otro */
@@ -417,8 +401,9 @@
     display: flex;
     gap: 20px;
 }
+
 .form-row .form-group {
-    flex: 1; /* Ocupan el mismo espacio */
+    flex: 1;
 }
 
 .form-actions {
@@ -428,15 +413,14 @@
     align-items: center;
 }
 
-/* Hereda el estilo del botón "Nuevo" que ya tenías */
 .form-actions .btnNuevo {
-    float: none; /* Reseteamos el float */
+    float: none;
 }
 
 .btn-cancelar {
     display: inline-block;
     padding: 12px 20px;
-    background-color: #6c757d; /* Gris */
+    background-color: #6c757d;
     color: white;
     text-decoration: none;
     border-radius: 6px;
@@ -448,19 +432,16 @@
 .btn-cancelar:hover {
     background-color: #5a6268;
 }
+
 /* --------------------------------- FIN FORMULARIO PRODUCTO --------------------- */
 
 /* --------------------------- REPORTES --------------------------- */
 
-/* * Le da a tu 'caption' la apariencia de un 
- * encabezado de tarjeta, similar al dashboard.
-*/
-/* --- Estilos de la Tabla (COMPARTIDOS) --- */
 #tablaProductos,
 #tablaReportes,
 #tablaStockCritico {
     width: 100%;
-    border-collapse: collapse; /* Bordes limpios */
+    border-collapse: collapse;
     font-size: 0.95rem;
 }
 
@@ -472,14 +453,14 @@
 #tablaStockCritico td {
     padding: 15px;
     text-align: left;
-    border-bottom: 1px solid #eee; /* Líneas divisorias sutiles */
-    white-space: nowrap; /* Evita que el texto se parta */
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
 }
 
 /* Encabezados (thead) */
 #tablaProductos thead th,
 #tablaReportes thead th {
-    background-color: #f8f9fa; /* Fondo gris muy claro */
+    background-color: #f8f9fa;
     font-weight: 600;
     color: #333;
     text-transform: uppercase;
@@ -489,24 +470,19 @@
 /* Filas (tbody) */
 #tablaProductos tbody tr:hover,
 #tablaReportes tbody tr:hover {
-    background-color: #f5f5f5; /* Efecto hover */
+    background-color: #f5f5f5;
 }
 
 /* --- ESTILOS PARA LA PÁGINA DE REPORTES --- */
 
 #tablaReportes caption {
-    /* --- ¡ESTA ES LA LÍNEA MÁS IMPORTANTE! --- */
-    caption-side: top; /* Fuerza el título a estar arriba */
-    
-    /* --- Estilos que faltaban en tu foto --- */
+    caption-side: top;
     font-size: 1.2rem;
     font-weight: 600;
     padding: 15px 20px;
     text-align: left;
     color: #333;
-    background-color: #f8f9fa; /* Fondo gris claro (como el thead) */
-    
-    /* Redondea solo las esquinas superiores */
+    background-color: #f8f9fa; 
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
@@ -514,11 +490,8 @@
 
 /* --------------------- STOCK CRÍTICO --------------------- */
 
-/* * Le damos estilo al botón de "Volver"
- * (Ya estabas usando btn-cancelar, esto lo formaliza)
-*/
 .btn-volver-inventario {
-    background-color: #6c757d; /* Gris */
+    background-color: #6c757d; 
     color: white;
     padding: 10px 15px;
     border-radius: 5px;
@@ -532,73 +505,57 @@
     background-color: #5a6268;
 }
 
-/* * Limpiamos el float del botón para que la tabla 
- * no se posicione mal
-*/
 .tabla-contenedor.stock-critico {
     clear: both;
     margin-top: 20px;
 }
 
-/* * Hacemos que el encabezado de la tabla sea rojo 
- * para enfatizar la alerta
-*/
+
 #tablaStockCritico thead th {
-    background-color: #fff0f1; /* Fondo rojo muy pálido */
-    color: #dc3545; /* Letra roja */
+    background-color: #fff0f1; 
+    color: #dc3545; 
     border-bottom: 2px solid #f7dfe0;
 }
 
-/* * Estilo para las filas de la tabla de críticos
-*/
 #tablaStockCritico tbody tr {
-    background-color: #fffafa; /* Fondo rosado muy, muy claro */
-    border-left: 3px solid #dc3545; /* Borde de acento rojo */
+    background-color: #fffafa;
+    border-left: 3px solid #dc3545; 
 }
 
-/* * Un hover más notorio para la tabla de críticos
-*/
 #tablaStockCritico tbody tr:hover {
-    background-color: #fff0f1; /* Mismo color que el header */
+    background-color: #fff0f1; 
 }
 
-/* * Una clase dedicada para el número del stock
- * (reemplaza tu 'style' en línea)
-*/
 .stock-critico-valor {
-    color: #dc3545; /* Rojo */
+    color: #dc3545; 
     font-weight: 700;
-    font-size: 1.1rem; /* Un poco más grande */
+    font-size: 1.1rem; 
     text-align: center;
 }
 /* --------------------- FIN STOCK CRÍTICO --------------------- */
 
 /* ----------------- PERFIL --------------------- */
 
-/* --- ESTILOS MEJORADOS PARA INPUTS DE CONTRASEÑA (PerfilAdmin) --- */
-
-/* Aplica a los 3 inputs de contraseña dentro del formulario de admin */
 .admin-form-container input[type="password"] {
-    padding: 12px; /* Mismo padding que otros inputs */
+    padding: 12px; 
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 5px; /* Pequeño espacio extra bajo la etiqueta */
+    margin-top: 5px; 
 }
 
-/* Opcional: Estilo para los placeholders */
+/* Estilo para los placeholders */
 .admin-form-container input[type="password"]::placeholder {
     color: #999;
     font-style: italic;
     font-size: 0.9rem;
 }
 
-/* Opcional: Un borde sutil al enfocar el input */
 .admin-form-container input[type="password"]:focus {
-    outline: none; /* Quita el borde azul por defecto */
-    border-color: #007bff; /* Borde azul al enfocar */
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Sombra suave azul */
+    outline: none; 
+    border-color: #007bff; 
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 /* ----------------- FIN PERFIL --------------------- */

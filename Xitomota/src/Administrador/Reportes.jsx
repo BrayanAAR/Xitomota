@@ -7,7 +7,6 @@ export default function Reportes() {
     useEffect(() => {
         const fetchTopProductos = async () => {
             try {
-                // Llama al endpoint de reportes que ya creamos
                 const response = await axios.get('http://localhost:8080/api/v1/orden/reportes/top-productos');
                 setTopProductos(response.data);
             } catch (error) {
@@ -34,8 +33,8 @@ export default function Reportes() {
                         {topProductos.length > 0 ? (
                             topProductos.slice(0, 5).map((item, index) => (
                                 <tr key={index}>
-                                    <td>{item[0]}</td> {/* nombreProducto */}
-                                    <td>{item[1]}</td> {/* totalVendido */}
+                                    <td>{item[0]}</td> 
+                                    <td>{item[1]}</td>
                                 </tr>
                             ))
                         ) : (

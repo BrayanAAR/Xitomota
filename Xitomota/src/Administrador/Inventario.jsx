@@ -1,9 +1,7 @@
 import React, { useState, useEffect, use } from 'react';
 import axios from 'axios';
-import { Link, useNavigate, useLocation } from 'react-router-dom'; // Para los botones
-// (Importa aquí tu CSS de admin, ej: import '../../css/HomeAdmin.css')
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
-// Función para formatear el precio (copiada de tus otros componentes)
 const formatearPrecio = (precio) => {
   return new Intl.NumberFormat('es-CL', {
     style: 'currency',
@@ -11,37 +9,46 @@ const formatearPrecio = (precio) => {
   }).format(precio || 0);
 };
 
+const PAGE_SIZE = 10;
+
 export default function Inventario() {
-    // 1. Estado para guardar la lista de productos
     const [productos, setProductos] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [totalElements, setTotalElements] = useState(0);
+
+    const fetchProductos = async (pageToFetch = 0) => {
+        try {
+            const response = await axios.get(`http://localhost:8080/api/v1/productos`, {
+                params: {
+                    page: pageToFetch,
+                    size: PAGE_SIZE,
+                    sort: 'id,asc'
+                }
+            });
+            setProductos(response.data.content); 
+            setCurrentPage(response.data.number); 
+            setTotalPages(response.data.totalPages); 
+            setTotalElements(response.data.totalElements); 
+
+        } catch (error) {
+            console.error("Error al cargar los productos:", error);
+        }
+    };
+
     useEffect(() => {
-        // 2. Función para cargar los productos desde la API
-        const fetchProductos = async () => {
-            try {
-                const response = await axios.get('http://localhost:8080/api/v1/productos');
-                setProductos(response.data);
-            } catch (error) {
-                console.error("Error al cargar los productos:", error);
-            }
-        };
+        fetchProductos(0);
+    }, [location.pathname]);
 
-        // 3. useEffect para cargar los datos cuando el componente se monta
-        fetchProductos();
-        }, [location.pathname]); // El array vacío [] asegura que se ejecute solo una vez
-
-    // 4. Función para manejar el botón "Eliminar"
     const handleEliminar = async (id) => {
-        // Pedimos confirmación
         if (window.confirm("¿Estás seguro de que deseas eliminar este producto?")) {
             try {
-                // Llamamos al nuevo endpoint DELETE
                 await axios.delete(`http://localhost:8080/api/v1/productos/${id}`);
-                // Si sale bien, refrescamos la lista de productos
-                setProductos(prev => prev.filter(p => p.id !== id));
                 alert("Producto eliminado exitosamente.");
+                fetchProductos(currentPage);
             } catch (error) {
                 console.error("Error al eliminar el producto:", error);
                 alert("Error al eliminar el producto.");
@@ -49,13 +56,22 @@ export default function Inventario() {
         }
     };
 
-    // 5. JSX (tu HTML convertido)
+    const goToPage = (pageNumber) => {
+        if (pageNumber >= 0 && pageNumber < totalPages) {
+            fetchProductos(pageNumber);
+        }
+    };
+
+    const goToFirstPage = () => goToPage(0);
+    const goToLastPage = () => goToPage(totalPages - 1);
+    const goToNextPage = () => goToPage(currentPage + 1);
+    const goToPreviousPage = () => goToPage(currentPage - 1);
+    
     return (
-        <main className="main"> {/* Esto se renderizará dentro de tu <Outlet> */}
+        <main className="main"> 
             <div className="main-header">
                 <h1>Inventario de Productos</h1>
                 
-                {/* El botón ahora usa 'navigate' de React Router */}
                 <div className="inventario-acciones-header">
                     <Link to="/admin/stock-critico" className="btn-header btn-critico">
                         Stock Crítico
@@ -87,16 +103,14 @@ export default function Inventario() {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* 6. Renderizado dinámico de la tabla */}
                         {productos.map(producto => (
                             <tr key={producto.id}>
                                 <td>{producto.id}</td>
                                 <td>{producto.nombre}</td>
                                 <td>{formatearPrecio(producto.precio)}</td>
-                                <td>{producto.stock || 0}</td> {/* Muestra 0 si el stock es null */}
+                                <td>{producto.stock || 0}</td> 
                                 <td>{producto.categoria?.nombre}</td>
                                 <td className="acciones-tabla">
-                                    {/* Link para editar (te llevará a una futura pág.) */}
                                     <Link 
                                         to={`/admin/productos/${producto.id}`}
                                         className="btn-editar"
@@ -104,7 +118,6 @@ export default function Inventario() {
                                         Editar
                                     </Link>
                                     
-                                    {/* Botón para eliminar */}
                                     <button 
                                         onClick={() => handleEliminar(producto.id)}
                                         className="btn-eliminar"
@@ -118,13 +131,35 @@ export default function Inventario() {
                 </table>
             </div>
 
-            {/* (Puedes dejar la paginación estática por ahora) */}
+            {/* . PAGINACIÓN DINÁMICA */}
             <div className="paginacion">
-                <button>«</button>
-                <button>‹</button>
-                <button className="activo">1</button>
-                <button>›</button>
-                <button>»</button>
+                {/* Botón Primera Página */}
+                <button onClick={goToFirstPage} disabled={currentPage === 0}>
+                    «
+                </button>
+                {/* Botón Anterior */}
+                <button onClick={goToPreviousPage} disabled={currentPage === 0}>
+                    ‹
+                </button>
+
+                {[...Array(totalPages).keys()].map(pageNumber => (
+                    <button
+                        key={pageNumber}
+                        onClick={() => goToPage(pageNumber)}
+                        className={pageNumber === currentPage ? 'activo' : ''}
+                    >
+                        {pageNumber + 1}
+                    </button>
+                ))}
+
+                {/* Botón Siguiente */}
+                <button onClick={goToNextPage} disabled={currentPage >= totalPages - 1}>
+                    ›
+                </button>
+                {/* Botón Última Página */}
+                <button onClick={goToLastPage} disabled={currentPage >= totalPages - 1}>
+                    »
+                </button>
             </div>
         </main>
     );

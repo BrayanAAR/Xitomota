@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xitomotabackend.xitomotabackend.repositories.OrdenRepository;
 import com.xitomotabackend.xitomotabackend.repositories.ProductoRepository;
+import com.xitomotabackend.xitomotabackend.repositories.UsuarioRepository;
 
 @RestController
 @RequestMapping("/api/v1/admin/stats")
-@CrossOrigin(origins = "http://localhost:5173") // O tu puerto
+@CrossOrigin(origins = "http://localhost:5173")
 public class AdminController {
 
     @Autowired
@@ -20,10 +21,9 @@ public class AdminController {
     @Autowired
     private ProductoRepository productoRepository;
 
-    // @Autowired
-    // private UsuarioRepository usuarioRepository; // (Cuando lo tengas)
+    @Autowired
+    private UsuarioRepository usuarioRepository; // (Cuando lo tengas)
 
-    // DTO simple para devolver los números
     class StatsResponse {
         public long totalCompras;
         public long totalProductos;
@@ -40,9 +40,8 @@ public class AdminController {
         // Contamos cuántos productos hay
         response.totalProductos = productoRepository.count();
         
-        // Contamos cuántos usuarios hay (requiere la entidad Usuario)
-        // response.totalUsuarios = usuarioRepository.count(); 
-        response.totalUsuarios = 890; // (Valor fijo mientras no tengas la entidad)
+        // Contamos cuántos usuarios hay
+        response.totalUsuarios = usuarioRepository.count(); 
         
         return response;
     }

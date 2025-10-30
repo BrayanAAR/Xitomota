@@ -22,7 +22,7 @@ import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping("/api/v1/carrito")
-@CrossOrigin(origins = "http://localhost:5173") // O tu puerto de frontend
+@CrossOrigin(origins = "http://localhost:5173")
 public class CarritoController {
 
     @Autowired
@@ -32,28 +32,24 @@ public class CarritoController {
     private CarritoItemRepository carritoItemRepository;
     
     @Autowired
-    private ProductoRepository productoRepository; // Para buscar productos
+    private ProductoRepository productoRepository;
 
-    // --- LÓGICA PARA OBTENER UN CARRITO ---
+    // LÓGICA PARA OBTENER UN CARRITO 
     @GetMapping("/{id}")
     public Carrito getCarrito(@PathVariable Long id) {
-        // Busca un carrito por su ID, si no existe, lanza un error
         return carritoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Carrito no encontrado"));
     }
     
-    // --- LÓGICA PARA CREAR UN NUEVO CARRITO ---
+    // LÓGICA PARA CREAR UN NUEVO CARRITO 
     @PostMapping("/crear")
     public Carrito crearCarrito() {
         Carrito nuevoCarrito = new Carrito();
         return carritoRepository.save(nuevoCarrito);
     }
 
-    // --- LÓGICA PARA AGREGAR UN ITEM ---
-    // (Esta es la más compleja)
-    // Necesitarás un DTO (Data Transfer Object) para recibir los datos
-    // Pero un ejemplo simple sería:
-    @Transactional // <-- ¡Añade esto!
+    // LÓGICA PARA AGREGAR UN ITEM 
+    @Transactional
     @PostMapping("/{cartId}/add/{productId}")
     public Carrito addItem(@PathVariable Long cartId, @PathVariable Long productId, @RequestParam int cantidad) {
         
@@ -63,7 +59,7 @@ public class CarritoController {
         Producto producto = productoRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
-        // Lógica para ver si el item YA existe en el carrito
+        // Lógica para ver si ya existe el item en el carrito
         CarritoItem itemExistente = null;
         if (carrito.getItems() != null) {
             for (CarritoItem item : carrito.getItems()) {
@@ -75,12 +71,12 @@ public class CarritoController {
         }
 
         if (itemExistente != null) {
-            // --- SI EXISTE: Actualiza la cantidad ---
+            // SI EXISTE: Actualiza la cantidad 
             int nuevaCantidad = itemExistente.getCantidad() + cantidad;
             itemExistente.setCantidad(nuevaCantidad);
             carritoItemRepository.save(itemExistente);
         } else {
-            // --- SI NO EXISTE: Crea un item nuevo ---
+            // SI NO EXISTE: Crea un item nuevo 
             CarritoItem newItem = new CarritoItem();
             newItem.setCarrito(carrito);
             newItem.setProducto(producto);
@@ -88,19 +84,19 @@ public class CarritoController {
             carritoItemRepository.save(newItem);
         }
 
-        // Devuelve el carrito actualizado (es importante volver a buscarlo)
+        // Devuelve el carrito actualizado
         return carritoRepository.findById(cartId).get();
     }
     
-    // --- LÓGICA PARA CAMBIAR CANTIDAD ---
+    //  LÓGICA PARA CAMBIAR CANTIDAD 
     @PutMapping("/item/{itemId}")
     public CarritoItem cambiarCantidad(@PathVariable Long itemId, @RequestParam int cantidad) {
         CarritoItem item = carritoItemRepository.findById(itemId).orElseThrow();
-        item.setCantidad(cantidad); // Aquí va tu lógica de Math.max(1, ...)
+        item.setCantidad(cantidad);
         return carritoItemRepository.save(item);
     }
-    
-    // --- LÓGICA PARA ELIMINAR ITEM ---
+
+    // LÓGICA PARA ELIMINAR ITEM
     @DeleteMapping("/item/{itemId}")
     public void eliminarItem(@PathVariable Long itemId) {
         carritoItemRepository.deleteById(itemId);

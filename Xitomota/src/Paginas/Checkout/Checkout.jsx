@@ -2,11 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-// --- CSS ---
-// Importa tu archivo CSS principal.
-// Asegúrate de agregar el CSS del Paso 2 a ese archivo.
-
-// Función para formatear el precio (igual que antes)
 const formatearPrecio = (precio) => {
     return new Intl.NumberFormat('es-CL', {
         style: 'currency',
@@ -15,7 +10,6 @@ const formatearPrecio = (precio) => {
 };
 
 export default function Checkout() {
-    // --- ESTADO Y LÓGICA (Todo esto se queda igual) ---
     const [formData, setFormData] = useState({
         nombre: '',
         apellidos: '',
@@ -69,16 +63,11 @@ export default function Checkout() {
             navigate(`/pagorealizado/${response.data.id}`);
         } catch (error) {
             console.error("Error al crear la orden:", error);
-            
-            // --- ¡NUEVA LÓGICA DE ERROR! ---
-            // Reemplazamos el alert() con esto:
-            // Redirigimos a la página de error y pasamos los datos
-            // en el 'state' de la navegación.
             navigate('/pagofallido', {
                 state: {
-                    formData: formData, // Los datos del formulario
-                    items: itemsCarrito, // Los items del carrito
-                    total: totalCarrito // El total que ya calculamos
+                    formData: formData,
+                    items: itemsCarrito,
+                    total: totalCarrito
                 }
             });
         }
@@ -92,12 +81,11 @@ export default function Checkout() {
         return <div>Cargando...</div>;
     }
 
-    // --- JSX ESTRUCTURADO (Esto es lo que cambia) ---
     return (
-        // 1. Contenedor principal de dos columnas
+        
         <div className="checkout-grid-container">
             
-            {/* --- COLUMNA IZQUIERDA: FORMULARIO --- */}
+            
             <div className="checkout-form-column">
                 
                 {/* --- Sección Info Cliente --- */}
@@ -127,11 +115,11 @@ export default function Checkout() {
                     <h3>Dirección de entrega de los productos</h3>
                     <p>Ingrese direccion de forma detallada</p>
                     <div className="form-row">
-                        <div className="form-group" style={{ flex: 2 }}> {/* Calle más ancha */}
+                        <div className="form-group" style={{ flex: 2 }}> 
                             <label htmlFor="calle">Calle*</label>
                             <input type="text" id="calle" name="calle" value={formData.calle} onChange={handleFormChange} />
                         </div>
-                        <div className="form-group" style={{ flex: 1 }}> {/* Depto más angosto */}
+                        <div className="form-group" style={{ flex: 1 }}> 
                             <label htmlFor="departamento">Departamento (opcional)</label>
                             <input type="text" id="departamento" name="departamento" placeholder="Ej: 603" value={formData.departamento} onChange={handleFormChange} />
                         </div>

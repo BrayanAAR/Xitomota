@@ -1,26 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-// (Importa aquí los íconos que necesites de 'react-icons' o similar)
 
 export default function HomeAdmin() {
     
-    // 1. Estado para guardar las métricas
     const [stats, setStats] = useState({
         compras: 0,
         productos: 0,
         usuarios: 0
     });
 
-    // En HomeAdmin.jsx
-
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                // 1. Llamamos a nuestro nuevo endpoint
                 const response = await axios.get('http://localhost:8080/api/v1/admin/stats');
                 
-                // 2. Guardamos los números en el estado
                 setStats({
                     compras: response.data.totalCompras,
                     productos: response.data.totalProductos,
@@ -33,16 +27,13 @@ export default function HomeAdmin() {
         };
 
         fetchStats();
-    }, []); // El array vacío [] asegura que se ejecute solo 1 vez
-
+    }, []);
     return (
-        // Esto se renderizará dentro del <Outlet>
         <main className="main-dashboard">
             <h2>Dashboard</h2>
             <p>Resumen de las actividades diarias</p>
 
-            {/* --- 3. Tarjetas de Métricas (Stats) --- */}
-            {/* Estas SÍ cargarán datos de la BD */}
+            {/* Tarjetas de Métricas (Stats) */}
             <div className="stats-cards-container">
                 <div className="stat-card compras">
                     <h3>Compras</h3>
@@ -58,8 +49,7 @@ export default function HomeAdmin() {
                 </div>
             </div>
 
-            {/* --- 4. Tarjetas de Navegación (Links) --- */}
-            {/* Estas son solo links visuales */}
+            {/* Tarjetas de Navegación (Links) */}
             <div className="nav-cards-container">
                 <Link to="/admin" className="nav-card">
                     <h4>Dashboard</h4>
@@ -85,7 +75,6 @@ export default function HomeAdmin() {
                     <h4>Reportes</h4>
                     <p>Generación de informes detallados.</p>
                 </Link>
-                {/* ... etc ... */}
             </div>
         </main>
     );

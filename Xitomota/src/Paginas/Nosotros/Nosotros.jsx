@@ -1,6 +1,4 @@
 import React from 'react';
-// Migrado a `src/App.css` (reglas globales). Archivo original: src/Paginas/Nosotros/Nosotros.css
-// import './Nosotros.css';
 
 export default function Nosotros() {
 	return (

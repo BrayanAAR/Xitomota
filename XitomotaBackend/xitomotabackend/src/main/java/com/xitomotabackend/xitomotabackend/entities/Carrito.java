@@ -21,13 +21,10 @@ public class Carrito {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Un carrito puede tener muchos items
-    // "mappedBy" le dice a JPA que la relación ya está definida en CarritoItem
     @JsonManagedReference
     @OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CarritoItem> items = new ArrayList<>();
 
-    // Getters y Setters
     public Long getId() {
         return id;
     }

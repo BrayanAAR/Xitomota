@@ -23,7 +23,7 @@ export default function ListadoCategorias() {
         if (window.confirm("¿Seguro que quieres eliminar esta categoría?")) {
             try {
                 await axios.delete(`http://localhost:8080/api/v1/categorias/${id}`);
-                fetchCategorias(); // Refresca
+                fetchCategorias();
                 alert("Categoría eliminada.");
             } catch (error) {
                 console.error("Error al eliminar:", error);
@@ -44,7 +44,7 @@ export default function ListadoCategorias() {
             </div>
             
             <div className="tabla-contenedor">
-                <table id="tablaProductos"> {/* Reutiliza estilos */}
+                <table id="tablaProductos">
                     <thead>
                         <tr>
                             <th>ID</th>

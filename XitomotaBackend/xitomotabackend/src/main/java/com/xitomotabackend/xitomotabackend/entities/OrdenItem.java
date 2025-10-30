@@ -18,17 +18,15 @@ public class OrdenItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Relación con la Orden (Hijo)
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "orden_id", nullable = false)
     private Orden orden;
 
-    // --- "La Foto" del Producto ---
-    private Long productoId; // Guardamos el ID por referencia
-    private String nombreProducto; // Copiamos el nombre
+    private Long productoId;
+    private String nombreProducto;
     private int cantidad;
-    private double precioUnitario; // Copiamos el precio de ese momento
+    private double precioUnitario;
     private String imagen;
     
     public Long getId() {
@@ -76,8 +74,4 @@ public class OrdenItem {
         this.imagen = imagen;
     }
 
-    // --- Getters y Setters ---
-    // (Asegúrate de generarlos para todos los campos)
-    
-    
 }
