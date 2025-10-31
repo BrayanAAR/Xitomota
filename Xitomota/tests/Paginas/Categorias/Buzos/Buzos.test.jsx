@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import axios from 'axios';
 import Buzos from '../../../../src/Paginas/Categorias/Buzos/Buzos';
@@ -24,9 +24,11 @@ describe('Componente Buzos', () => {
       </MemoryRouter>
     );
 
+    const barraCategorias = screen.getByRole('navigation');
     const categorias = ['Poleras', 'Camisas', 'Polerones', 'Pantalones', 'Buzos', 'Chaquetas'];
+
     categorias.forEach(cat => {
-      expect(screen.getByText(cat)).toBeInTheDocument();
+      expect(within(barraCategorias).getByText(cat)).toBeInTheDocument();
     });
   });
 

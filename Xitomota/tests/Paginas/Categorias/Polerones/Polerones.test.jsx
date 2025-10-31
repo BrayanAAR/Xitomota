@@ -6,6 +6,8 @@ import Polerones from '../../../../src/Paginas/Categorias/Polerones/Polerones';
 
 jest.mock('axios');
 
+jest.mock('../../../src/img/Polerones.jpg', () => null);
+
 const mockPolerones = [
   { id: 1, nombre: 'Polerón Gris', precio: 25000, categoria: 'Polerones', url_foto: 'poleron1.jpg' },
   { id: 2, nombre: 'Polerón Azul', precio: 28000, categoria: 'Polerones', url_foto: 'poleron2.jpg' },
@@ -25,8 +27,8 @@ describe('Componente Polerones', () => {
     );
 
     // Buscamos solo dentro del nav de categorías
-    const barraCategorias = screen.getByRole('navigation', { name: /categorías/i, hidden: true }) ||
-                             screen.getByRole('navigation');
+// Busca el primer elemento <nav> que encuentre en la pantalla.
+    const barraCategorias = screen.getByRole('navigation');
     const categorias = ['Poleras', 'Camisas', 'Polerones', 'Pantalones', 'Buzos', 'Chaquetas'];
 
     categorias.forEach(cat => {
@@ -62,5 +64,24 @@ describe('Componente Polerones', () => {
       expect(screen.queryByText('Polerón Gris')).not.toBeInTheDocument();
     });
   });
+
+  test('debe mostrar el placeholder si una categoría no tiene imagen', () => {
+        
+        // A. Arrange
+        render(<MemoryRouter><Polerones /></MemoryRouter>);
+
+        // B. Act
+        // Busca el nav (como en tus otros tests)
+        const barraCategorias = screen.getByRole('navigation', { name: "" });
+
+        // C. Assert
+        // Busca el texto "100 x 100" que está en tu <div> placeholder
+        // 'within' asegura que lo buscamos DENTRO de la barra de categorías
+        const placeholder = within(barraCategorias).getAllByText('100 x 100');
+        expect(placeholder).toHaveLength(6);
+
+        // (Opcional) Verifica que la imagen de Poleras (por su 'alt text') NO está
+        expect(within(barraCategorias).queryByAltText('Polerones')).not.toBeInTheDocument();
+    });
 
 });

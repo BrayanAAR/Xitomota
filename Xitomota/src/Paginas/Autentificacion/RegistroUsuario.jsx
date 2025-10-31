@@ -70,6 +70,7 @@ export default function RegistroUsuario() {
                         value={nombre}
                         onChange={(e) => setNombre(e.target.value)}
                         required 
+                        data-testid="nombre-input"
                     />
                 </div>
                 <div className="auth-input-group">
@@ -80,6 +81,7 @@ export default function RegistroUsuario() {
                         value={apellidos}
                         onChange={(e) => setApellidos(e.target.value)}
                         required 
+                        data-testid="apellidos-input"
                     />
                 </div>
                 <div className="auth-input-group">
@@ -90,6 +92,7 @@ export default function RegistroUsuario() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required 
+                        data-testid="email-input"
                     />
                 </div>
                 <div className="auth-input-group">
@@ -100,6 +103,7 @@ export default function RegistroUsuario() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required 
+                        data-testid="password-input"
                     />
                 </div>
                 <div className="auth-input-group">
@@ -110,6 +114,7 @@ export default function RegistroUsuario() {
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required 
+                        data-testid="confirm-password-input"
                     />
                 </div>
                 

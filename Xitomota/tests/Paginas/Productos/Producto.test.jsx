@@ -1,19 +1,19 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Productos from './Productos';
+import Productos from '../../../src/Paginas/Productos/Producto';
 import axios from 'axios';
 
 jest.mock('axios');
 
-jest.mock('./TarjetaProducto', () => ({
+jest.mock('../../../src/Paginas/Productos/TarjetaProducto', () => ({
   __esModule: true,
   default: jest.fn(({ producto }) => (
     <div data-testid="mock-tarjeta-producto">{producto.nombre}</div>
   )),
 }));
 
-import TarjetaProducto from './TarjetaProducto';
+import TarjetaProducto from '../../../src/Paginas/Productos/TarjetaProducto';
 
 describe("Componente Productos", () => {
 

@@ -25,16 +25,6 @@ export default function TarjetaProducto({ producto, mostrarCategoria = true }) {
         return;
       }
 
-      if (cantidad > producto.stock) {
-        alert(`No hay suficiente stock. Stock disponible: ${producto.stock}`);
-        return;
-      }
-
-      if (producto.stock <= 0) {
-        alert("No hay stock disponible.");
-        return;
-      }
-
       try {
         await axios.post(`http://localhost:8080/api/v1/carrito/${cartId}/add/${producto.id}`, null, {
           params: { cantidad: cantidad } 
@@ -49,8 +39,6 @@ export default function TarjetaProducto({ producto, mostrarCategoria = true }) {
 
     const handleCantidadCambiar = (e) => {
       let nuevaCantidad = Math.max(1, parseInt(e.target.value) || 1);
-
-      if (nuevaCantidad < 1) nuevaCantidad = 1;
       
       if (nuevaCantidad > producto.stock) {
         nuevaCantidad = producto.stock;

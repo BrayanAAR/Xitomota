@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Contacto from './Contacto';
+import Contacto from '../../../src/Paginas/Contacto/Contacto';
 
 // Mock del alert
 window.alert = jest.fn();

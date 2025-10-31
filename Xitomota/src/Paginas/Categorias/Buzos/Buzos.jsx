@@ -42,7 +42,7 @@ export default function Buzos() {
       <>
       <main className="categoria-main">
         {/* Barra de Categorías */}
-        <nav className="navegacion-categorias">
+        <nav className="navegacion-categorias" aria-label='Navegación de categorias'>
           {listaDeCategorias.map((cat) => (
             <Link key={cat.id} to={`/categorias/${cat.id}`} className="categoria-card-link">
               <div className="categoria-card-small">
