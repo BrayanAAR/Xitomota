@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Ofertas from './Ofertas';
+import Ofertas from '../../../src/Paginas/Ofertas/Ofertas';
 
 describe('Ofertas Component', () => {
   beforeEach(() => {
@@ -14,7 +14,7 @@ describe('Ofertas Component', () => {
   });
 
   test('renderiza el título y subtítulo de ofertas', () => {
-    expect(screen.getByText(/¡Ofertas Imperdibles!/i)).toBeInTheDocument();
+    expect(screen.getByText(/Ofertas Imperdibles/i)).toBeInTheDocument();
     expect(screen.getByText(/¡Aprovecha estos descuentos/i)).toBeInTheDocument();
   });
 

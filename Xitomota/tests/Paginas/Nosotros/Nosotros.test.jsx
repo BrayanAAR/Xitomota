@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Nosotros from './Nosotros';
+import Nosotros from '../../../src/Paginas/Nosotros/Nosotros';
 
 describe('Nosotros Component', () => {
   beforeEach(() => {

@@ -100,7 +100,7 @@ export default function Checkout() {
                     <div className="form-row">
                         <div className="form-group">
                             <label htmlFor="nombre">Nombre*</label>
-                            <input type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleFormChange} />
+                            <input type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleFormChange} data-testid="nombre-input" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="apellidos">Apellidos*</label>
@@ -110,7 +110,7 @@ export default function Checkout() {
                     <div className="form-row">
                         <div className="form-group full-width">
                             <label htmlFor="correo">Correo*</label>
-                            <input type="email" id="correo" name="correo" value={formData.correo} onChange={handleFormChange} />
+                            <input type="email" id="correo" name="correo" value={formData.correo} onChange={handleFormChange} data-testid="correo-input" />
                         </div>
                     </div>
                 </section>
@@ -122,7 +122,7 @@ export default function Checkout() {
                     <div className="form-row">
                         <div className="form-group" style={{ flex: 2 }}> 
                             <label htmlFor="calle">Calle*</label>
-                            <input type="text" id="calle" name="calle" value={formData.calle} onChange={handleFormChange} />
+                            <input type="text" id="calle" name="calle" value={formData.calle} onChange={handleFormChange} data-testid="calle-input" />
                         </div>
                         <div className="form-group" style={{ flex: 1 }}> 
                             <label htmlFor="departamento">Departamento (opcional)</label>

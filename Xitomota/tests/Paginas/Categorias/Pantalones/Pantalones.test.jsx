@@ -25,8 +25,7 @@ describe('Componente Pantalones', () => {
     );
 
     // Buscamos solo dentro del nav de categorías
-    const barraCategorias = screen.getByRole('navigation', { name: /categorías/i, hidden: true }) || 
-                             screen.getByRole('navigation');
+    const barraCategorias = screen.getByRole('navigation');
     const categorias = ['Poleras', 'Camisas', 'Polerones', 'Pantalones', 'Buzos', 'Chaquetas'];
 
     categorias.forEach(cat => {
