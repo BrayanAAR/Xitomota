@@ -4,10 +4,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 // Función para formatear el precio 
 const formatearPrecio = (precio) => {
-  return new Intl.NumberFormat('es-CL', {
-    style: 'currency',
-    currency: 'CLP'
-  }).format(precio || 0);
+    return new Intl.NumberFormat('es-CL', {
+        style: 'currency',
+        currency: 'CLP'
+    }).format(precio || 0);
 };
 
 export default function DetalleProducto() {

@@ -90,7 +90,8 @@ public class UsuarioController {
         usuario.setRol(detallesUsuario.getRol());
         
         if (detallesUsuario.getPassword() != null && !detallesUsuario.getPassword().isEmpty()) {
-            usuario.setPassword(detallesUsuario.getPassword());
+            String passHasheada = passwordEncoder.encode(detallesUsuario.getPassword());
+            usuario.setPassword(passHasheada);
         }
         
         final Usuario usuarioActualizado = usuarioRepository.save(usuario);
@@ -115,12 +116,10 @@ public class UsuarioController {
         String currentPassword = updates.get("currentPassword");
         String newPassword = updates.get("newPassword");
 
-        if (currentPassword != null && newPassword != null && !newPassword.isEmpty()) {
-            if (!usuario.getPassword().equals(currentPassword)) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-            }
-            usuario.setPassword(newPassword); 
+        if (!passwordEncoder.matches(currentPassword, usuario.getPassword())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
+        usuario.setPassword(passwordEncoder.encode(newPassword));
 
         final Usuario usuarioActualizado = usuarioRepository.save(usuario);
         return ResponseEntity.ok(usuarioActualizado);
