@@ -897,7 +897,7 @@
 /* Columna 2: Precio */
 .item-precio {
   grid-column: 2 / 3;
-  color: #555;
+  color: #000000;
 }
 
 /* Columna 3: Cantidad */
@@ -1316,6 +1316,73 @@
 .btn-enviar-email:hover {
     background-color: #218838;
 }
+
+@media print {
+    /* 1. Ocultar todo por defecto */
+    body * {
+        visibility: hidden;
+    }
+
+    /* 2. Ocultar elementos específicos de la interfaz (Navbar, Footer, etc) */
+    nav, footer, .navbar, .sidebar {
+        display: none !important;
+    }
+
+    /* 3. Hacer visible SOLO el contenedor del comprobante y sus hijos */
+    /* Ajusta '.checkout-form-column' si usaste otra clase contenedora principal */
+    .checkout-grid-container,
+    .checkout-form-column,
+    .checkout-form-column * {
+        visibility: visible;
+    }
+
+    /* 4. Posicionar el comprobante en la hoja */
+    .checkout-grid-container {
+        display: block !important; /* Quita el Grid */
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .checkout-form-column {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 20px !important; /* Un poco de margen interno para el papel */
+        box-shadow: none !important; /* Quita la sombra de la tarjeta */
+        border: none !important; /* Quita el borde */
+    }
+
+    /* 5. Ocultar TODOS los botones dentro de la tarjeta */
+    button, 
+    .confirmacion-botones, 
+    .btn-imprimir, 
+    .btn-enviar-email,
+    .btn-volver-pago {
+        display: none !important;
+    }
+
+    /* 6. Mejorar el aspecto de los inputs para que parezcan texto plano */
+    /* Esto quita el fondo gris y los bordes de los inputs deshabilitados */
+    .form-group input:disabled,
+    .form-group textarea:disabled {
+        background-color: transparent !important;
+        border: none !important;
+        border-bottom: 1px solid #ccc !important; /* Deja una línea sutil si quieres */
+        padding-left: 0 !important;
+        color: #000 !important; /* Texto negro puro */
+    }
+
+    /* 7. Ajustes de color para el encabezado */
+    .confirmacion-header h2 span {
+        /* A veces las impresoras ignoran colores, esto intenta forzarlo */
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
 /* ------------------------------- FIN PAGO REALIZADO ------------------------------- */
 
 /* ------------------------------- PAGO FALLIDO ------------------------------- */
@@ -1450,4 +1517,129 @@
 }
 .auth-link a:hover {
     text-decoration: underline;
+}
+
+/* ----------------- FIN AUTENTIFICACIÓN  --------------------- */
+
+/* ----------------- BOLETA --------------------- */
+
+/* 1. El contenedor centra la boleta */
+.boleta-container {
+    display: flex;
+    justify-content: center;
+    grid-template-columns: 1fr; /* Sobrescribe el grid del checkout */
+}
+
+/* 2. La "Hoja" de la boleta */
+.boleta-paper {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 800px; /* Ancho máximo tipo carta */
+    padding: 40px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Sombra suave */
+    border-radius: 8px;
+    position: relative;
+}
+
+/* 3. Encabezado */
+.boleta-paper .confirmacion-header {
+    text-align: center;
+    border-bottom: 2px dashed #ccc; /* Línea punteada típica de boleta */
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.boleta-paper h2 {
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+/* 4. Secciones de datos */
+.boleta-paper .checkout-section {
+    margin-bottom: 30px;
+}
+
+.boleta-paper h3 {
+    font-size: 1.1rem;
+    color: #555;
+    text-transform: uppercase;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.boleta-paper p {
+    margin-bottom: 5px;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+/* 5. Tabla de Productos Limpia */
+.boleta-paper table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.boleta-paper th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+.boleta-paper td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+    color: #555;
+}
+
+/* 6. Pie de página (Total) */
+.boleta-paper .confirmacion-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #333; /* Línea gruesa para el total */
+    text-align: right;
+}
+
+.boleta-paper .confirmacion-footer h3 {
+    font-size: 1.5rem;
+    color: #000;
+    border: none;
+}
+
+/* --- ESTILOS DE IMPRESIÓN (MÁGICOS) 🖨️ --- */
+/* Esto hace que al imprimir, solo salga la boleta limpia */
+@media print {
+    /* Oculta todo lo que no sea la boleta */
+    body * {
+        visibility: hidden;
+    }
+    
+    /* Hace visible solo la boleta y sus hijos */
+    .boleta-paper, .boleta-paper * {
+        visibility: visible;
+    }
+
+    /* Posiciona la boleta arriba a la izquierda */
+    .boleta-paper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        max-width: 100%;
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Oculta botones dentro de la boleta al imprimir */
+    .btn, .btn-imprimir, .btn-secondary {
+        display: none !important;
+    }
 }

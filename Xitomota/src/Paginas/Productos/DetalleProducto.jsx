@@ -38,35 +38,41 @@ export default function DetalleProducto() {
 
     // Lógica para agregar al carrito
     const handleAgregarAlCarrito = async () => { 
-        const cartId = localStorage.getItem('cartId');
-        if (!cartId) {
-            alert("Error, no se pudo encontrar el carrito. Visita la página del carrito primero.");
-            navigate('/carrito');
-            return;
-        }
-
-        if (cantidad > producto.stock) {
-            alert(`No hay suficiente stock. Stock disponible: ${producto.stock}`);
-            return;
-        }
-
-        if (producto.stock <= 0) {
-            alert("No hay stock disponible.");
-            return;
-        }
+        // 1. Intentamos obtener el ID existente
+        let cartId = localStorage.getItem('cartId');
 
         try {
+            // 2. Si NO existe, lo creamos primero
+            if (!cartId) {
+                const responseCrear = await axios.post('http://localhost:8080/api/v1/carrito/crear');
+                cartId = responseCrear.data.id; // Obtenemos el nuevo ID
+                localStorage.setItem('cartId', cartId); // Lo guardamos para el futuro
+            }
+
+            // 3. Validaciones de stock (tu código existente)
+            if (cantidad > producto.stock) {
+                alert(`Error: Solo quedan ${producto.stock} unidades disponibles.`);
+                return;
+            }
+            if (producto.stock <= 0) {
+                alert("Este producto está agotado.");
+                return;
+            }
+
+            // 4. Ahora sí, agregamos el producto usando el ID (viejo o nuevo)
             await axios.post(`http://localhost:8080/api/v1/carrito/${cartId}/add/${producto.id}`, null, {
-                params: { cantidad: cantidad }
+                params: { cantidad: cantidad } 
             });
-            alert(`${cantidad} ${producto.nombre}(s) agregado(s) al carrito!`);
-            setCantidad(1);
+            
+            alert(`¡${cantidad} ${producto.nombre}(s) agregado(s) al carrito!`);
+            setCantidad(1); 
+
         } catch (error) {
             console.error("Error al agregar al carrito:", error);
             if (error.response && error.response.status === 400) {
-                alert(`Error al agregar al carrito: ${error.response.data}`);
+                 alert(error.response.data); // Muestra error de stock del backend
             } else {
-                alert("No se pudo agregar el producto al carrito.");
+                 alert("No se pudo agregar el producto. Intenta nuevamente.");
             }
         }
     };
