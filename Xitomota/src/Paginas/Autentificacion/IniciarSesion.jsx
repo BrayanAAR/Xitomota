@@ -21,7 +21,7 @@ export default function IniciarSesion() {
             const response = await axios.post('http://localhost:8080/api/v1/auth/login', loginData);
             
             const userData = response.data; 
-
+            localStorage.setItem('token', userData.token);
             localStorage.setItem('usuarioLogueado', userData.email);
             localStorage.setItem('rolUsuario', userData.rol);
             

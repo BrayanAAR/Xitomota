@@ -7,6 +7,7 @@ export default function AdminLayout() {
 
     const cerrarSesion = () => {
         if (window.confirm("¿Estás seguro de que deseas cerrar sesión?")) {
+            localStorage.removeItem("token");
             localStorage.removeItem("usuarioLogueado");
             localStorage.removeItem("rolUsuario");
             alert("✅ Sesión cerrada exitosamente");

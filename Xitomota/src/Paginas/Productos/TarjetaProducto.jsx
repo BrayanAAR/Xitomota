@@ -18,23 +18,43 @@ export default function TarjetaProducto({ producto, mostrarCategoria = true }) {
 
     // --- Lógica de "Agregar al Carrito" ---
     const handleAgregarAlCarrito = async () => { 
-      const cartId = localStorage.getItem('cartId');
+        // 1. Intentamos obtener el ID existente
+        let cartId = localStorage.getItem('cartId');
 
-      if (!cartId) {
-        alert("Error, no se pudo encontrar el carrito. Visita la página del carrito primero.");
-        return;
-      }
+        try {
+            // 2. Si NO existe, lo creamos primero
+            if (!cartId) {
+                const responseCrear = await axios.post('http://localhost:8080/api/v1/carrito/crear');
+                cartId = responseCrear.data.id; // Obtenemos el nuevo ID
+                localStorage.setItem('cartId', cartId); // Lo guardamos para el futuro
+            }
 
-      try {
-        await axios.post(`http://localhost:8080/api/v1/carrito/${cartId}/add/${producto.id}`, null, {
-          params: { cantidad: cantidad } 
-        });
-        alert(`¡${cantidad} ${producto.nombre} agregado al carrito!`);
-        setCantidad(1);
-      } catch (error) {
-        console.error("Error al agregar al carrito:", error);
-        alert("No se pudo agregar el producto.");
-      }
+            // 3. Validaciones de stock (tu código existente)
+            if (cantidad > producto.stock) {
+                alert(`Error: Solo quedan ${producto.stock} unidades disponibles.`);
+                return;
+            }
+            if (producto.stock <= 0) {
+                alert("Este producto está agotado.");
+                return;
+            }
+
+            // 4. Ahora sí, agregamos el producto usando el ID (viejo o nuevo)
+            await axios.post(`http://localhost:8080/api/v1/carrito/${cartId}/add/${producto.id}`, null, {
+                params: { cantidad: cantidad } 
+            });
+            
+            alert(`¡${cantidad} ${producto.nombre}(s) agregado(s) al carrito!`);
+            setCantidad(1); 
+
+        } catch (error) {
+            console.error("Error al agregar al carrito:", error);
+            if (error.response && error.response.status === 400) {
+                 alert(error.response.data); // Muestra error de stock del backend
+            } else {
+                 alert("No se pudo agregar el producto. Intenta nuevamente.");
+            }
+        }
     };
 
     const handleCantidadCambiar = (e) => {

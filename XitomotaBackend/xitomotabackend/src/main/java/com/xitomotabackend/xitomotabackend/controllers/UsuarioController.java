@@ -2,11 +2,13 @@ package com.xitomotabackend.xitomotabackend.controllers;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xitomotabackend.xitomotabackend.config.JwtService;
 import com.xitomotabackend.xitomotabackend.dto.LoginRequest;
 import com.xitomotabackend.xitomotabackend.entities.Usuario;
 import com.xitomotabackend.xitomotabackend.repositories.UsuarioRepository;
@@ -32,6 +35,15 @@ public class UsuarioController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtService jwtService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @GetMapping("/usuarios")
     public List<Usuario> getAllUsuarios() {
@@ -58,25 +70,31 @@ public class UsuarioController {
         return usuarioRepository.save(usuario);
     }
 
-    @PostMapping("/auth/login") 
+    @PostMapping("/auth/login")
     public ResponseEntity<?> loginUsuario(@RequestBody LoginRequest loginRequest) {
-        
-        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(loginRequest.getEmail());
+        try {
+            // 1. Autenticar con Spring Security (verifica la pass encriptada)
+            authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
+            );
 
-        if (usuarioOpt.isPresent()) {
-            Usuario usuario = usuarioOpt.get();
+            // 2. Si llegamos aquí, es válido. Generar Token.
+            var userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmail());
+            String token = jwtService.generateToken(userDetails);
+            
+            // 3. Buscar el rol para enviarlo al front
+            Usuario usuario = usuarioRepository.findByEmail(loginRequest.getEmail()).get();
 
-            if (passwordEncoder.matches(loginRequest.getPassword(), usuario.getPassword())) {
+            var response = new java.util.HashMap<String, String>();
+            response.put("token", token); // <--- ¡EL TOKEN!
+            response.put("email", usuario.getEmail());
+            response.put("rol", usuario.getRol());
+            
+            return ResponseEntity.ok(response);
 
-                var response = new java.util.HashMap<String, String>();
-                response.put("email", usuario.getEmail());
-                response.put("rol", usuario.getRol());
-                
-                return ResponseEntity.ok(response);
-            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
         }
-        
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
     }
 
     @PutMapping("/usuarios/{id}")

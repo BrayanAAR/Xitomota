@@ -143,7 +143,7 @@ export default function PagoRealizado() {
                 <div className="confirmacion-footer">
                     <h3>Total pagado: {formatearPrecio(orden.total)}</h3>
                     <div className="confirmacion-botones">
-                        <button className="btn-imprimir">Imprimir boleta en PDF</button>
+                        <button className="btn-imprimir" onClick={() => window.print()}>Imprimir boleta</button>
                         <button className="btn-enviar-email">Enviar boleta por email</button>
                     </div>
                 </div>

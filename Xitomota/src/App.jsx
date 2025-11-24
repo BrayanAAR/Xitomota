@@ -41,6 +41,11 @@ import Polerones from './Paginas/Categorias/Polerones/Polerones.jsx'
 import Pantalones from './Paginas/Categorias/Pantalones/Pantalones.jsx'
 import Buzos from './Paginas/Categorias/Buzos/Buzos.jsx'
 
+import ProtectedRoute from './componentes/ProtectedRoute.jsx'
+
+import MisCompras from './componentes/MisCompras.jsx'
+import Boleta from './componentes/Boleta.jsx'
+
 function App() {
   return (
     <Router>
@@ -63,6 +68,8 @@ function App() {
               <Route path="/productos" element={<PaginaProductos />} />
               <Route path="/productos/:id" element={<DetalleProducto />} />
               <Route path="/ofertas" element={<Ofertas />} />
+              <Route path="/mis-compras" element={<MisCompras />} />
+              <Route path="/boleta/:id" element={<Boleta />} />
               {/* RUTAS DE CATEGORIAS */}
               <Route path="/categorias/poleras" element={<Poleras />} />
               <Route path="/categorias/camisas" element={<Camisas />} />
@@ -72,24 +79,28 @@ function App() {
               <Route path="/categorias/buzos" element={<Buzos />} />
             </Route>
 
-            <Route path="/admin" element={<AdminLayout />} >
-              {/* RUTAS PRIVADAS ADMIN */}
-              <Route index element={<HomeAdmin />} />
-              <Route path="inventario" element={<Inventario />} />
-              <Route path="ordenes" element={<ListadoOrdenes />} />
-              <Route path="ordenes/:ordenId" element={<DetalleOrden />} />
-              <Route path="productos/nuevo" element={<FormularioProducto />} />
-              <Route path="productos/:id" element={<FormularioProducto />} />
-              <Route path="reportes" element={<Reportes />} />
-              <Route path="stock-critico" element={<StockCritico />} />
-              <Route path="usuarios" element={<ListadoUsuarios />} />
-              <Route path="usuarios/nuevo" element={<FormularioUsuario />} />
-              <Route path="usuarios/editar/:id" element={<FormularioUsuario />} />
-              <Route path="usuarios/historial/:email" element={<HistorialCompras />} />
-              <Route path="perfil" element={<Perfil />} />
-              <Route path="categorias" element={<ListadoCategorias />} />
-              <Route path="categorias/nuevo" element={<FormularioCategoria />} />
-              <Route path="categorias/editar/:id" element={<FormularioCategoria />} />
+
+            {/* RUTAS PROTEGIDAS ADMIN */}
+            <Route element={<ProtectedRoute allowedRoles={['Administrador']} />}>
+              <Route path="/admin" element={<AdminLayout />} >
+                {/* RUTAS PRIVADAS ADMIN */}
+                <Route index element={<HomeAdmin />} />
+                <Route path="inventario" element={<Inventario />} />
+                <Route path="ordenes" element={<ListadoOrdenes />} />
+                <Route path="ordenes/:ordenId" element={<DetalleOrden />} />
+                <Route path="productos/nuevo" element={<FormularioProducto />} />
+                <Route path="productos/:id" element={<FormularioProducto />} />
+                <Route path="reportes" element={<Reportes />} />
+                <Route path="stock-critico" element={<StockCritico />} />
+                <Route path="usuarios" element={<ListadoUsuarios />} />
+                <Route path="usuarios/nuevo" element={<FormularioUsuario />} />
+                <Route path="usuarios/editar/:id" element={<FormularioUsuario />} />
+                <Route path="usuarios/historial/:email" element={<HistorialCompras />} />
+                <Route path="perfil" element={<Perfil />} />
+                <Route path="categorias" element={<ListadoCategorias />} />
+                <Route path="categorias/nuevo" element={<FormularioCategoria />} />
+                <Route path="categorias/editar/:id" element={<FormularioCategoria />} />
+              </Route>
             </Route>
           </Routes>
         </main>

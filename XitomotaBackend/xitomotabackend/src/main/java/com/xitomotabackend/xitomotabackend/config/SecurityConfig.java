@@ -1,45 +1,45 @@
 package com.xitomotabackend.xitomotabackend.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    /**
-     * Define el "Encriptador" de contraseñas.
-     * Usamos BCrypt, que es el estándar de la industria.
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    @Autowired
+    private JwtAuthenticationFilter jwtAuthFilter;
 
-    /**
-     * Configura la cadena de filtros de seguridad.
-     * ¡Importante! Sin esto, Spring Security bloqueará toda tu API.
-     */
+    @Autowired
+    private AuthenticationProvider authenticationProvider;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            // 1. Deshabilitar CSRF: Es necesario para APIs REST/stateless
-            .csrf(csrf -> csrf.disable()) 
-
-            // 2. Reglas de autorización
+            .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                // Por ahora, permitimos todas las peticiones (permitAll)
-                // para no romper tu app. Más adelante, aquí puedes
-                // proteger tus rutas de admin.
-                .anyRequest().permitAll() 
+                // Rutas Públicas
+                .requestMatchers("/api/v1/auth/**", "/api/v1/productos/**", "/api/v1/categorias/**", "/images/**", "/api/v1/carrito/**", "/api/v1/orden/**").permitAll()
+                
+                // Rutas de Admin (Solo alguien con rol 'ADMIN' o 'Administrador')
+                .requestMatchers("/api/v1/admin/**", "/api/v1/usuarios/**", "/api/v1/orden/reportes/**").hasAnyRole("Administrador", "ADMIN")
+
+                // Rutas de Usuario (Cualquier usuario autenticado)
+                .requestMatchers("/api/v1/orden/por-correo/**", "/api/v1/orden/{id}").authenticated()
+                
+                // El resto requiere autenticación
+                .anyRequest().authenticated()
             )
-            .httpBasic(Customizer.withDefaults());
+            .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // ¡Sin sesiones!
+            .authenticationProvider(authenticationProvider)
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class); // Filtro JWT primero
 
         return http.build();
     }

@@ -41,6 +41,7 @@ function Header() {
 
     const handleCerrarSesion = () => {
         if (window.confirm("¿Estás seguro que deseas cerrar sesión?")) {
+            localStorage.removeItem('token');
             localStorage.removeItem('usuarioLogueado');
             localStorage.removeItem('rolUsuario');
             setEstaLogeado(false);
@@ -137,13 +138,17 @@ function Header() {
                         <ul className="navbar-nav flex-row">
                             <li className="nav-item">
                                 {estaLogeado ? (
-                                    <div className="d-flex">
+                                    <div className="d-flex align-items-center">
                                         {esAdmin && (
                                             <Link to="/admin" className="btn btn-warning me-2"
                                         >
                                             Panel Admin
                                         </Link>
                                         )}
+                                        {/* --- BOTÓN MIS COMPRAS --- */}
+                                        <Link to="/mis-compras" className="btn btn-outline-primary me-2">
+                                            Mis Compras
+                                        </Link>
                                         <button
                                             onClick={handleCerrarSesion}
                                             className="btn btn-outline-danger me-2"
