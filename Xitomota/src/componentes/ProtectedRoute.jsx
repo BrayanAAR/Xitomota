@@ -7,7 +7,7 @@ const ProtectedRoute = ({ allowedRoles }) => {
 
     // 1. Si no hay token, al login
     if (!token) {
-        return <Navigate to="/iniciar-sesion" replace />;
+        return <Navigate to="/login" replace />;
     }
 
     // 2. Si hay roles requeridos y el usuario no lo tiene, al inicio

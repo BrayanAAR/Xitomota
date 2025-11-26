@@ -56,11 +56,10 @@ describe("Componente Checkout", () => {
         waitFor(async () => {
             const itemText = await screen.getByText("Polera Test (x2)");
 
-            // 2. Si lo encuentra, ¡significa que la API respondió y el estado se actualizó!
             expect(itemText).toBeInTheDocument();
         });
 
-        // 3. Ahora puedes verificar (sin 'await') que la API fue llamada.
+        // 3. Ahora verificar (sin 'await') que la API fue llamada.
         expect(axios.get).toHaveBeenCalledWith('http://localhost:8080/api/v1/carrito/1');
     });
     
@@ -78,10 +77,7 @@ describe("Componente Checkout", () => {
                 </Routes>
             </MemoryRouter>
         );
-        
-        // ... (después de renderizar)
-
-        // Espera a que carguen los items primero (del test anterior)
+    
 
         // --- SOLUCIÓN: Simula rellenar el formulario usando getByLabelText ---
         // La 'i' ignora mayúsculas/minúsculas y el '*'

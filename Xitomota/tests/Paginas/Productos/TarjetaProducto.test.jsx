@@ -105,32 +105,56 @@ describe("Componente TarjetaProducto", () => {
                 { params: { cantidad: 3 } }
             );
         });
-        expect(alertMock).toHaveBeenCalledWith("¡3 Polera de Prueba agregado al carrito!");
+        expect(alertMock).toHaveBeenCalledWith("¡3 Polera de Prueba(s) agregado(s) al carrito!");
 
         alertMock.mockRestore();
         jest.spyOn(window.localStorage.__proto__, 'getItem').mockClear();
     });
 
-    it("debe mostrar alerta y NO llamar a axios si no hay cartId", () => {
+    // --- TEST 5 (Nuevo Comportamiento: Auto-crear carrito) ---
+    it("debe crear un carrito nuevo si no existe y luego agregar el producto", async () => {
         
-        jest.spyOn(window.localStorage.__proto__, 'getItem').mockReturnValue(null);
+        // A. Arrange
+        // 1. Espiamos getItem para que devuelva null (no hay carrito)
+        const getItemSpy = jest.spyOn(window.localStorage.__proto__, 'getItem').mockReturnValue(null);
+        
+        // 2. --- ¡NUEVO! Espiamos setItem para poder verificarlo después ---
+        const setItemSpy = jest.spyOn(window.localStorage.__proto__, 'setItem');
+
+        // 3. Simulamos las respuestas de axios
+        axios.post
+            .mockResolvedValueOnce({ data: { id: '999' } }) // Respuesta de crear
+            .mockResolvedValueOnce({});                     // Respuesta de agregar
+            
         const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => {});
 
         render(<MemoryRouter><TarjetaProducto producto={mockProducto} /></MemoryRouter>);
 
+        // B. Act
         fireEvent.click(screen.getByRole('button', { name: "Agregar al Carrito" }));
 
+        // C. Assert
+        await waitFor(() => {
+            // Verifica que llamó a CREAR
+            expect(axios.post).toHaveBeenCalledWith('http://localhost:8080/api/v1/carrito/crear');
+            
+            // Verifica que GUARDÓ el nuevo ID '999' usando el espía
+            expect(setItemSpy).toHaveBeenCalledWith('cartId', '999');
 
-        expect(alertMock).toHaveBeenCalledWith(
-            "Error, no se pudo encontrar el carrito. Visita la página del carrito primero."
-        );
-        
+            // Verifica que llamó a AGREGAR
+            expect(axios.post).toHaveBeenCalledWith(
+                'http://localhost:8080/api/v1/carrito/999/add/1',
+                null,
+                { params: { cantidad: 1 } }
+            );
+        });
 
-        expect(axios.post).not.toHaveBeenCalled();
+        expect(alertMock).toHaveBeenCalledWith("¡1 Polera de Prueba(s) agregado(s) al carrito!");
 
-
+        // Limpieza (Restauramos todo a la normalidad)
         alertMock.mockRestore();
-        jest.spyOn(window.localStorage.__proto__, 'getItem').mockClear();
+        getItemSpy.mockRestore();
+        setItemSpy.mockRestore();
     });
 
 
@@ -157,7 +181,7 @@ describe("Componente TarjetaProducto", () => {
             expect(axios.post).toHaveBeenCalled();
         });
 
-        expect(alertMock).toHaveBeenCalledWith("No se pudo agregar el producto.");
+        expect(alertMock).toHaveBeenCalledWith("No se pudo agregar el producto. Intenta nuevamente.");
         
         expect(consoleErrorMock).toHaveBeenCalled();
 
