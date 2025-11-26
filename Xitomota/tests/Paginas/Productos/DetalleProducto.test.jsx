@@ -82,31 +82,63 @@ describe("Componente DetalleProducto", () => {
         expect(await screen.findByText("Producto no encontrado.")).toBeInTheDocument();
     });
 
-    it("debe mostrar alerta si se agrega al carrito sin cartId", async () => {
+// --- TEST ACTUALIZADO (Nuevo Comportamiento: Auto-crear carrito) ---
+    it("debe crear un carrito nuevo si no existe y luego agregar el producto", async () => {
         
-        axios.get.mockResolvedValue({ data: mockProducto }); 
-        
+        // A. Arrange
+        // 1. Simula la carga del producto (para que la página no crashee)
+        axios.get.mockResolvedValue({ data: mockProducto });
+
+        // 2. Simula que NO hay cartId en localStorage
         jest.spyOn(window.localStorage.__proto__, 'getItem').mockReturnValue(null);
         
+        // 3. Espiamos setItem para verificar que guarde el nuevo ID
+        const setItemSpy = jest.spyOn(window.localStorage.__proto__, 'setItem');
+
+        // 4. Simulamos las respuestas de axios.post:
+        axios.post
+            .mockResolvedValueOnce({ data: { id: '999' } }) // 1ra llamada (/crear): Devuelve ID '999'
+            .mockResolvedValueOnce({});                     // 2da llamada (/add): Éxito
+            
         const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => {});
 
+        // Renderizamos con Router (necesario para useParams)
         render(
-            <MemoryRouter initialEntries={['/producto/1']}> 
+            <MemoryRouter initialEntries={['/producto/1']}>
                 <Routes>
                     <Route path="/producto/:id" element={<DetalleProducto />} />
                 </Routes>
             </MemoryRouter>
         );
 
+        // Espera a que cargue el producto antes de interactuar
         await screen.findByText(mockProducto.nombre);
 
+        // B. Act
         fireEvent.click(screen.getByRole('button', { name: /Agregar al Carrito/i }));
 
-        expect(alertMock).toHaveBeenCalledTimes(1); 
-        expect(alertMock).toHaveBeenCalledWith("Error, no se pudo encontrar el carrito. Visita la página del carrito primero.")
-        expect(axios.post).not.toHaveBeenCalled();
+        // C. Assert
+        await waitFor(() => {
+            // 1. Verifica que llamó a CREAR carrito
+            expect(axios.post).toHaveBeenCalledWith('http://localhost:8080/api/v1/carrito/crear');
+            
+            // 2. Verifica que GUARDÓ el nuevo ID '999'
+            expect(setItemSpy).toHaveBeenCalledWith('cartId', '999');
 
+            // 3. Verifica que llamó a AGREGAR usando el nuevo ID '999'
+            expect(axios.post).toHaveBeenCalledWith(
+                'http://localhost:8080/api/v1/carrito/999/add/1',
+                null,
+                { params: { cantidad: 1 } }
+            );
+        });
+
+        // 4. Verifica que mostró el mensaje de éxito
+        expect(alertMock).toHaveBeenCalledWith(expect.stringContaining("agregado(s) al carrito"));
+
+        // Limpieza
         alertMock.mockRestore();
+        setItemSpy.mockRestore();
         jest.spyOn(window.localStorage.__proto__, 'getItem').mockClear();
     });
 

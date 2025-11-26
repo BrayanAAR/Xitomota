@@ -35,7 +35,7 @@ export default function RegistroUsuario() {
         try {
             const response = await axios.post('http://localhost:8080/api/v1/usuarios', nuevoUsuario);
             
-            alert(`✅ ¡Usuario ${response.data.nombre} registrado exitosamente! Ahora puedes iniciar sesión.`);
+            alert(`✅ ¡Usuario ${response.data.nombre} se ha registrado exitosamente! Ahora puedes iniciar sesión.`);
             
             setNombre('');
             setApellidos('');
